@@ -5,30 +5,51 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class  AuthController extends Controller
 {
     public function login(Request $request)
     {
+
+
+//        if ($user) {
+//            if (password_verify($request->password, $user->password)) {
+//                return $this->success($user);
+//            } else {
+//                return $this->error("Password salah");
+//            }
+//        }
+//        return $this->error("User tidak di temukan");
+//
         $validasi = Validator::make($request->all(), [
             'email' => 'required',
-            'password' => 'required|min:6',
+            'password' => 'required',
         ]);
 
         if ($validasi->fails()) {
-            return $this->error($validasi->errors()->first());
+            return response()->json([
+                "message"=> "ada inputan yang tidak sesuai" + $validasi->errors()->first()
+            ], Response::HTTP_BAD_REQUEST);
         }
 
-        $user = User::where('email', $request->email)->first();
-        if ($user) {
-            if (password_verify($request->password, $user->password)) {
-                return $this->success($user);
-            } else {
-                return $this->error("Password salah");
-            }
+        $data = [
+            'email' => $request->post('email'),
+            'password' => $request->post('password')
+        ];
+
+        if (!$token = auth('api')->attempt($data)){
+
+            return response()->json([
+                "message"=>"email atau password saalah"
+            ], Response::HTTP_BAD_REQUEST);
+
         }
-        return $this->error("User tidak di temukan");
+        $user = User::where('email', $request->email)->first();
+
+        return $this->respondWithToken($user, $token);
     }
 
 
@@ -90,6 +111,39 @@ class  AuthController extends Controller
         }
 
         return $this->error("Terjadi Kesalahan saat mengupload");
+    }
+
+    protected function respondWithToken($user, $token){
+
+        return response()->json([
+            'data' => $user,
+            'token' => $token
+        ], Response::HTTP_OK);
+    }
+
+    public function getAuthenticatedUser()
+    {
+        try {
+
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+
+        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+            return response()->json(['token_expired'], $e->getStatusCode());
+
+        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+            return response()->json(['token_invalid'], $e->getStatusCode());
+
+        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+            return response()->json(['token_absent'], $e->getStatusCode());
+
+        }
+
+        return response()->json(compact('user'));
     }
 
     public function success($data, $message = "success")
