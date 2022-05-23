@@ -56,6 +56,42 @@ class  AuthController extends Controller
         }
     }
 
+    public function update(Request $request, $id)
+    {
+        $user = User::where('id', $id)->first();
+        if($user){
+
+            $user->update($request->all());
+            return $this->success($user);
+        }
+
+        return $this->error("Error User tidak ditemukan");
+    }
+
+    public function upload(Request $request, $id)
+    {
+        $user = User::where('id', $id)->first();
+        if($user){
+
+            $fileName = "";
+            if ($request->image){
+                $image = $request->image->getClientOriginalName();
+                $image = str_replace(' ', '',$image);
+                $image = date('Hs').rand(1,999)."_".$image;
+                $fileName = $image;
+                $request->image->storeAs('public/user', $image);
+            }else{
+                return $this->error("File must be image");
+            }
+            $user->update([
+                'image' => $fileName,
+            ]);
+            return $this->success($user);
+        }
+
+        return $this->error("Terjadi Kesalahan saat mengupload");
+    }
+
     public function success($data, $message = "success")
     {
         return response()->json([

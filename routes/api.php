@@ -20,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
 Route::post('/register', [\App\Http\Controllers\Api\AuthController::class, 'register']);
+Route::put('/update-user/{id}', [\App\Http\Controllers\Api\AuthController::class, 'update']);
+Route::post('/upload-user/{id}', [\App\Http\Controllers\Api\AuthController::class, 'upload']);
