@@ -7,16 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mading extends Model
 {
+    protected $table = 'mading';
     use HasFactory;
+
+    public $timestamps = false;
+
 
     protected $fillable = [
         'judul_mading',
         'body_mading',
         'foto_mading',
-        'tanggal_mading'
+        'created_at'
     ];
 
     protected $hidden = [
-//        'id',
     ];
+
+    protected $dateFormat ='U';
+
 }

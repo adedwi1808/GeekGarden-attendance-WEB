@@ -22,3 +22,6 @@ Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']
 Route::post('/register', [\App\Http\Controllers\Api\AuthController::class, 'register']);
 Route::put('/update-user/{id}', [\App\Http\Controllers\Api\AuthController::class, 'update'])->middleware('jwt.verify');
 Route::post('/upload-user/{id}', [\App\Http\Controllers\Api\AuthController::class, 'upload'])->middleware('jwt.verify');
+
+Route::post('/upload-mading', [\App\Http\Controllers\Api\MadingController::class, 'uploadMading']);
+Route::get('/madings', [\App\Http\Controllers\Api\MadingController::class, 'selectAllMading']);

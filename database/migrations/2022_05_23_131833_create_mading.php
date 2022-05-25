@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('judul_mading');
             $table->string('body_mading');
-            $table->string('foto_mading')->unique();
-            $table->timestamp('tanggal_mading');
+            $table->string('foto_mading');
+            $table->dateTime('create_at')->useCurrent();
         });
     }
 

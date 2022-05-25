@@ -13,17 +13,6 @@ class  AuthController extends Controller
 {
     public function login(Request $request)
     {
-
-
-//        if ($user) {
-//            if (password_verify($request->password, $user->password)) {
-//                return $this->success($user);
-//            } else {
-//                return $this->error("Password salah");
-//            }
-//        }
-//        return $this->error("User tidak di temukan");
-//
         $validasi = Validator::make($request->all(), [
             'email' => 'required',
             'password' => 'required',
@@ -93,7 +82,6 @@ class  AuthController extends Controller
     {
         $user = User::where('id', $id)->first();
         if($user){
-
             $fileName = "";
             if ($request->image){
                 $image = $request->image->getClientOriginalName();
