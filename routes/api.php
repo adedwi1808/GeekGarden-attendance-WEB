@@ -24,4 +24,6 @@ Route::put('/update-user/{id}', [\App\Http\Controllers\Api\AuthController::class
 Route::post('/upload-user/{id}', [\App\Http\Controllers\Api\AuthController::class, 'upload'])->middleware('jwt.verify');
 
 Route::post('/upload-mading', [\App\Http\Controllers\Api\MadingController::class, 'uploadMading']);
-Route::get('/madings', [\App\Http\Controllers\Api\MadingController::class, 'selectAllMading']);
+Route::get('/madings', [\App\Http\Controllers\Api\MadingController::class, 'selectAllMading'])->middleware('jwt.verify');
+
+Route::post('/fill-attendance', [\App\Http\Controllers\Api\AttendanceController::class, 'fillAttendance']);

@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('absensi', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('tempat_absensi');
+            $table->string('status_absensi');
+            $table->string('longitude');
+            $table->string('latitude');
+            $table->dateTime('tanggal_absensi')->useCurrent();
         });
     }
 
