@@ -14,16 +14,28 @@ class Absensi extends Model
 
 
     protected $fillable = [
-        'tempat_absensi',
-        'status_absensi',
-        'longitude',
-        'latitude',
-        'foto_absensi',
-        'tanggal_absensi'
+        'id',
+        'id_user',
+        'tempat_absensi_datang',
+        'status_absensi_datang',
+        'longitude_datang',
+        'latitude_datang',
+        'foto_absensi_datang',
+        'tanggal_jam_absensi_datang',
+        'tempat_absensi_pulang',
+        'status_absensi_pulang',
+        'longitude_pulang',
+        'latitude_pulang',
+        'foto_absensi_pulang',
+        'tanggal_jam_absensi_pulang'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     protected $hidden = [
-        'id'
     ];
 
     protected $dateFormat ='U';

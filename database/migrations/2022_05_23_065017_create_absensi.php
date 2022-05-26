@@ -15,11 +15,20 @@ return new class extends Migration
     {
         Schema::create('absensi', function (Blueprint $table) {
             $table->id();
-            $table->string('tempat_absensi');
-            $table->string('status_absensi');
-            $table->string('longitude');
-            $table->string('latitude');
-            $table->dateTime('tanggal_absensi')->useCurrent();
+            $table->foreignId('id_user')->nullable();
+            $table->string('tempat_absensi_datang');
+            $table->string('status_absensi_datang');
+            $table->string('longitude_datang');
+            $table->string('latitude_datang');
+            $table->string('foto_absensi_datang')->nullable();
+            $table->dateTime('tanggal_absensi_datang')->useCurrent();
+
+            $table->string('tempat_absensi_pulang')->nullable();
+            $table->string('status_absensi_pulang')->nullable();
+            $table->string('longitude_pulang')->nullable();
+            $table->string('latitude_pulang')->nullable();
+            $table->string('foto_absensi_pulang')->nullable();
+            $table->dateTime('tanggal_absensi_pulang')->nullable();
         });
     }
 

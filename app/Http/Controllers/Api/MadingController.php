@@ -14,7 +14,7 @@ class MadingController extends Controller
         $validasi = Validator::make($request->all(), [
             'judul_mading' => 'required',
             'body_mading' => 'required',
-//            'foto_mading' => 'required|unique:mading',
+            'foto_mading' => 'required',
             ]);
 
         if ($validasi->fails())
