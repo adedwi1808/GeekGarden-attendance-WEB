@@ -24,8 +24,10 @@ Route::put('/update-user/{id}', [\App\Http\Controllers\Api\AuthController::class
 Route::post('/upload-user/{id}', [\App\Http\Controllers\Api\AuthController::class, 'upload'])->middleware('jwt.verify');
 
 Route::post('/upload-attendance-image/{id}', [\App\Http\Controllers\Api\AttendanceController::class, 'uploadAttendanceImage']);
+Route::post('/upload-complete-attendance-image/{id}', [\App\Http\Controllers\Api\AttendanceController::class, 'uploadCompleteAttendanceImage']);
 Route::post('/fill-attendance/{id}',[\App\Http\Controllers\Api\AttendanceController::class, 'fillAttendance']);
 Route::put('/complete-attendance/{id}',[\App\Http\Controllers\Api\AttendanceController::class, 'completeAttendance']);
+
 
 Route::post('/upload-mading', [\App\Http\Controllers\Api\MadingController::class, 'uploadMading']);
 Route::get('/madings', [\App\Http\Controllers\Api\MadingController::class, 'selectAllMading'])->middleware('jwt.verify');

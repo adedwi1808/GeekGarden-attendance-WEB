@@ -23,7 +23,6 @@ class AttendanceController extends Controller
             'latitude_datang'=>'required',
             ]);
 
-
         if ($validasi->fails())
         {
             return $this->error($validasi->errors()->first());
@@ -40,9 +39,9 @@ class AttendanceController extends Controller
 
         $absensi = Absensi::create($data);
 
-
+        $absensiResponse = Absensi::where('id', $absensi->id)->first();
         if ($absensi) {
-            return $this->success($absensi, 'Anda berhasil melakukan absensi');
+            return $this->success($absensiResponse, 'Anda berhasil melakukan absensi');
         } else {
             return $this->error("Terjadi kesalahan");
         }
@@ -68,24 +67,52 @@ class AttendanceController extends Controller
             $absen->update([
                 'foto_absensi_datang' => $fileName,
             ]);
-            return $this->success($absen);
+            $absensiResponse = Absensi::where('id', $id)->first();
+            return $this->success($absensiResponse);
         }
         return $this->error("Terjadi Kesalahan saat mengupload");
     }
 
     public function completeAttendance(Request $request, $id) {
         $absensi = Absensi::where('id', $id)->first();
+
         if (!$absensi) return $this->error("absensi Tidak Ditemukan");
         $absensi->update($request->all());
         $absensi->tanggal_absensi_pulang = Carbon::now();
         $absensi->save();
 
+        $absensiResponse = Absensi::where('id', $id)->first();
+
         if ($absensi) {
-            return $this->success($absensi, 'Anda berhasil melakukan absensi');
+            return $this->success($absensiResponse, 'Anda berhasil melakukan absensi');
         } else {
             return $this->error("Terjadi kesalahan");
         }
+    }
 
+    public function uploadCompleteAttendanceImage(Request $request, $id)
+    {
+        $absen = Absensi::where('id', $id)->first();
+        if (!$absen) return $this->error("Absensi Tidak Ditemukan");
+
+        if($absen){
+            $fileName = "";
+            if ($request->image){
+                $image = $request->image->getClientOriginalName();
+                $image = str_replace(' ', '',$image);
+                $image = date('Hs').rand(1,999)."_".$image;
+                $fileName = $image;
+                $request->image->storeAs('public/bukti-absen', $image);
+            }else{
+                return $this->error("File must be image");
+            }
+            $absen->update([
+                'foto_absensi_pulang' => $fileName,
+            ]);
+            $absensiResponse = Absensi::where('id', $id)->first();
+            return $this->success($absensiResponse);
+        }
+        return $this->error("Terjadi Kesalahan saat mengupload");
     }
 
 
