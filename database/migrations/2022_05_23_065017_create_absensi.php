@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('absensi', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('id_user')->nullable();
-            $table->string('tempat_absensi');
-            $table->string('status_absensi');
+            $table->id('id_absensi');
+            $table->foreignId('id_pegawai')->nullable();
+            $table->string('tempat');
+            $table->string('status');
             $table->string('longitude');
             $table->string('latitude');
-            $table->string('foto_absensi')->nullable();
-            $table->dateTime('tanggal_absensi')->useCurrent();
+            $table->string('foto')->nullable();
+            $table->dateTime('tanggal')->useCurrent();
 
         });
     }

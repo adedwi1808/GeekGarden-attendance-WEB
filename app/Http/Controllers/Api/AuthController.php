@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pegawai;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -66,6 +67,30 @@ class  AuthController extends Controller
         }
     }
 
+    public function registerPegawai(Request $request) {
+        $validasi = Validator::make($request->all(), [
+            'name' => 'required',
+            'gender' => 'required',
+            'email' => 'required|unique:users',
+            'phone' => 'required|unique:users',
+            'password' => 'required|min:6',]);
+
+        if ($validasi->fails())
+        {
+            return $this->error($validasi->errors()->first());
+        }
+
+        $pegawai = Pegawai::create(array_merge($request->all(), [
+            'password' => bcrypt($request->password)
+        ]));
+
+        if ($pegawai) {
+            return $this->success($pegawai, 'selamat datang ' . $pegawai->name);
+        } else {
+            return $this->error("Terjadi kesalahan");
+        }
+    }
+
     public function update(Request $request, $id)
     {
         $user = User::where('id', $id)->first();
@@ -108,30 +133,6 @@ class  AuthController extends Controller
         ], Response::HTTP_OK);
     }
 
-    public function getAuthenticatedUser()
-    {
-        try {
-
-            if (! $user = JWTAuth::parseToken()->authenticate()) {
-                return response()->json(['user_not_found'], 404);
-            }
-
-        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-
-            return response()->json(['token_expired'], $e->getStatusCode());
-
-        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-
-            return response()->json(['token_invalid'], $e->getStatusCode());
-
-        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-
-            return response()->json(['token_absent'], $e->getStatusCode());
-
-        }
-
-        return response()->json(compact('user'));
-    }
 
     public function success($data, $message = "success")
     {

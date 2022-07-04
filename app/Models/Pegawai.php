@@ -2,57 +2,42 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Model;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class Admin extends Authenticatable implements JWTSubject
+class Pegawai extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
     public $timestamps = false;
     const UPDATED_AT = null;
-    protected $table = 'admin';
+    protected $table = 'pegawai';
+    protected $primaryKey = 'id_pegawai';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'nama',
+        'jenis_kelamin',
         'email',
+        'nomor_hp',
         'password',
+        'foto_profile'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
     ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-
 
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    public function absensi()
-    {
-        return $this->hasMany(Absensi::class, 'id', 'id');
-    }
+//    public function absensi()
+//    {
+//        return $this->hasMany(Absensi::class, 'id', 'id');
+//    }
 
     public function getJWTIdentifier(){
         return $this->getKey();
@@ -61,10 +46,10 @@ class Admin extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims() {
         return [
             'data' => [
-                'id' => $this->id,
+                'id_pegawai' => $this->id_pegawai,
                 'nama' => $this->nama,
                 'email' => $this->email,
-            ]
+            ],
         ];
     }
 }

@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('mading', function (Blueprint $table) {
-            $table->id();
-            $table->string('judul_mading');
-            $table->string('body_mading');
-            $table->string('foto_mading');
+            $table->id('id_mading');
+            $table->string('judul');
+            $table->string('informasi');
+            $table->string('foto');
             $table->dateTime('create_at')->useCurrent();
         });
     }
