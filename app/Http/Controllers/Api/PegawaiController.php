@@ -4,23 +4,24 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
-use App\Models\User;
+use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 
-class AttendanceController extends Controller
+class PegawaiController extends Controller
 {
-    public function fillAttendance(Request $request, $id) {
-        $user = User::where('id', $id)->first();
-        if (!$user) return $this->error("User Tidak Ditemukan");
+    public function absensihadir(Request $request, $id): \Illuminate\Http\JsonResponse
+    {
+        $pegawai = Pegawai::where('id_pegawai', $id)->first();
+        if (!$pegawai) return $this->error("Pegawai Tidak Ditemukan");
 
         $validasi = Validator::make($request->all(), [
-            'id_user' => 'required',
-            'tempat_absensi_datang'=>'required',
-            'status_absensi_datang'=>'required',
-            'longitude_datang'=>'required',
-            'latitude_datang'=>'required',
+            'id_pegawai' => 'required',
+            'tempat'=>'required',
+            'status'=>'required',
+            'longitude'=>'required',
+            'latitude'=>'required',
             ]);
 
         if ($validasi->fails())
@@ -29,17 +30,17 @@ class AttendanceController extends Controller
         }
 
         $data = [
-            'id'=>$request->post('id'),
-            'id_user' => intval($request->post('id_user')),
-            'tempat_absensi_datang' => $request->post('tempat_absensi_datang'),
-            'status_absensi_datang' => $request->post('status_absensi_datang'),
-            'longitude_datang' => $request->post('longitude_datang'),
-            'latitude_datang' => $request->post('latitude_datang'),
+            'id_pegawai' => intval($request->post('id_pegawai')),
+            'tempat' => $request->post('tempat'),
+            'status' => $request->post('status'),
+            'longitude' => $request->post('longitude'),
+            'latitude' => $request->post('latitude'),
         ];
 
         $absensi = Absensi::create($data);
+        $absensi->save();
 
-        $absensiResponse = Absensi::where('id', $absensi->id)->first();
+        $absensiResponse = Absensi::where('id_absensi', $absensi->id)->first();
         if ($absensi) {
             return $this->success($absensiResponse, 'Anda berhasil melakukan absensi');
         } else {
@@ -48,26 +49,27 @@ class AttendanceController extends Controller
 
     }
 
-    public function uploadAttendanceImage(Request $request, $id)
+    public function uploadbuktiabsensi(Request $request, $id)
     {
-        $absen = Absensi::where('id', $id)->first();
+        $absen = Absensi::where('id_absensi', $id)->first();
         if (!$absen) return $this->error("Absensi Tidak Ditemukan");
 
         if($absen){
             $fileName = "";
             if ($request->image){
-                $image = $request->image->getClientOriginalName();
-                $image = str_replace(' ', '',$image);
-                $image = date('Hs').rand(1,999)."_".$image;
-                $fileName = $image;
-                $request->image->storeAs('public/bukti-absen', $image);
+                $foto = $request->image->getClientOriginalName();
+                $foto = str_replace(' ', '',$foto);
+                $foto = date('Hs').rand(1,999)."_".$foto;
+                $fileName = $foto;
+                $request->image->storeAs('public/bukti-absen', $foto);
             }else{
                 return $this->error("File must be image");
             }
-            $absen->update([
-                'foto_absensi_datang' => $fileName,
+            $absen->where('id_absensi', $id)
+                ->update([
+                'foto' => $fileName,
             ]);
-            $absensiResponse = Absensi::where('id', $id)->first();
+            $absensiResponse = Absensi::where('id_absensi', $id)->first();
             return $this->success($absensiResponse);
         }
         return $this->error("Terjadi Kesalahan saat mengupload");

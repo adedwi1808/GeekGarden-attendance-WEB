@@ -21,6 +21,7 @@ class Pegawai extends Authenticatable implements JWTSubject
         'nama',
         'jenis_kelamin',
         'email',
+        'jabatan',
         'nomor_hp',
         'password',
         'foto_profile'

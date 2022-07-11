@@ -14,14 +14,13 @@ class Absensi extends Model
 
 
     protected $fillable = [
-        'id',
-        'id_user',
-        'tempat_absensi',
-        'status_absensi',
+        'id_pegawai',
+        'tempat',
+        'status',
         'longitude',
         'latitude',
-        'foto_absensi',
-        'tanggal_jam_absensi',
+        'foto',
+        'tanggal',
     ];
 
     public function user()

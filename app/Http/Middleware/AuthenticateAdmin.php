@@ -8,8 +8,6 @@ class AuthenticateAdmin extends Middleware
 {
     protected function authenticate($request, array $guards)
     {
-
-
             if ($this->auth->guard('admin-api')->check()) {
                 return $this->auth->shouldUse('admin-api');
             }

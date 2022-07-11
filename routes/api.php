@@ -2,8 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\Api\Auth\PegawaiController;
-use \App\Http\Controllers\Api\Auth\AdminController;
+use \App\Http\Controllers\Api\Auth\AuthPegawaiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,26 +20,32 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/upload-user/{id}', [\App\Http\Controllers\Api\AuthController::class, 'upload'])->middleware('jwt.verify');
 
-Route::post('/upload-attendance-image/{id}', [\App\Http\Controllers\Api\AttendanceController::class, 'uploadAttendanceImage']);
-Route::post('/upload-complete-attendance-image/{id}', [\App\Http\Controllers\Api\AttendanceController::class, 'uploadCompleteAttendanceImage']);
-Route::post('/fill-attendance/{id}',[\App\Http\Controllers\Api\AttendanceController::class, 'fillAttendance']);
-Route::put('/complete-attendance/{id}',[\App\Http\Controllers\Api\AttendanceController::class, 'completeAttendance']);
-
-
+Route::post('/upload-attendance-image/{id}', [\App\Http\Controllers\Api\PegawaiController::class, 'uploadbuktiabsensi']);
+Route::post('/upload-complete-attendance-image/{id}', [\App\Http\Controllers\Api\PegawaiController::class, 'uploadCompleteAttendanceImage']);
+Route::put('/complete-attendance/{id}',[\App\Http\Controllers\Api\PegawaiController::class, 'completeAttendance']);
 Route::post('/upload-mading', [\App\Http\Controllers\Api\MadingController::class, 'uploadMading']);
-Route::get('/madings', [\App\Http\Controllers\Api\MadingController::class, 'selectAllMading'])->middleware('jwt.verify');
 
 
-//AUTH Pegawai
-Route::post('/register-pegawai', [PegawaiController::class, 'pegawairegister'])->name('pegawairegister');
-Route::post('/login-pegawai', [PegawaiController::class, 'pegawailogin'])->name('pegawailogin');
-Route::group(['middleware' => 'auth:pegawai-api'], function () {
-    Route::post('/me-pegawai', [PegawaiController::class, 'me'])->name('me');
-    Route::put('/update-pegawai/{id}', [PegawaiController::class, 'updatepegawai']);
-    Route::post('/logout-pegawai', [PegawaiController::class, 'logout']);
+//Pegawai
+Route::post('/register-pegawai', [AuthPegawaiController::class, 'pegawairegister'])->name('pegawairegister');
+Route::post('/login-pegawai', [AuthPegawaiController::class, 'pegawailogin'])->name('pegawailogin');
+Route::group(['middleware' => ['assign.guard:pegawai-api', 'jwt.verify']], function () {
+    //Auth
+    Route::post('/me-pegawai', [AuthPegawaiController::class, 'me'])->name('me');
+    Route::put('/update-pegawai/{id}', [AuthPegawaiController::class, 'updatepegawai']);
+    Route::post('/logout-pegawai', [AuthPegawaiController::class, 'logout']);
+    //Other
+    Route::get('/madings', [\App\Http\Controllers\Api\MadingController::class, 'selectAllMading']);
+    Route::post('/foto-pegawai/{id}', [AuthPegawaiController::class, 'editfotoprofile']);
+
+    //Attendance
+    Route::post('/absensi-hadir/{id}',[\App\Http\Controllers\Api\PegawaiController::class, 'absensihadir']);
+    Route::post('/upload-bukti-absensi/{id}', [\App\Http\Controllers\Api\PegawaiController::class, 'uploadbuktiabsensi']);
+
+
 });
+
 
 
 //AUTH Admin
@@ -48,8 +53,8 @@ Route::group(['middleware' => 'auth:pegawai-api'], function () {
 //Route::post('/login-admin', [AdminController::class, 'adminlogin'])->name('adminlogin');
 //Route::view('login-admin','Admin/login')->name('adminlogin');
 //Route::group(['middleware' => 'admin:admin-api'], function ($router) {
-//    Route::post('/me-pegawai', [PegawaiController::class, 'me'])->name('me');
-//    Route::put('/update-pegawai/{id}', [PegawaiController::class, 'updatepegawai']);
-//    Route::post('logout', 'PegawaiController@logout');
-//    Route::post('refresh', 'PegawaiController@refresh');
+//    Route::post('/me-pegawai', [AuthPegawaiController::class, 'me'])->name('me');
+//    Route::put('/update-pegawai/{id}', [AuthPegawaiController::class, 'updatepegawai']);
+//    Route::post('logout', 'AuthPegawaiController@logout');
+//    Route::post('refresh', 'AuthPegawaiController@refresh');
 //});

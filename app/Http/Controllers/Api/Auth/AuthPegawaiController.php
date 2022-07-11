@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pegawai;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
-class PegawaiController extends Controller
+class AuthPegawaiController extends Controller
 {
 
     public function pegawairegister(Request $request)
@@ -57,7 +58,7 @@ class PegawaiController extends Controller
 
         if (!$token = auth('pegawai-api')->attempt($data)){
             return response()->json([
-                "message"=>"email atau password saalah"
+                "message"=>"email atau password salah"
             ], Response::HTTP_BAD_REQUEST);
 
         }
@@ -68,12 +69,35 @@ class PegawaiController extends Controller
 
     public function updatepegawai(Request $request, $id)
     {
-        $pegawai = Pegawai::where('id', $id)->first();
+        $pegawai = Pegawai::where('id_pegawai', $id)->first();
         if($pegawai){
             $pegawai->update($request->all());
             return $this->success($pegawai);
         }
         return $this->error("Error User tidak ditemukan");
+    }
+
+    public function editfotoprofile(Request $request, $id)
+    {
+        $pegawai = Pegawai::where('id_pegawai', $id)->first();
+        if($pegawai){
+            $fileName = "";
+            if ($request->image){
+                $image = $request->image->getClientOriginalName();
+                $image = str_replace(' ', '',$image);
+                $image = date('Hs').rand(1,999)."_".$image;
+                $fileName = $image;
+                $request->image->storeAs('public/pegawai', $image);
+            }else{
+                return $this->error("File must be image");
+            }
+            $pegawai->update([
+                'foto_profile' => $fileName,
+            ]);
+            return $this->success($pegawai);
+        }
+
+        return $this->error("Terjadi Kesalahan saat mengupload");
     }
 
     public function me()

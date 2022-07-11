@@ -14,9 +14,9 @@ class Mading extends Model
 
 
     protected $fillable = [
-        'judul_mading',
-        'body_mading',
-        'foto_mading',
+        'judul',
+        'informasi',
+        'foto',
         'created_at'
     ];
 

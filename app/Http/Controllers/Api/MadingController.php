@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Mading;
+use Closure;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class MadingController extends Controller
 {
@@ -50,12 +53,9 @@ class MadingController extends Controller
 
     public function selectAllMading(Request $request)
     {
-        Mading::all();
-
         $madings = Mading::all();
-
         if ($madings) {
-            return $this->success($madings, '');
+            return $this->success($madings, '' );
         } else {
             return $this->error("Terjadi kesalahan");
         }
