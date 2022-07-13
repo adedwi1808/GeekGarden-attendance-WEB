@@ -23,7 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/upload-attendance-image/{id}', [\App\Http\Controllers\Api\PegawaiController::class, 'uploadbuktiabsensi']);
 Route::post('/upload-complete-attendance-image/{id}', [\App\Http\Controllers\Api\PegawaiController::class, 'uploadCompleteAttendanceImage']);
-Route::put('/complete-attendance/{id}',[\App\Http\Controllers\Api\PegawaiController::class, 'completeAttendance']);
 Route::post('/upload-mading', [\App\Http\Controllers\Api\MadingController::class, 'uploadMading']);
 
 
@@ -38,11 +37,12 @@ Route::group(['middleware' => ['assign.guard:pegawai-api', 'jwt.verify']], funct
     //Other
     Route::get('/madings', [\App\Http\Controllers\Api\MadingController::class, 'selectAllMading']);
     Route::post('/foto-pegawai/{id}', [AuthPegawaiController::class, 'editfotoprofile']);
+    Route::get('/cek-absensi', [\App\Http\Controllers\Api\PegawaiController::class, 'checkabsensi']);
 
     //Attendance
-    Route::post('/absensi-hadir/{id}',[\App\Http\Controllers\Api\PegawaiController::class, 'absensihadir']);
+    Route::post('/absensi-hadir',[\App\Http\Controllers\Api\PegawaiController::class, 'absensihadir']);
     Route::post('/upload-bukti-absensi/{id}', [\App\Http\Controllers\Api\PegawaiController::class, 'uploadbuktiabsensi']);
-
+    Route::post('/absensi-pulang',[\App\Http\Controllers\Api\PegawaiController::class, 'absensipulang']);
 
 });
 
