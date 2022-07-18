@@ -39,6 +39,10 @@ class Pegawai extends Authenticatable implements JWTSubject
 //    {
 //        return $this->hasMany(Absensi::class, 'id', 'id');
 //    }
+    public function izin()
+    {
+        return $this->hasMany(Izin::class,'id_pegawai','id_pegawai');
+    }
 
     public function getJWTIdentifier(){
         return $this->getKey();
