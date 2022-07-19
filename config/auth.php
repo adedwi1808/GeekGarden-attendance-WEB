@@ -16,11 +16,6 @@ return [
     'defaults' => [
         'guard' => 'api',
     ],
-    'admin'=>[
-        'driver'=>'eloquent',
-        'model'=>\App\Models\Admin::class,
-    ],
-
 
     /*
     |--------------------------------------------------------------------------

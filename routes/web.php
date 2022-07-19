@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\KelolaUser\KelolaPegawaiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\Auth\LoginController;
@@ -29,7 +30,7 @@ Route::get('/register', function () {
 Route::post('/do-register',[RegisterController::class,'register'])->name('doregister');
 
 //Guest
-Route::prefix('admin')->name('admin.')->group(function (){
+Route::prefix('admin')->name('admin.')->middleware('guest:admin')->group(function (){
 Route::get('/login', function () {
     return view('Auth.Login.login', ['title' => 'Login Page']);
 })->name('login');
@@ -37,7 +38,8 @@ Route::post('/do-login',[LoginController::class,'login'])->name('dologin');
 });
 
 //Logined
-Route::prefix('admin')->name('admin.')->middleware('auth.admin:admin')->group(function (){
+Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function (){
     Route::post('/logout',[LogoutController::class,'logout'])->name('logout');
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+    Route::get('/kelola-pegawai',[KelolaPegawaiController::class,'index'])->name('kelola-pegawai');
 });

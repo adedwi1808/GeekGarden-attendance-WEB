@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AuthAdmin
 {
@@ -17,11 +18,10 @@ class AuthAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::guard('admin')->check()) {
+        if (!Session::get('isLogin') === true) {
             return redirect()->route('admin.login');
         }
-        return redirect()->route('admin.dashboard');
-//        return $next($request);
+        return $next($request);
 
     }
 }

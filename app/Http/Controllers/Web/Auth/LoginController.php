@@ -7,6 +7,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
@@ -24,7 +25,14 @@ class LoginController extends Controller
 
         if (Auth::guard('admin')->attempt($validasi)) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            $admin = Admin::where('email', $request->email)->first();
+
+            Session::put('isLogin',true);
+            Session::put('admin',[
+                'nama'=>$admin->nama,
+                'email'=>$admin->email,
+            ]);
+            return redirect()->route('admin.dashboard');
         }
 
         return back()->with('fail','Email/Password anda salah');
