@@ -43,10 +43,10 @@ Route::group(['middleware' => ['assign.guard:pegawai-api', 'jwt.verify']], funct
 
 
 
-//AUTH Admin
+//AUTH AuthAdmin
 //Route::post('/register-admin', [AdminController::class, 'adminregister'])->name('adminregister');
 //Route::post('/login-admin', [AdminController::class, 'adminlogin'])->name('adminlogin');
-//Route::view('login-admin','Admin/login')->name('adminlogin');
+//Route::view('login-admin','AuthAdmin/login')->name('adminlogin');
 //Route::group(['middleware' => 'admin:admin-api'], function ($router) {
 //    Route::post('/me-pegawai', [AuthPegawaiController::class, 'me'])->name('me');
 //    Route::put('/update-pegawai/{id}', [AuthPegawaiController::class, 'updatepegawai']);

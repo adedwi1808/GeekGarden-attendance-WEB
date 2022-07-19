@@ -12,28 +12,6 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
-    public function adminregister(Request $request)
-    {
-        $validasi = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|unique:admin',
-            'password' => 'required|min:6',]);
-
-        if ($validasi->fails())
-        {
-            return $this->error($validasi->errors()->first());
-        }
-
-        $admin = Admin::create(array_merge($request->all(), [
-            'password' => bcrypt($request->password)
-        ]));
-
-        if ($admin) {
-            return $this->success($admin, 'selamat datang ' . $admin->name);
-        } else {
-            return $this->error("Terjadi kesalahan");
-        }
-    }
 
     public function adminlogin(Request $request)
     {

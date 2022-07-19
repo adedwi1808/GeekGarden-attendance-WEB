@@ -16,6 +16,11 @@ return [
     'defaults' => [
         'guard' => 'api',
     ],
+    'admin'=>[
+        'driver'=>'eloquent',
+        'model'=>\App\Models\Admin::class,
+    ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -43,8 +48,8 @@ return [
             'driver' => 'jwt',
             'provider' => 'pegawai',
         ],
-        'admin-api' => [
-            'driver' => 'jwt',
+        'admin' => [
+            'driver' => 'session',
             'provider' => 'admins',
         ],
     ],
@@ -81,11 +86,6 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*
@@ -114,6 +114,13 @@ return [
         'pegawai' => [
             'provider' => 'pegawai',
             'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'admin' => [
+            'provider' => 'admins',
+            'model'=>\App\Models\Admin::class,
             'expire' => 60,
             'throttle' => 60,
         ],

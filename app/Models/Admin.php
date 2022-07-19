@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class Admin extends Authenticatable implements JWTSubject
+class Admin extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -52,19 +52,5 @@ class Admin extends Authenticatable implements JWTSubject
     public function absensi()
     {
         return $this->hasMany(Absensi::class, 'id', 'id');
-    }
-
-    public function getJWTIdentifier(){
-        return $this->getKey();
-    }
-
-    public function getJWTCustomClaims() {
-        return [
-            'data' => [
-                'id' => $this->id,
-                'nama' => $this->nama,
-                'email' => $this->email,
-            ]
-        ];
     }
 }
