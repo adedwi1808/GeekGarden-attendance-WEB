@@ -1,7 +1,7 @@
 <section class="content">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Data Pegawai</h3>
+            <h3 class="card-title">Data {{$title}}</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -13,28 +13,29 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered text-center">
                             <thead>
                             <tr>
-                                <th scope="col">Nama</th>
-                                <th scope="col">Jenis Kelamin</th>
-                                <th scope="col">Nomor Hp</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Jabatan / Posisi</th>
-                                <th scope="col">Foto Profile</th>
-                                <th scope="col">Kelola</th>
+                                <th scope="col" class="col-2">Nama</th>
+                                <th scope="col" class="col-1">Jenis Kelamin</th>
+                                <th scope="col" class="col-2">Nomor Hp</th>
+                                <th scope="col" class="col-2">Email</th>
+                                <th scope="col" class="col-1">Jabatan / Posisi</th>
+                                <th scope="col" class="col-1">Foto Profile</th>
+                                <th scope="col" class="col-3">Kelola</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($data_pegawai as $pegawai)
+
+                            @forelse($data_pegawai as $index=>$pegawai)
                                 <tr>
                                     <td class="col-2">{{$pegawai->nama}}</td>
                                     <td class="col-1">{{$pegawai->jenis_kelamin}}</td>
                                     <td class="col-2">{{$pegawai->nomor_hp}}</td>
-                                    <td class="col-2">{{$pegawai->email}}</td>
-                                    <td class="col-2">{{$pegawai->jabatan}}</td>
-                                    <td class="col-1">{{$pegawai->foto_profile}}</td>
-                                    <td class="col-2">
+                                    <td class="col-2">{{(strlen($pegawai->email) > 18)? substr($pegawai->email, 0,18)."..." : $pegawai->email}}</td>
+                                    <td class="col-1">{{$pegawai->jabatan}}</td>
+                                    <td class="col-1">{{($pegawai->foto_profile == null)? "-":$pegawai->foto_profile}}</td>
+                                    <td class="col-3">
                                         <button type="button" class="btn btn-primary"><i class="far fa-eye"></i>
                                         </button>
                                         <button type="button" class="btn btn-success"><i class="fas fa-edit"></i>
@@ -45,7 +46,7 @@
                                 </tr>
                             @empty
                                 <div class="alert alert-danger">
-                                    Data Post belum Tersedia.
+                                    Data Pegawai belum Tersedia.
                                 </div>
                             @endforelse
                             </tbody>

@@ -17,6 +17,11 @@ class LoginController extends Controller
         $this->middleware('guest:admin')->except('admin.logout');
     }
 
+    public function index()
+    {
+        return view('Auth.Login.login', ['title' => 'Login Page']);
+    }
+
     public function login(Request $request)
     {
         $validasi = $request->validate([

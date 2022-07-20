@@ -12,7 +12,8 @@ class KelolaPegawaiController extends Controller
     public function index()
     {
         $data_pegawai = DB::table('pegawai')->paginate(5);
+        $title = "Pegawai";
 
-        return view('KelolaUser.KelolaPegawai.index', compact('data_pegawai'));
+        return view('KelolaUser.KelolaPegawai.index', compact('data_pegawai', 'title'));
     }
 }

@@ -9,11 +9,18 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
+    public function index()
+    {
+        return view('Auth.Register.register',
+            ['title' => 'Register Page'
+            ]);
+    }
+
     public function register(Request $request)
     {
         $validasi = $request->validate([
             'nama' => 'required',
-            'email' => 'required|email|unique:admin',
+            'email' => 'required|email:dns|unique:admin',
             'password' => 'required|min:6']);
 
 

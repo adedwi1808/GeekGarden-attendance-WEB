@@ -17,6 +17,7 @@ class Admin extends Authenticatable
     public $timestamps = false;
     const UPDATED_AT = null;
     protected $table = 'admin';
+    protected $primaryKey = 'id_admin';
 
     /**
      * The attributes that are mass assignable.

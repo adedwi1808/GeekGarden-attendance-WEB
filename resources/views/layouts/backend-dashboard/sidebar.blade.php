@@ -35,7 +35,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="{{route('admin.dashboard')}}" class="nav-link active">
+                    <a href="{{route('admin.dashboard')}}" class="nav-link {{($title == 'Dashboard')? 'active': ''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -88,7 +88,7 @@
                 </li>
                 <li class="nav-header">Lainnya</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link {{($title == 'Admin') || ($title == 'Pegawai')? 'active': ''}}">
                         <i class="nav-icon fas fa-users-cog"></i>
                         <p>
                             Kelola User
@@ -97,13 +97,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/tables/simple.html" class="nav-link">
+                            <a href="{{route('admin.kelola.admin')}}" class="nav-link {{($title == 'Admin')? 'active': ''}}">
                                 <i class="nav-icon fas fa-user-cog"></i>
                                 <p>Kelola Admin</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('admin.kelola-pegawai')}}" class="nav-link">
+                            <a href="{{route('admin.kelola-pegawai')}}" class="nav-link {{($title == 'Pegawai')? 'active': ''}}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>Kelola Pegawai</p>
                             </a>
