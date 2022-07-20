@@ -32,14 +32,13 @@ class KelolaAdminController extends Controller
             'nama' => $admin->nama,
             'email' => $admin->email,
         ];
-        return view('KelolaUser.KelolaAdmin.EditAdmin.index', compact('data_admin', 'title'));
+        return view('KelolaUser.KelolaAdmin.EditAdmin.index', compact('data_admin', 'title', 'id'));
 
     }
 
     public function hapus($email)
     {
         $admin = Admin::where('email', $email)->first();
-//        if (!$admin) return $this->error("Absensi Tidak Ditemukan");
 
         if ($admin) {
             Admin::where('email', $email)->delete();

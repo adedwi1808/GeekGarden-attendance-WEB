@@ -8,7 +8,10 @@
             <div class="container">
                 <div class="row mb-2">
                     <div class="col-12">
-                        <button class="btn btn-info float-right">Tambah User</button>
+                        <form action="{{route('admin.halaman.tambah.pegawai')}}" method="get">
+                            @csrf
+                            <button class="btn btn-info float-right">Tambah Pegawai</button>
+                        </form>
                     </div>
                 </div>
                 <div class="row">
@@ -36,12 +39,18 @@
                                     <td class="col-1">{{$pegawai->jabatan}}</td>
                                     <td class="col-1">{{($pegawai->foto_profile == null)? "-":$pegawai->foto_profile}}</td>
                                     <td class="col-3">
-                                        <button type="button" class="btn btn-primary"><i class="far fa-eye"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-success"><i class="fas fa-edit"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i>
-                                        </button>
+                                        <div class="row justify-content-center">
+                                            <form class="mx-2" action="{{route('admin.halaman.edit.pegawai', $pegawai->id_pegawai)}}" method="get">
+                                                <button type="submit" class="btn btn-success"><i
+                                                        class="fas fa-edit"></i>
+                                                </button>
+                                            </form>
+                                            <form class="mx-2" action="" method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger"><i
+                                                        class="far fa-trash-alt"></i></button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @empty

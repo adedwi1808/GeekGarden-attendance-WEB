@@ -103,7 +103,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('admin.kelola-pegawai')}}" class="nav-link {{($title == 'Pegawai')? 'active': ''}}">
+                            <a href="{{route('admin.kelola.pegawai')}}" class="nav-link {{($title == 'Pegawai')? 'active': ''}}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>Kelola Pegawai</p>
                             </a>

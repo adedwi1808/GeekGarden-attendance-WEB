@@ -19,7 +19,8 @@ class AuthPegawaiController extends Controller
             'jenis_kelamin' => 'required',
             'email' => 'required|unique:pegawai',
             'nomor_hp' => 'required|unique:pegawai',
-            'password' => 'required|min:6',]);
+            'password' => 'required|min:6'
+        ]);
 
         if ($validasi->fails())
         {

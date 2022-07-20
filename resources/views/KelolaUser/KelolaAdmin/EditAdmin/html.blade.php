@@ -6,7 +6,7 @@
         <!-- /.card-header -->
         <div class="card-body">
             <p class="login-box-msg">Edit Admin</p>
-            <form action="" method="post">
+            <form action="{{route('admin.edit.admin', $id)}}" method="post">
                 @if(Session::get('success'))
                     <div class="alert alert-success">
                         {{Session::get('success')}}

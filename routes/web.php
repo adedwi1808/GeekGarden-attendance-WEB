@@ -37,16 +37,22 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
 //    Dashboard
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
 
-//    Logout
-    Route::post('/logout',[LogoutController::class,'logout'])->name('logout');
+
 
 //    Kelola User
     //Pegawai
-    Route::get('/kelola-pegawai',[KelolaPegawaiController::class,'index'])->name('kelola-pegawai');
+    Route::get('/kelola-pegawai',[KelolaPegawaiController::class,'index'])->name('kelola.pegawai');
+    Route::get('/edit-pegawai/{id}',[KelolaPegawaiController::class,'editpage'])->name('halaman.edit.pegawai');
+    Route::post('/edit-pegawai/{id}',[KelolaPegawaiController::class,'editpegawai'])->name('edit.pegawai');
+    Route::get('/tambah-pegawai',[KelolaPegawaiController::class,'tambahpage'])->name('halaman.tambah.pegawai');
+    Route::post('/tambahkan-pegawai',[KelolaPegawaiController::class,'tambahkan'])->name('tambahkan.pegawai');
     //Admin
     Route::get('/kelola-admin',[KelolaAdminController::class,'index'])->name('kelola.admin');
     Route::post('/hapus-admin/{email}',[KelolaAdminController::class,'hapus'])->name('hapus.admin');
     Route::post('/edit-admin/{id}',[KelolaAdminController::class,'editadmin'])->name('edit.admin');
     Route::get('/tambah-admin',[KelolaAdminController::class,'tambahpage'])->name('halaman.tambah.admin');
     Route::get('/edit-admin/{id}',[KelolaAdminController::class,'editpage'])->name('halaman.edit.admin');
+
+    //    Logout
+    Route::post('/logout',[LogoutController::class,'logout'])->name('logout');
 });
