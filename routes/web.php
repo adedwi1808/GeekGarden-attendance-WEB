@@ -40,6 +40,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
 
     //Kelola Absensi
     Route::get('/kelola-asbensi', [KelolaHasilAbsensiController::class, 'index'])->name('halaman.kelola.hasil.absensi');
+    Route::get('/cari-hasil-absensi',[KelolaHasilAbsensiController::class, 'cariHasilAbsensi'])->name('cari.hasil.absensi');
 
 
 //    Kelola User

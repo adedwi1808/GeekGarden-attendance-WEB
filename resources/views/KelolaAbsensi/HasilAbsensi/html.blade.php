@@ -6,42 +6,63 @@
         <!-- /.card-header -->
         <div class="card-body">
             <div class="container">
-                <form>
+                <form method="get" action="{{route('admin.cari.hasil.absensi')}}">
                     <div class="row mb-2">
                         <div class="col">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="form-group">
-                                        <label for="filter">Result Type:</label>
-                                        <select id="filter" class="select2" multiple="multiple" data-placeholder="Any" style="width: 100%;">
+                                        <label for="filter">Rentang Waktu:</label>
+                                        <select id="filter" name="rentang_waktu" class="select2" data-placeholder="Any" style="width: 100%;">
+                                            <option selected>Satu Bulan Terakhir</option>
+                                            <option>Hari Ini</option>
                                             <option>7 Hari Terakhir</option>
-                                            <option>Images</option>
-                                            <option>Video</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-2">
+                                    <div class="form-group">
+                                        <label for="tempat">Tempat :</label>
+                                        <select name="tempat" id="tempat" class="select2" style="width: 100%;">
+                                            <option selected>All</option>
+                                            <option>Dikantor</option>
+                                            <option>Diluar Kantor</option>
+                                        </select>
+                                    </div>
+                                </div><div class="col-2">
+                                    <div class="form-group">
+                                        <label for="status">Status:</label>
+                                        <select name="status" id="status" class="select2" style="width: 100%;">
+                                            <option selected>All</option>
+                                            <option>Hadir</option>
+                                            <option>Pulang</option>
+                                            <option>Izin</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-2">
                                     <div class="form-group">
                                         <label for="sort">Sort Order:</label>
-                                        <select id="sort" class="select2" style="width: 100%;">
-                                            <option selected>ASC</option>
-                                            <option>DESC</option>
+                                        <select name="sort_order" id="sort" class="select2" style="width: 100%;">
+                                            <option selected value="asc">ASC</option>
+                                            <option value="desc">DESC</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-2">
                                     <div class="form-group">
                                         <label for="order">Order By:</label>
-                                        <select id="order" class="select2" style="width: 100%;">
-                                            <option selected>Title</option>
-                                            <option>Date</option>
+                                        <select name="order_by" id="order" class="select2" style="width: 100%;">
+                                            <option selected>Tanggal</option>
+                                            <option>Nama</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group input-group-lg">
-                                    <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here" value="Lorem ipsum">
+                                    <input type="search" class="form-control form-control-lg"
+                                           placeholder="Cari Hasil Absensi" name="cari_hasil_absensi">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-lg btn-default">
                                             <i class="fa fa-search"></i>
@@ -99,7 +120,7 @@
                                 </tr>
                             @empty
                                 <div class="alert alert-danger">
-                                    Data Pegawai belum Tersedia.
+                                    Data Absensi Tidak Ditemukan / Belum Tersedia.
                                 </div>
                             @endforelse
                             </tbody>
