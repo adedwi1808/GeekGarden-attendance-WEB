@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\KelolaAbsensi\KelolaHasilAbsensiController;
 use App\Http\Controllers\Web\KelolaUser\KelolaAdminController;
 use App\Http\Controllers\Web\KelolaUser\KelolaPegawaiController;
 use Illuminate\Support\Facades\Route;
@@ -37,11 +38,14 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
 //    Dashboard
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
 
+    //Kelola Absensi
+    Route::get('/kelola-asbensi', [KelolaHasilAbsensiController::class, 'index'])->name('halaman.kelola.hasil.absensi');
 
 
 //    Kelola User
     //Pegawai
     Route::get('/kelola-pegawai',[KelolaPegawaiController::class,'index'])->name('kelola.pegawai');
+    Route::get('/cari-pegawai',[KelolaPegawaiController::class,'cariPegawai'])->name('cari.pegawai');
     Route::get('/edit-pegawai/{id}',[KelolaPegawaiController::class,'editpage'])->name('halaman.edit.pegawai');
     Route::post('/edit-pegawai/{id}',[KelolaPegawaiController::class,'editpegawai'])->name('edit.pegawai');
     Route::get('/tambah-pegawai',[KelolaPegawaiController::class,'tambahpage'])->name('halaman.tambah.pegawai');

@@ -32,3 +32,13 @@
 <script src="{{asset('assets/AdminLTE/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('assets/AdminLTE/dist/js/pages/dashboard.js')}}"></script>
+<!-- Select2 -->
+<script src="{{asset('assets/AdminLTE/plugins/select2/js/select2.full.min.js')}}"></script>
+
+
+
+<script>
+    $(function () {
+        $('.select2').select2()
+    });
+</script>

@@ -7,13 +7,27 @@
         <div class="card-body">
             <div class="container">
                 <div class="row mb-2">
-                    <div class="col-12">
+                    <div class="col-6">
                         <form action="{{route('admin.halaman.tambah.pegawai')}}" method="get">
                             @csrf
-                            <button class="btn btn-info float-right">Tambah Pegawai</button>
+                            <button class="btn btn-info float-left">Tambah Pegawai</button>
+                        </form>
+                    </div>
+                    <div class="col-6 ">
+                        <form action="{{route('admin.cari.pegawai')}}" method="get">
+                            <div class="input-group input-group-sm float-right" style="width: 60%;">
+                                <input type="text" name="cari_pegawai" class="form-control float-right"
+                                       placeholder="Cari Pegawai">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-info">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-12">
                         <table class="table table-bordered text-center">
@@ -40,7 +54,9 @@
                                     <td class="col-1">{{($pegawai->foto_profile == null)? "-":$pegawai->foto_profile}}</td>
                                     <td class="col-3">
                                         <div class="row justify-content-center">
-                                            <form class="mx-2" action="{{route('admin.halaman.edit.pegawai', $pegawai->id_pegawai)}}" method="get">
+                                            <form class="mx-2"
+                                                  action="{{route('admin.halaman.edit.pegawai', $pegawai->id_pegawai)}}"
+                                                  method="get">
                                                 <button type="submit" class="btn btn-success"><i
                                                         class="fas fa-edit"></i>
                                                 </button>
