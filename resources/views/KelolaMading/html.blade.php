@@ -28,10 +28,10 @@
                             <thead>
                             <tr>
                                 <th scope="col" class="col-2">Judul</th>
-                                <th scope="col" class="col-3">Informasi</th>
+                                <th scope="col" class="col-4">Informasi</th>
                                 <th scope="col" class="col-2">Foto</th>
                                 <th scope="col" class="col-2">Tanggal</th>
-                                <th scope="col" class="col-3">Kelola</th>
+                                <th scope="col" class="col-2">Kelola</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -39,19 +39,19 @@
                             @forelse($data_mading as $index=>$mading)
                                 <tr>
                                     <td class="col-2">{{$mading->judul}}</td>
-                                    <td class="col-3">{{(strlen($mading->informasi) > 60)? substr($mading->informasi, 0,60)."..." : $mading->informasi}}</td>
+                                    <td class="col-4">{{(strlen($mading->informasi) > 60)? substr($mading->informasi, 0,60)."..." : $mading->informasi}}</td>
                                     <td class="col-2"><a class="link-primary" href="/storage/mading/{{$mading->foto}}">
                                             {{(strlen($mading->foto) > 18)? substr($mading->foto, 0,18)."..." : $mading->foto}}
                                         </a>
                                     </td>
                                     <td class="col-2">{{$mading->create_at}}</td>
-                                    <td class="col-3">
+                                    <td class="col-2">
                                         <div class="row justify-content-center">
                                             <form class="mx-2"
                                                   action="#"
                                                   method="get" target="_blank">
                                                 <button type="submit" class="btn btn-info"><i
-                                                        class="fas fa-map-marked"></i>
+                                                        class="fas fa-eye"></i>
                                                 </button>
                                             </form>
                                             <form class="mx-2"
