@@ -52,9 +52,9 @@
                                 <th scope="col" class="col-1">Jenis Kelamin</th>
                                 <th scope="col" class="col-2">Nomor Hp</th>
                                 <th scope="col" class="col-2">Email</th>
-                                <th scope="col" class="col-1">Jabatan / Posisi</th>
-                                <th scope="col" class="col-1">Foto Profile</th>
-                                <th scope="col" class="col-3">Kelola</th>
+                                <th scope="col" class="col-2">Jabatan / Posisi</th>
+                                <th scope="col" class="col-2">Foto Profile</th>
+                                <th scope="col" class="col-1">Kelola</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -65,9 +65,9 @@
                                     <td class="col-1">{{$pegawai->jenis_kelamin}}</td>
                                     <td class="col-2">{{$pegawai->nomor_hp}}</td>
                                     <td class="col-2">{{(strlen($pegawai->email) > 18)? substr($pegawai->email, 0,18)."..." : $pegawai->email}}</td>
-                                    <td class="col-1">{{$pegawai->jabatan}}</td>
-                                    <td class="col-1">{{($pegawai->foto_profile == null)? "-":$pegawai->foto_profile}}</td>
-                                    <td class="col-3">
+                                    <td class="col-2">{{$pegawai->jabatan}}</td>
+                                    <td class="col-2">{{($pegawai->foto_profile == null)? "-":$pegawai->foto_profile}}</td>
+                                    <td class="col-1">
                                         <div class="row justify-content-center">
                                             <form class="mx-2"
                                                   action="{{route('admin.halaman.edit.pegawai', $pegawai->id_pegawai)}}"
