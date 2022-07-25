@@ -76,11 +76,6 @@
                                                         class="fas fa-edit"></i>
                                                 </button>
                                             </form>
-                                            <form class="mx-2" action="{{route('admin.hapus.pegawai',$pegawai->id_pegawai)}}" method="post">
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger"><i
-                                                        class="far fa-trash-alt"></i></button>
-                                            </form>
                                         </div>
                                     </td>
                                 </tr>

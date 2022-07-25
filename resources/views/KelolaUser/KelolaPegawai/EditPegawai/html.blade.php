@@ -101,7 +101,46 @@
                     </div>
                     <!-- /.col -->
                 </div>
+
             </form>
+            <div class="row  mt-3">
+                <!-- /.col -->
+                <div class="col-12">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger btn-block" data-toggle="modal"
+                            data-target="#modalHapusPegawai">Hapus Pegawai
+                    </button>
+
+                    <!-- Modal -->
+                    <form action="{{route('admin.hapus.pegawai',$pegawai->id_pegawai)}}" method="post">
+                        @csrf
+                        <div class="modal fade" id="modalHapusPegawai" tabindex="-1" role="dialog"
+                             aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel">Konfirmasi Untuk Menghapus</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Yakin ingin mengapus Pegawai ini ?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                        </button>
+                                        <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- /.col -->
+            </div>
+
         </div>
 
         <!-- /.card-body -->
