@@ -42,8 +42,8 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item {{($title == 'Hasil Absensi') || ($title == '#')? 'menu-is-opening menu-open': ''}}">
+                    <a href="#" class="nav-link {{($title == 'Hasil Absensi') || ($title == '#')? 'active': ''}}">
                         <i class="nav-icon fas fa-file-invoice"></i>
                         <p>
                             Absensi
@@ -53,7 +53,7 @@
 
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('admin.halaman.kelola.hasil.absensi')}}" class="nav-link">
+                            <a href="{{route('admin.halaman.kelola.hasil.absensi')}}" class="nav-link {{($title == 'Hasil Absensi')? 'active': ''}}">
                                 <i class="nav-icon fas fa-file-alt"></i>
                                 <p>
                                     Hasil Absensi
@@ -87,7 +87,7 @@
                     </a>
                 </li>
                 <li class="nav-header">Lainnya</li>
-                <li class="nav-item">
+                <li class="nav-item {{($title == 'Admin') || ($title == 'Pegawai')? 'menu-is-opening menu-open': ''}}">
                     <a href="#" class="nav-link {{($title == 'Admin') || ($title == 'Pegawai')? 'active': ''}}">
                         <i class="nav-icon fas fa-users-cog"></i>
                         <p>
