@@ -8,9 +8,9 @@
             <div class="container">
                 <div class="row  mb-3">
                     <div class="col-12">
-                        <form action="{{route('admin.cari.pegawai')}}" method="get">
+                        <form action="{{route('admin.cari.mading')}}" method="get">
                             <div class="input-group input-group-sm float-right" style="width: 30%;">
-                                <input type="text" name="cari_pegawai" class="form-control"
+                                <input type="text" name="cari_mading" class="form-control"
                                        placeholder="Cari Mading">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-info">
@@ -66,7 +66,7 @@
                                 </tr>
                             @empty
                                 <div class="alert alert-danger">
-                                    Data Mading Tidak Ditemukan / Belum Tersedia.
+                                    Data Mading Tidak Ditemukan / Tidak Tersedia.
                                 </div>
                             @endforelse
                             </tbody>
