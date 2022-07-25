@@ -7,9 +7,15 @@
         <div class="card-body">
             <div class="container">
                 <div class="row  mb-3">
-                    <div class="col-12">
+                    <div class="col-6">
+                        <form action="#" method="get">
+                            @csrf
+                            <button class="btn btn-info float-left">Tambah Mading</button>
+                        </form>
+                    </div>
+                    <div class="col-6">
                         <form action="{{route('admin.cari.mading')}}" method="get">
-                            <div class="input-group input-group-sm float-right" style="width: 30%;">
+                            <div class="input-group input-group-sm float-right" style="width: 60%;">
                                 <input type="text" name="cari_mading" class="form-control"
                                        placeholder="Cari Mading">
                                 <div class="input-group-append">
