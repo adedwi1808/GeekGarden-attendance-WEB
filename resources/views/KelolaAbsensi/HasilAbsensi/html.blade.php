@@ -111,7 +111,7 @@
                                                 </button>
                                             </form>
                                             <form class="mx-2"
-                                                  action="{{route('admin.halaman.edit.pegawai', $absensi->id_absensi)}}"
+                                                  action="{{route('admin.halaman.edit.absensi', $absensi->id_absensi)}}"
                                                   method="get">
                                                 <button type="submit" class="btn btn-success"><i
                                                         class="fas fa-edit"></i>

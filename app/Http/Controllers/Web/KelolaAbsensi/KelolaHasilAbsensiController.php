@@ -28,14 +28,6 @@ class KelolaHasilAbsensiController extends Controller
         $pastweek = today()->subDays(today()->dayOfWeek)->subWeek();
         $pastmonth = today()->subDays(today()->dayOfWeek)->subMonth();
 
-        $data_absensi = DB::table('absensi')
-            ->join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
-            ->select('pegawai.nama', 'absensi.id_absensi', 'absensi.tempat', 'absensi.longitude', 'absensi.latitude'
-                , 'absensi.foto', 'absensi.status', 'absensi.tanggal');
-        $data_absensi->where([
-            ['nama', 'LIKE', '%' . $request->cari_hasil_absensi . '%']
-        ]);
-
         switch ($request->rentang_waktu) {
             case "Hari Ini":
                 $waktu = ['tanggal', '=', $currentDate];

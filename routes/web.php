@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\KelolaAbsensi\KelolaHasilAbsensiController;
-use App\Http\Controllers\Web\KelolaAbsensi\LokasiHasilAbsensiController;
+use App\Http\Controllers\Web\KelolaAbsensi\EditHasilAbsensiController;
 use App\Http\Controllers\Web\KelolaUser\KelolaAdminController;
 use App\Http\Controllers\Web\KelolaUser\KelolaPegawaiController;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +42,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     //Kelola Absensi
     Route::get('/kelola-asbensi', [KelolaHasilAbsensiController::class, 'index'])->name('halaman.kelola.hasil.absensi');
     Route::get('/cari-hasil-absensi',[KelolaHasilAbsensiController::class, 'cariHasilAbsensi'])->name('cari.hasil.absensi');
+    Route::get('/edit-absensi/{id}',[EditHasilAbsensiController::class,'index'])->name('halaman.edit.absensi');
+    Route::post('/edit-absensi/{id}',[EditHasilAbsensiController::class,'editAbsensi'])->name('edit.absensi');
 
 //    Kelola User
     //Pegawai
