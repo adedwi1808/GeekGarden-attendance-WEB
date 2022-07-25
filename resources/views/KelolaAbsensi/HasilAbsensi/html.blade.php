@@ -82,10 +82,10 @@
                                 <th scope="col" class="col-1">Tempat</th>
                                 <th scope="col" class="col-1">Longitude</th>
                                 <th scope="col" class="col-1">Latitude</th>
-                                <th scope="col" class="col-2">Foto Absensi</th>
+                                <th scope="col" class="col-1">Foto Absensi</th>
                                 <th scope="col" class="col-1">Status</th>
                                 <th scope="col" class="col-2">Tanggal</th>
-                                <th scope="col" class="col-2">Kelola</th>
+                                <th scope="col" class="col-3">Kelola</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -96,13 +96,20 @@
                                     <td class="col-1">{{$absensi->tempat}}</td>
                                     <td class="col-1">{{$absensi->longitude}}</td>
                                     <td class="col-1">{{$absensi->latitude}}</td>
-                                    <td class="col-2"><a class="link-primary"
+                                    <td class="col-1"><a class="link-primary"
                                                          href="/storage/bukti-absen/{{$absensi->foto}}">{{(strlen($absensi->foto) > 18)? substr($absensi->foto, 0,18)."..." : $absensi->foto}}</a>
                                     </td>
                                     <td class="col-1">{{$absensi->status}}</td>
                                     <td class="col-2">{{$absensi->tanggal}}</td>
-                                    <td class="col-2">
+                                    <td class="col-3">
                                         <div class="row justify-content-center">
+                                            <form class="mx-2"
+                                                  action="https://www.google.com/maps/search/{{$absensi->latitude.','.$absensi->longitude}}"
+                                                  method="get" target="_blank">
+                                                <button type="submit" class="btn btn-info"><i
+                                                        class="fas fa-map-marked"></i>
+                                                </button>
+                                            </form>
                                             <form class="mx-2"
                                                   action="{{route('admin.halaman.edit.pegawai', $absensi->id_absensi)}}"
                                                   method="get">

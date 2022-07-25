@@ -73,8 +73,10 @@ class KelolaHasilAbsensiController extends Controller
             default:
                 break;
         }
-        if (!empty($tempat)) {
-            if (!empty($status)) {
+
+        $title = "Absensi";
+        if (!empty($tempat)) { // Tempat -> all
+            if (!empty($status)) { //tempat  & status
                 $data_absensi = DB::table('absensi')
                     ->join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
                     ->select('pegawai.nama', 'absensi.id_absensi', 'absensi.tempat', 'absensi.longitude', 'absensi.latitude'
@@ -101,7 +103,7 @@ class KelolaHasilAbsensiController extends Controller
                     ->paginate(3);
             }
         } else {
-            if (!empty($status)) {
+            if (!empty($status)) { // Status
                 $data_absensi = DB::table('absensi')
                     ->join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
                     ->select('pegawai.nama', 'absensi.id_absensi', 'absensi.tempat', 'absensi.longitude', 'absensi.latitude'
@@ -113,7 +115,7 @@ class KelolaHasilAbsensiController extends Controller
                     ])
                     ->orderBy(($request->order_by != null) ? $request->order_by : "tanggal", ($request->sort_order != null) ? $request->sort_order : "asc")
                     ->paginate(3);
-            }else{
+            }else{ //Nothing
                 $data_absensi = DB::table('absensi')
                     ->join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
                     ->select('pegawai.nama', 'absensi.id_absensi', 'absensi.tempat', 'absensi.longitude', 'absensi.latitude'
@@ -126,7 +128,6 @@ class KelolaHasilAbsensiController extends Controller
                     ->paginate(3);
             }
         }
-        $title = "Absensi";
         return view('KelolaAbsensi.HasilAbsensi.index', compact('data_absensi', 'title'));
     }
 }
