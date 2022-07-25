@@ -9,7 +9,7 @@ class Absensi extends Model
 {
     protected $table = 'absensi';
     use HasFactory;
-
+protected $primaryKey = "id_absensi";
     public $timestamps = false;
 
 

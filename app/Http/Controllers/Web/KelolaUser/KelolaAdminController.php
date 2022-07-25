@@ -41,8 +41,11 @@ class KelolaAdminController extends Controller
         $admin = Admin::where('email', $email)->first();
 
         if ($admin) {
+            if (db::table('admin')->count() <= 2){
+                return back()->with('fail', 'Admin Tidak Boleh kurang dari 2');
+            }
             Admin::where('email', $email)->delete();
-            return back();
+            return back()->with('success', 'Berhasil Menghapus Admin');
         }
     }
 
@@ -65,7 +68,7 @@ class KelolaAdminController extends Controller
                 return back()->with('success', 'Berhasil Mengedit Admin');
             }
         }
-        return $this->back()->with('fail', 'Terjadi Kesalahan Saat Melakukan Edit Data');
+        return back()->with('fail', 'Terjadi Kesalahan Saat Melakukan Edit Data');
 
     }
 

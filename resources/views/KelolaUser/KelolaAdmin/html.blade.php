@@ -15,6 +15,21 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-12 text-center text-bold">
+                        @if(Session::get('success'))
+                            <div class="alert alert-success">
+                                {{Session::get('success')}}
+                            </div>
+                        @endif
+
+                        @if(Session::get('fail'))
+                            <div class="alert alert-danger">
+                                {{Session::get('fail')}}
+                            </div>
+                        @endif
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-12">
                         <table class="table table-bordered text-center">
                             <thead>

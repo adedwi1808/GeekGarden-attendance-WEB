@@ -29,8 +29,6 @@ class KelolaPegawaiController extends Controller
     {
         $title = 'Pegawai';
         $pegawai = Pegawai::where('id_pegawai', $id)->first();
-        $data_pegawai = [$pegawai->all()
-        ];
         return view('KelolaUser.KelolaPegawai.EditPegawai.index', compact('pegawai', 'title', 'id'));
 
     }
@@ -42,7 +40,7 @@ class KelolaPegawaiController extends Controller
             'jenis_kelamin' => 'required',
             'email' => 'required|unique:pegawai',
             'jabatan' => 'required',
-            'nomor_hp' => 'required|numeric|unique:pegawai',
+            'nomor_hp' => 'required|min:10|unique:pegawai|regex:/^([0-9\s\-\+\(\)]*)$/',
             'password' => 'required|min:6'
         ]);
 
@@ -69,7 +67,7 @@ class KelolaPegawaiController extends Controller
             $request->validate(['email' => 'required|unique:pegawai']);
         }
         if ($request->nomor_hp != $pegawai->nomor_hp){
-            $request->validate(['nomor_hp' => 'required|numeric|unique:pegawai']);
+            $request->validate(['nomor_hp' => 'required|min:10|unique:pegawai|regex:/^([0-9\s\-\+\(\)]*)$/']);
         }
         if ($pegawai) {
             if ($request->get('password') != "") {
@@ -92,5 +90,14 @@ class KelolaPegawaiController extends Controller
         }
         return $this->back()->with('fail', 'Terjadi Kesalahan Saat Melakukan Edit Data');
 
+    }
+
+    public function cariPegawai(Request $request)
+    {
+        $data_pegawai = Pegawai::where('nama', 'LIKE', "%". $request->cari_pegawai. "%")
+            ->orWhere('email','LIKE','%'.$request->cari_pegawai.'%')
+            ->paginate(3);
+        $title = "Pegawai";
+        return view('KelolaUser.KelolaPegawai.index', compact('data_pegawai', 'title'));
     }
 }

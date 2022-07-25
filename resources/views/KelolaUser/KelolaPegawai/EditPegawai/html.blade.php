@@ -4,7 +4,7 @@
             <h3 class="card-title">Form Edit {{$title}}</h3>
         </div>
         <!-- /.card-header -->
-        <div class="card-body">
+        <div class="card-body mx-2">
             <p class="login-box-msg">Edit Admin</p>
             <form action="{{route('admin.edit.pegawai', $id)}}" method="post">
                 @if(Session::get('success'))
