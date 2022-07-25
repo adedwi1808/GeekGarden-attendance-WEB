@@ -9,9 +9,6 @@
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 ml-2 d-flex">
-{{--            <div class="image">--}}
-{{--                <img src="{{asset('assets/AdminLTE/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">--}}
-{{--            </div>--}}
             <div class="info">
                 <a href="#" class="d-block">ADM-{{\Illuminate\Support\Facades\Session::get('admin.nama')}}</a>
             </div>
@@ -78,8 +75,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item {{($title == 'Mading')? 'menu-is-opening menu-open': ''}}">
+                    <a href="{{route('admin.halaman.mading')}}" class="nav-link {{($title == 'Mading')? 'active': ''}}">
                         <i class="nav-icon fas fa-newspaper"></i>
                         <p>
                             Mading GeekGarden
