@@ -41,4 +41,14 @@ class EditHasilAbsensiController extends Controller
         }
         return $this->back()->with('fail', 'Terjadi Kesalahan Saat Melakukan Edit Data');
     }
+
+    public function hapus($id)
+    {
+        $absensi = Absensi::where('id_absensi', $id)->first();
+
+        if ($absensi) {
+            Absensi::where('id_absensi', $id)->delete();
+            return redirect()->route('admin.halaman.kelola.hasil.absensi')->with('success', 'Berhasil Menghapus Absensi');
+        }
+    }
 }

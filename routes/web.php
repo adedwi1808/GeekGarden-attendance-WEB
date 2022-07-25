@@ -44,6 +44,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::get('/cari-hasil-absensi',[KelolaHasilAbsensiController::class, 'cariHasilAbsensi'])->name('cari.hasil.absensi');
     Route::get('/edit-absensi/{id}',[EditHasilAbsensiController::class,'index'])->name('halaman.edit.absensi');
     Route::post('/edit-absensi/{id}',[EditHasilAbsensiController::class,'editAbsensi'])->name('edit.absensi');
+    Route::post('/hapus-absensi/{id}',[EditHasilAbsensiController::class,'hapus'])->name('hapus.absensi');
+
 
 //    Kelola User
     //Pegawai
@@ -53,6 +55,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::post('/edit-pegawai/{id}',[KelolaPegawaiController::class,'editpegawai'])->name('edit.pegawai');
     Route::get('/tambah-pegawai',[KelolaPegawaiController::class,'tambahpage'])->name('halaman.tambah.pegawai');
     Route::post('/tambahkan-pegawai',[KelolaPegawaiController::class,'tambahkan'])->name('tambahkan.pegawai');
+    Route::post('/hapus-pegawai/{id}',[KelolaPegawaiController::class,'hapus'])->name('hapus.pegawai');
+
     //Admin
     Route::get('/kelola-admin',[KelolaAdminController::class,'index'])->name('kelola.admin');
     Route::post('/hapus-admin/{email}',[KelolaAdminController::class,'hapus'])->name('hapus.admin');

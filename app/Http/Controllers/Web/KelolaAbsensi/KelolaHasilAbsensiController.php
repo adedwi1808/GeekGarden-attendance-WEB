@@ -30,7 +30,7 @@ class KelolaHasilAbsensiController extends Controller
 
         switch ($request->rentang_waktu) {
             case "Hari Ini":
-                $waktu = ['tanggal', '=', $currentDate];
+                $waktu = ['tanggal', '>=', $currentDate];
                 break;
             case "7 Hari Terakhir":
                 $waktu = ['tanggal', '>=', $pastweek];
@@ -39,7 +39,6 @@ class KelolaHasilAbsensiController extends Controller
                 $waktu = ['tanggal', '>=', $pastmonth];
                 break;
         }
-        $data_absensi->where($waktu);
 
         switch ($request->tempat) {
             case "Dikantor":

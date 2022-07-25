@@ -92,6 +92,16 @@ class KelolaPegawaiController extends Controller
 
     }
 
+    public function hapus($id)
+    {
+        $pegawai = Pegawai::where('id_pegawai', $id)->first();
+
+        if ($pegawai) {
+            Pegawai::where('id_pegawai', $id)->delete();
+            return back()->with('success', 'Berhasil Menghapus Pegawai');
+        }
+    }
+
     public function cariPegawai(Request $request)
     {
         $data_pegawai = Pegawai::where('nama', 'LIKE', "%". $request->cari_pegawai. "%")

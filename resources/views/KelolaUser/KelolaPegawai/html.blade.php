@@ -27,6 +27,21 @@
                         </form>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12 text-center text-bold">
+                        @if(Session::get('success'))
+                            <div class="alert alert-success">
+                                {{Session::get('success')}}
+                            </div>
+                        @endif
+
+                        @if(Session::get('fail'))
+                            <div class="alert alert-danger">
+                                {{Session::get('fail')}}
+                            </div>
+                        @endif
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-12">
@@ -61,7 +76,7 @@
                                                         class="fas fa-edit"></i>
                                                 </button>
                                             </form>
-                                            <form class="mx-2" action="" method="post">
+                                            <form class="mx-2" action="{{route('admin.hapus.pegawai',$pegawai->id_pegawai)}}" method="post">
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger"><i
                                                         class="far fa-trash-alt"></i></button>

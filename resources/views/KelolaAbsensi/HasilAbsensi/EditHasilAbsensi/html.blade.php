@@ -31,30 +31,30 @@
                         @error('nama'){{$message}} @enderror
                     </span>
                 </div>
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend">
+                <div class="input-group mb-3 ">
+                    <div class="input-group-prepend">
                         <span class="input-group-text">
                             <i class="fas fa-calendar"></i>
                         </span>
-                        </div>
-                        <input type="text" disabled class="form-control @error('tanggal')is-invalid @enderror"
-                               placeholder="Nama Lengkap" name="tanggal" id="tanggal" value="{{$absensi->tanggal}}">
-                        <span class="invalid-feedback">
+                    </div>
+                    <input type="text" disabled class="form-control @error('tanggal')is-invalid @enderror"
+                           placeholder="Nama Lengkap" name="tanggal" id="tanggal" value="{{$absensi->tanggal}}">
+                    <span class="invalid-feedback">
                         @error('tanggal'){{$message}} @enderror
                     </span>
-                    </div>
+                </div>
 
-                    <div class="form-group mb-3">
-                        <label for="status">Status :</label>
-                        <select class="custom-select" name="status" id="status">
-                            <option {{($absensi->status) == 'Hadir'?'Selected':''}}>Hadir</option>
-                            <option {{($absensi->status) == 'Pulang'?'Selected':''}}>Pulang</option>
-                            <option {{($absensi->status) == 'Izin'?'Selected':''}}>Izin</option>
-                        </select>
-                        <span class="invalid-feedback">
+                <div class="form-group mb-3">
+                    <label for="status">Status :</label>
+                    <select class="custom-select" name="status" id="status">
+                        <option {{($absensi->status) == 'Hadir'?'Selected':''}}>Hadir</option>
+                        <option {{($absensi->status) == 'Pulang'?'Selected':''}}>Pulang</option>
+                        <option {{($absensi->status) == 'Izin'?'Selected':''}}>Izin</option>
+                    </select>
+                    <span class="invalid-feedback">
                         @error('status'){{$message}} @enderror
                     </span>
-                    </div>
+                </div>
 
                 <div class="row mb-3">
                     {{--Tempat--}}
@@ -111,7 +111,45 @@
                     </div>
                     <!-- /.col -->
                 </div>
+
             </form>
+            <div class="row  mt-3">
+                <!-- /.col -->
+                <div class="col-12">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger btn-block" data-toggle="modal"
+                            data-target="#modalHapusAbsensi">Hapus Absensi
+                    </button>
+
+                    <!-- Modal -->
+                    <form action="{{route('admin.hapus.absensi',$id)}}" method="post">
+                        @csrf
+                        <div class="modal fade" id="modalHapusAbsensi" tabindex="-1" role="dialog"
+                             aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel">Konfirmasi Untuk Menghapus</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Yakin ingin mengapus Absensi ini ?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                        </button>
+                                        <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- /.col -->
+            </div>
         </div>
 
         <!-- /.card-body -->
