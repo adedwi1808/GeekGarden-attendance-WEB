@@ -9,7 +9,6 @@
                 <div class="row mb-2">
                     <div class="col-12">
                         <form action="{{route('admin.halaman.tambah.admin')}}" method="get">
-                            @csrf
                             <button class="btn btn-info float-right">Tambah Admin</button>
                         </form>
                     </div>
