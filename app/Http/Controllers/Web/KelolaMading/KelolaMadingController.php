@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\KelolaMading;
 
 use App\Http\Controllers\Controller;
+use App\Models\Absensi;
 use App\Models\Mading;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,14 +13,19 @@ class KelolaMadingController extends Controller
     public function index()
     {
         $title = 'Mading';
-        $data_mading = Mading::all();
+        $data_mading = DB::table('mading')->paginate(5);
         return view('KelolaMading.index', compact('data_mading', 'title'));
     }
 
     public function tambahMadingPage()
     {
         $title = 'Mading';
-        return view('KelolaMading.TambahMading.index', compact( 'title'));
+        $mading = Mading::all();
+        if ($mading->count() <10) {
+            return view('KelolaMading.TambahMading.index', compact('title'));
+        }else{
+            return back()->with('fail','Mading maksimal 10');
+        }
     }
 
     public function cariMading(Request $request)

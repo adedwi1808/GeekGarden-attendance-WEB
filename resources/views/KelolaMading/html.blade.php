@@ -91,6 +91,9 @@
                             @endforelse
                             </tbody>
                         </table>
+                        <div class="d-flex align-items-center justify-content-center ">
+                            {{$data_mading->links()}}
+                        </div>
                     </div>
                 </div>
             </div>
