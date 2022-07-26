@@ -8,8 +8,7 @@
             <div class="container">
                 <div class="row  mb-3">
                     <div class="col-6">
-                        <form action="#" method="get">
-                            @csrf
+                        <form action="{{route('admin.tambah.mading')}}" method="get">
                             <button class="btn btn-info float-left">Tambah Mading</button>
                         </form>
                     </div>

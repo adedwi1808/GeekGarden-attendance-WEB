@@ -46,5 +46,12 @@
 </div>
 <!-- ./wrapper -->
 @include('layouts.backend-kelolaabsensi.javascript')
+<script src="{{asset('assets/AdminLTE/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
+<script>
+    $(function () {
+        bsCustomFileInput.init();
+    });
+</script>
+
 </body>
 </html>

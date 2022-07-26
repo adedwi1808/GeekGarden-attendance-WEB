@@ -16,6 +16,12 @@ class KelolaMadingController extends Controller
         return view('KelolaMading.index', compact('data_mading', 'title'));
     }
 
+    public function tamabahMadingPage()
+    {
+        $title = 'Mading';
+        return view('KelolaMading.TambahMading.index', compact( 'title'));
+    }
+
     public function cariMading(Request $request)
     {
         $data_mading = Mading::where('judul', 'LIKE', "%". $request->cari_mading. "%")
@@ -24,4 +30,6 @@ class KelolaMadingController extends Controller
         $title = 'Mading';
         return view('KelolaMading.index', compact('data_mading', 'title'));
     }
+
+
 }
