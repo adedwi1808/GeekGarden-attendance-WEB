@@ -32,7 +32,7 @@ class KelolaMadingController extends Controller
     {
         $data_mading = Mading::where('judul', 'LIKE', "%". $request->cari_mading. "%")
             ->orWhere('informasi','LIKE','%'.$request->cari_mading.'%')
-            ->get();
+            ->paginate(5);
         $title = 'Mading';
         return view('KelolaMading.index', compact('data_mading', 'title'));
     }
