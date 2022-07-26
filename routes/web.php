@@ -49,6 +49,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::get('/lihat-mading/{id}',[KelolaMadingController::class, 'lihatMadingPage'])->name('lihat.mading');
     Route::get('/edit-mading/{id}', [EditMadingController::class, 'index'])->name('halaman.edit.mading');
     Route::post('/edit-mading/{id}', [EditMadingController::class, 'editMading'])->name('edit.mading');
+    Route::post('/hapus-mading/{id}', [EditMadingController::class, 'hapusMading'])->name('hapus.mading');
 
     //Kelola Absensi
     Route::get('/kelola-asbensi', [KelolaHasilAbsensiController::class, 'index'])->name('halaman.kelola.hasil.absensi');

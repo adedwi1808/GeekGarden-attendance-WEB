@@ -30,7 +30,7 @@
                     <div class="col-12">
                         @if(Session::get('success'))
                             <div class="alert alert-success">
-                                Berhasil Menambahkan Mading
+                                {{Session::get('success')}}
                             </div>
                         @endif
 
