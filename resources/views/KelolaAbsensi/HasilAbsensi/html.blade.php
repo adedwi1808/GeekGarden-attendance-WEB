@@ -92,7 +92,7 @@
 
                             @forelse($data_absensi as $index=>$absensi)
                                 <tr>
-                                    <td class="col-2">{{$absensi->nama}}</td>
+                                    <td class="col-2">{{$absensi->pegawai->nama}}</td>
                                     <td class="col-1">{{$absensi->tempat}}</td>
                                     <td class="col-1">{{$absensi->longitude}}</td>
                                     <td class="col-1">{{$absensi->latitude}}</td>

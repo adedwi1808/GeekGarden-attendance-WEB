@@ -23,9 +23,9 @@ protected $primaryKey = "id_absensi";
         'tanggal',
     ];
 
-    public function user()
+    public function pegawai()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Pegawai::class,'id_pegawai','id_pegawai');
     }
 
     protected $hidden = [
