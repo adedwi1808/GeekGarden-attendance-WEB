@@ -11,7 +11,8 @@ class KelolaAdminController extends Controller
 {
     public function index()
     {
-        $data_admin = DB::table('admin')->paginate(5);
+        $data_admin = Admin::orderBy('nama', 'asc')
+            ->paginate(5);
         $title = 'Admin';
 
         return view('KelolaUser.KelolaAdmin.index', compact('data_admin', 'title'));
@@ -38,13 +39,13 @@ class KelolaAdminController extends Controller
 
     public function hapus($email)
     {
+        if (Admin::count() <= 2){
+            return back()->with('fail', 'Admin Tidak Boleh kurang dari 2');
+        }
         $admin = Admin::where('email', $email)->first();
 
         if ($admin) {
-            if (db::table('admin')->count() <= 2){
-                return back()->with('fail', 'Admin Tidak Boleh kurang dari 2');
-            }
-            Admin::where('email', $email)->delete();
+            $admin->delete();
             return back()->with('success', 'Berhasil Menghapus Admin');
         }
     }
