@@ -8,7 +8,7 @@
             <div class="container">
                 <div class="row  mb-3">
                     <div class="col-6">
-                        <form action="{{route('admin.tambah.mading')}}" method="get">
+                        <form action="{{route('admin.halaman.tambah.mading')}}" method="get">
                             <button class="btn btn-info float-left">Tambah Mading</button>
                         </form>
                     </div>
@@ -24,6 +24,21 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        @if(Session::get('success'))
+                            <div class="alert alert-success">
+                                Berhasil Menambahkan Mading
+                            </div>
+                        @endif
+
+                        @if(Session::get('fail'))
+                            <div class="alert alert-danger">
+                                {{Session::get('fail')}}
+                            </div>
+                        @endif
                     </div>
                 </div>
 

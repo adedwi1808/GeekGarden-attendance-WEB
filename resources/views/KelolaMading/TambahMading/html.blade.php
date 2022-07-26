@@ -6,13 +6,7 @@
         <!-- /.card-header -->
         <div class="card-body">
             <p class="login-box-msg">Silahkan Masukkan Informasi Mading</p>
-            <form action="#" method="post">
-                @if(Session::get('success'))
-                    <div class="alert alert-success">
-                        Berhasil Menambahkan Mading
-                    </div>
-                @endif
-
+            <form action="{{route('admin.tambah.mading')}}" method="POST" enctype="multipart/form-data">
                 @if(Session::get('fail'))
                     <div class="alert alert-danger">
                         {{Session::get('fail')}}
@@ -35,21 +29,24 @@
                 <div class="form-group mb-3">
                     <label for="informasiMading">Informasi Mading:</label>
                     <textarea class="form-control @error('informasiMading') is-invalid @enderror" id="informasiMading"
-                              rows="5" placeholder="Informasi Mading"></textarea>
+                              rows="5" name="informasiMading" placeholder="Informasi Mading"></textarea>
                     <span class="invalid-feedback">
                         @error('informasiMading'){{$message}} @enderror
                     </span>
                 </div>
 
-                    <div class="form-group">
-                        <label for="chooseFile">Thumbnail:</label>
-                        <div class="custom-file" id="chooseFile">
-                            <input type="file" class="custom-file-input" id="customFile">
-                            <label class="custom-file-label text-muted" for="customFile">Choose Thumbnail</label>
+                    <div class="input-group mb-3">
+                        <div class="custom-file" id="choosefile">
+                            <input type="file" class="custom-file-input @error('thumbnailMading') is-invalid @enderror" name="thumbnailMading" accept="image/*" id="thumbnailMading">
+                            <label class="custom-file-label text-muted" for="thumbnailMading" aria-describedby="thumbnailMading">@error('thumbnailMading'){{$message}} @enderror</label>
+                        </div>
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="thumbnailMading">Upload</span>
                         </div>
                     </div>
 
-                    <div class="row">
+
+                <div class="row">
                     <!-- /.col -->
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary btn-block">Buat Mading Baru</button>
