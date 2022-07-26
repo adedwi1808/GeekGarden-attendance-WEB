@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\Mading;
 use App\Models\Pegawai;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -31,6 +32,18 @@ class DatabaseSeeder extends Seeder
             "nomor_hp" => "0823132343432323221",
             "jabatan" => "HRD",
             "email" => "sephia@gmail.com",
+            "password" => '$2y$10$iUu6128DzUs7Kt/l.Eer9ebo4UopLfm2pxfp3tz.5YBmU05vmnuQ2'
+        ]);
+
+        Admin::create([
+            "nama"=>"Ade",
+            "email"=>"ade@gmail.com",
+            "password" => '$2y$10$iUu6128DzUs7Kt/l.Eer9ebo4UopLfm2pxfp3tz.5YBmU05vmnuQ2'
+        ]);
+
+        Admin::create([
+            "nama"=>"Sephia",
+            "email"=>"sephia@gmail.com",
             "password" => '$2y$10$iUu6128DzUs7Kt/l.Eer9ebo4UopLfm2pxfp3tz.5YBmU05vmnuQ2'
         ]);
 
