@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Web\KelolaAbsensi\KelolaHasilAbsensiController;
 use App\Http\Controllers\Web\KelolaAbsensi\EditHasilAbsensiController;
+use App\Http\Controllers\Web\KelolaMading\EditMadingController;
 use App\Http\Controllers\Web\KelolaMading\KelolaMadingController;
 use App\Http\Controllers\Web\KelolaUser\KelolaAdminController;
 use App\Http\Controllers\Web\KelolaUser\KelolaPegawaiController;
@@ -42,11 +43,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
 
 //    Mading
     Route::get('/mading', [KelolaMadingController::class, 'index'])->name('halaman.mading');
-    Route::get('/edit-mading/{id}', [KelolaMadingController::class, 'editMadingPage'])->name('halaman.edit.mading');
     Route::get('/car-mading', [KelolaMadingController::class, 'cariMading'])->name('cari.mading');
     Route::get('/tambah-mading', [KelolaMadingController::class, 'tambahMadingPage'])->name('halaman.tambah.mading');
     Route::post('/tambah-mading', [KelolaMadingController::class, 'tambahMading'])->name('tambah.mading');
     Route::get('/lihat-mading/{id}',[KelolaMadingController::class, 'lihatMadingPage'])->name('lihat.mading');
+    Route::get('/edit-mading/{id}', [EditMadingController::class, 'index'])->name('halaman.edit.mading');
+    Route::post('/edit-mading/{id}', [EditMadingController::class, 'editMading'])->name('edit.mading');
 
     //Kelola Absensi
     Route::get('/kelola-asbensi', [KelolaHasilAbsensiController::class, 'index'])->name('halaman.kelola.hasil.absensi');

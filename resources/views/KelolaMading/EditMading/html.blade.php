@@ -5,7 +5,12 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <form action="#" method="POST" enctype="multipart/form-data">
+            <form action="{{route('admin.edit.mading', $mading->id_mading)}}" method="POST" enctype="multipart/form-data">
+                @if(Session::get('success'))
+                    <div class="alert alert-success">
+                        {{Session::get('success')}}
+                    </div>
+                @endif
                 @if(Session::get('fail'))
                     <div class="alert alert-danger">
                         {{Session::get('fail')}}

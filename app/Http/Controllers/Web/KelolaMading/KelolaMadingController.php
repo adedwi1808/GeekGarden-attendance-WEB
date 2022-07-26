@@ -85,11 +85,4 @@ class KelolaMadingController extends Controller
         return view('KelolaMading.LihatMading.index', compact('mading', 'title'));
     }
 
-    public function editMadingPage($id)
-    {
-        $title = "Mading";
-        $mading = Mading::where('id_mading',$id)->first();
-        return view('KelolaMading.EditMading.index', compact('mading', 'title'));
-    }
-
 }
