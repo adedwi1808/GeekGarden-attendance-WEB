@@ -75,7 +75,7 @@
                                                 </button>
                                             </form>
                                             <form class="mx-2"
-                                                  action="#"
+                                                  action="{{route('admin.halaman.edit.mading',$mading->id_mading)}}"
                                                   method="get">
                                                 <button type="submit" class="btn btn-success"><i
                                                         class="fas fa-edit"></i>
