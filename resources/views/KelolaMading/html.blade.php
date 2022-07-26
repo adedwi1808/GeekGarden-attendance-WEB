@@ -68,7 +68,7 @@
                                     <td class="col-2">
                                         <div class="row justify-content-center">
                                             <form class="mx-2"
-                                                  action="#"
+                                                  action="{{route('admin.lihat.mading',$mading->id_mading)}}"
                                                   method="get" target="_blank">
                                                 <button type="submit" class="btn btn-info"><i
                                                         class="fas fa-eye"></i>

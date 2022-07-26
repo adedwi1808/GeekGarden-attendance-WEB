@@ -45,6 +45,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::get('/car-mading', [KelolaMadingController::class, 'cariMading'])->name('cari.mading');
     Route::get('/tambah-mading', [KelolaMadingController::class, 'tambahMadingPage'])->name('halaman.tambah.mading');
     Route::post('/tambah-mading', [KelolaMadingController::class, 'tambahMading'])->name('tambah.mading');
+    Route::get('/lihat-mading/{id}',[KelolaMadingController::class,'lihatMading'])->name('lihat.mading');
 
     //Kelola Absensi
     Route::get('/kelola-asbensi', [KelolaHasilAbsensiController::class, 'index'])->name('halaman.kelola.hasil.absensi');
