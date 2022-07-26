@@ -67,10 +67,7 @@ class KelolaHasilAbsensiController extends Controller
         $title = "Absensi";
         if (!empty($tempat)) { // Tempat -> all
             if (!empty($status)) { //tempat  & status
-                $data_absensi = DB::table('absensi')
-                    ->join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
-                    ->select('pegawai.nama', 'absensi.id_absensi', 'absensi.tempat', 'absensi.longitude', 'absensi.latitude'
-                        , 'absensi.foto', 'absensi.status', 'absensi.tanggal')
+                $data_absensi = Absensi::join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
                     ->where([
                         ['nama', 'LIKE', '%' . $request->cari_hasil_absensi . '%'],
                         $waktu,
@@ -79,11 +76,9 @@ class KelolaHasilAbsensiController extends Controller
                     ])
                     ->orderBy(($request->order_by != null) ? $request->order_by : "tanggal", ($request->sort_order != null) ? $request->sort_order : "asc")
                     ->paginate(3);
+
             }else{
-                $data_absensi = DB::table('absensi')
-                    ->join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
-                    ->select('pegawai.nama', 'absensi.id_absensi', 'absensi.tempat', 'absensi.longitude', 'absensi.latitude'
-                        , 'absensi.foto', 'absensi.status', 'absensi.tanggal')
+                $data_absensi = Absensi::join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
                     ->where([
                         ['nama', 'LIKE', '%' . $request->cari_hasil_absensi . '%'],
                         $waktu,
@@ -94,10 +89,7 @@ class KelolaHasilAbsensiController extends Controller
             }
         } else {
             if (!empty($status)) { // Status
-                $data_absensi = DB::table('absensi')
-                    ->join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
-                    ->select('pegawai.nama', 'absensi.id_absensi', 'absensi.tempat', 'absensi.longitude', 'absensi.latitude'
-                        , 'absensi.foto', 'absensi.status', 'absensi.tanggal')
+                $data_absensi = Absensi::join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
                     ->where([
                         ['nama', 'LIKE', '%' . $request->cari_hasil_absensi . '%'],
                         $waktu,
@@ -106,12 +98,9 @@ class KelolaHasilAbsensiController extends Controller
                     ->orderBy(($request->order_by != null) ? $request->order_by : "tanggal", ($request->sort_order != null) ? $request->sort_order : "asc")
                     ->paginate(3);
             }else{ //Nothing
-                $data_absensi = DB::table('absensi')
-                    ->join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
-                    ->select('pegawai.nama', 'absensi.id_absensi', 'absensi.tempat', 'absensi.longitude', 'absensi.latitude'
-                        , 'absensi.foto', 'absensi.status', 'absensi.tanggal')
+                $data_absensi = Absensi::join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
                     ->where([
-                        ['nama', 'LIKE', '%' . $request->cari_hasil_absensi . '%'],
+                        ['pegawai.nama', 'LIKE', '%' . $request->cari_hasil_absensi . '%'],
                         $waktu
                     ])
                     ->orderBy(($request->order_by != null) ? $request->order_by : "tanggal", ($request->sort_order != null) ? $request->sort_order : "asc")
