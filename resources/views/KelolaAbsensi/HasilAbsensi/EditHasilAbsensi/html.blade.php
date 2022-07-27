@@ -26,7 +26,7 @@
                         </span>
                     </div>
                     <input type="text" disabled class="form-control @error('nama')is-invalid @enderror"
-                           placeholder="Nama Lengkap" name="nama" id="nama" value="{{$absensi->nama}}">
+                           placeholder="Nama Lengkap" name="nama" id="nama" value="{{$absensi->pegawai->nama}}">
                     <span class="invalid-feedback">
                         @error('nama'){{$message}} @enderror
                     </span>

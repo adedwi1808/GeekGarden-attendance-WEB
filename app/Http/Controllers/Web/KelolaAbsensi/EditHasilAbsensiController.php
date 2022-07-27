@@ -13,11 +13,9 @@ class EditHasilAbsensiController extends Controller
     public function index($id)
     {
         $title = "Absensi";
-        $absensi = DB::table('absensi')
-            ->join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
-            ->select('pegawai.nama', 'absensi.id_absensi', 'absensi.tempat', 'absensi.longitude', 'absensi.latitude'
-                , 'absensi.foto', 'absensi.status', 'absensi.tanggal')
-            ->where('absensi.id_absensi', '=',$id)
+
+        $absensi = Absensi::with('pegawai')
+            ->where('id_absensi','=',$id)
             ->first();
         return view('KelolaAbsensi.HasilAbsensi.EditHasilAbsensi.index',compact('title', 'absensi', 'id'));
     }
