@@ -39,8 +39,8 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item {{($title == 'Hasil Absensi') || ($title == '#')? 'menu-is-opening menu-open': ''}}">
-                    <a href="#" class="nav-link {{($title == 'Hasil Absensi') || ($title == '#')? 'active': ''}}">
+                <li class="nav-item {{($title == 'Hasil Absensi') || ($title == 'Pengajuan Izin')? 'menu-is-opening menu-open': ''}}">
+                    <a href="#" class="nav-link {{($title == 'Hasil Absensi') || ($title == 'Pengajuan Izin')? 'active': ''}}">
                         <i class="nav-icon fas fa-file-invoice"></i>
                         <p>
                             Absensi
@@ -58,7 +58,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('admin.halaman.kelola.pengajuan.izin')}}" class="nav-link">
+                            <a href="{{route('admin.halaman.kelola.pengajuan.izin')}}" class="nav-link {{($title == 'Pengajuan Izin')? 'active': ''}}">
                                 <i class="nav-icon fas fa-file-contract"></i>
                                 <p>
                                     Pengajuan Izin
