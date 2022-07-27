@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PengajuanIzin\PengajuanIzinController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\Auth\AuthPegawaiController;
@@ -34,6 +35,9 @@ Route::group(['middleware' => ['assign.guard:pegawai-api', 'jwt.verify']], funct
     Route::post('/absensi-hadir',[\App\Http\Controllers\Api\PegawaiController::class, 'absensihadir']);
     Route::post('/upload-bukti-absensi/{id}', [\App\Http\Controllers\Api\PegawaiController::class, 'uploadbuktiabsensi']);
     Route::post('/absensi-pulang',[\App\Http\Controllers\Api\PegawaiController::class, 'absensipulang']);
+
+    //Pengajuan Izin
+    Route::post('/pengajuan-izin', [PengajuanIzinController::class, 'mengajukanIzin']);
 
     //Other
     Route::get('/madings', [\App\Http\Controllers\Api\MadingController::class, 'selectAllMading']);

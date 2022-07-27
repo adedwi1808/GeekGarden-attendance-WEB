@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('alasan_izin');
             $table->string('surat_izin')->nullable();
             $table->enum('status_izin', ['Diajukan','Diterima', 'Ditolak']);
-            $table->timestamp('tanggal_mengajukan_izin')->nullable();
+            $table->dateTime('tanggal_mengajukan_izin')->useCurrent();
         });
     }
 

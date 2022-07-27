@@ -11,9 +11,11 @@ class Pengajuan_izin extends Model
     protected $table='pengajuan_izin';
     protected $primaryKey = 'id_pengajuan_izin';
     const UPDATED_AT = null;
+    public $timestamps = false;
 
 
     protected $fillable = [
+        'id_pegawai',
         'alasan_izin',
         'jenis_izin',
         'tanggal_mulai_izin',
