@@ -15,8 +15,7 @@ class PegawaiController extends Controller
     public function absensihadir(Request $request): \Illuminate\Http\JsonResponse
     {
         $id = auth('pegawai-api')->user()->id_pegawai;
-        $cek = DB::table('absensi')
-            ->where("id_pegawai", $id)
+        $cek = Absensi::where("id_pegawai", $id)
             ->whereDate('tanggal', today())
             ->count();
 
@@ -52,7 +51,7 @@ class PegawaiController extends Controller
         $absensi = Absensi::create($data);
         $absensi->save();
 
-        $absensiResponse = Absensi::where('id_absensi', $absensi->id)->first();
+        $absensiResponse = Absensi::where('id_absensi', $absensi->id_absensi)->first();
         if ($absensi) {
             return $this->success($absensiResponse, 'Anda berhasil melakukan absensi');
         } else {
@@ -90,8 +89,7 @@ class PegawaiController extends Controller
     public function absensipulang(Request $request)
     {
         $id = auth('pegawai-api')->user()->id_pegawai;
-        $cek = DB::table('absensi')
-            ->where("id_pegawai", $id)
+        $cek = Absensi::where("id_pegawai", $id)
             ->whereDate('tanggal', today())
             ->count();
 
@@ -127,7 +125,7 @@ class PegawaiController extends Controller
         $absensi = Absensi::create($data);
         $absensi->save();
 
-        $absensiResponse = Absensi::where('id_absensi', $absensi->id)->first();
+        $absensiResponse = Absensi::where('id_absensi', $absensi->id_absensi)->first();
         if ($absensi) {
             return $this->success($absensiResponse, 'Anda berhasil melakukan absensi pulang');
         } else {
@@ -138,8 +136,7 @@ class PegawaiController extends Controller
     public function checkabsensi(Request $request)
     {
         $id = auth('pegawai-api')->user()->id_pegawai;
-        $jumlah_absen = DB::table('absensi')
-            ->where("id_pegawai", $id)
+        $jumlah_absen = Absensi::where("id_pegawai", $id)
             ->whereDate('tanggal', today())
             ->count();
 
@@ -150,8 +147,7 @@ class PegawaiController extends Controller
         }else if ($jumlah_absen == 1){
             $data = [
                 'jumlah_absen_hari_ini' => $jumlah_absen,
-                'jam_hadir' => DB::table('absensi')
-                    ->select("tanggal")
+                'jam_hadir' => Absensi::select("tanggal")
                     ->where("id_pegawai", $id)
                     ->whereDate('tanggal', today())
                     ->where("status","Hadir")
@@ -160,14 +156,12 @@ class PegawaiController extends Controller
         }else {
             $data = [
                 'jumlah_absen_hari_ini' => $jumlah_absen,
-                'jam_hadir' => DB::table('absensi')
-                    ->select("tanggal")
+                'jam_hadir' => Absensi::select("tanggal")
                     ->where("id_pegawai", $id)
                     ->whereDate('tanggal', today())
                     ->where("status","Hadir")
                     ->get()->first(),
-                'jam_pulang' => DB::table('absensi')
-                    ->select("tanggal")
+                'jam_pulang' => Absensi::select("tanggal")
                     ->where("id_pegawai", $id)
                     ->whereDate('tanggal', today())
                     ->where("status","Pulang")
