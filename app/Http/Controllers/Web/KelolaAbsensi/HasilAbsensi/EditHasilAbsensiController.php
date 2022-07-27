@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Web\KelolaAbsensi;
+namespace App\Http\Controllers\Web\KelolaAbsensi\HasilAbsensi;
 
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
-use App\Models\Pegawai;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class EditHasilAbsensiController extends Controller
 {

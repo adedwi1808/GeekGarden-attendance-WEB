@@ -1,16 +1,18 @@
 <?php
 
-use App\Http\Controllers\Web\KelolaAbsensi\KelolaHasilAbsensiController;
-use App\Http\Controllers\Web\KelolaAbsensi\EditHasilAbsensiController;
+
+use App\Http\Controllers\Web\Auth\LoginController;
+use App\Http\Controllers\Web\Auth\LogoutController;
+use App\Http\Controllers\Web\Auth\RegisterController;
+use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\KelolaAbsensi\HasilAbsensi\EditHasilAbsensiController;
+use App\Http\Controllers\Web\KelolaAbsensi\HasilAbsensi\KelolaHasilAbsensiController;
+use App\Http\Controllers\Web\KelolaAbsensi\PengajuanIzin\KelolaPengajuanIzinController;
 use App\Http\Controllers\Web\KelolaMading\EditMadingController;
 use App\Http\Controllers\Web\KelolaMading\KelolaMadingController;
 use App\Http\Controllers\Web\KelolaUser\KelolaAdminController;
 use App\Http\Controllers\Web\KelolaUser\KelolaPegawaiController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Web\DashboardController;
-use App\Http\Controllers\Web\Auth\LoginController;
-use App\Http\Controllers\Web\Auth\RegisterController;
-use App\Http\Controllers\Web\Auth\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,12 +53,15 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::post('/edit-mading/{id}', [EditMadingController::class, 'editMading'])->name('edit.mading');
     Route::post('/hapus-mading/{id}', [EditMadingController::class, 'hapusMading'])->name('hapus.mading');
 
-    //Kelola Absensi
+//    Kelola Absensi
+    //Hasil Absensi
     Route::get('/kelola-asbensi', [KelolaHasilAbsensiController::class, 'index'])->name('halaman.kelola.hasil.absensi');
     Route::get('/cari-hasil-absensi',[KelolaHasilAbsensiController::class, 'cariHasilAbsensi'])->name('cari.hasil.absensi');
     Route::get('/edit-absensi/{id}',[EditHasilAbsensiController::class,'index'])->name('halaman.edit.absensi');
     Route::post('/edit-absensi/{id}',[EditHasilAbsensiController::class,'editAbsensi'])->name('edit.absensi');
     Route::post('/hapus-absensi/{id}',[EditHasilAbsensiController::class,'hapus'])->name('hapus.absensi');
+    //Pengajuan Izin
+    Route::get('/pengajuan-izin', [KelolaPengajuanIzinController::class, 'index'])->name('halaman.kelola.pengajuan.izin');
 
 //    Kelola User
     //Pegawai

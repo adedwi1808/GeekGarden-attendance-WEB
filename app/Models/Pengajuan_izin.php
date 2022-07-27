@@ -20,4 +20,10 @@ class Pengajuan_izin extends Model
         'tanggal_selesai_izin',
         'surat_izin'
     ];
+
+    public function pegawai()
+    {
+        return $this->belongsTo(Pegawai::class, 'id_pegawai', 'id_pegawai');
+    }
+
 }
