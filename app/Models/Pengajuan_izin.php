@@ -20,7 +20,8 @@ class Pengajuan_izin extends Model
         'jenis_izin',
         'tanggal_mulai_izin',
         'tanggal_selesai_izin',
-        'surat_izin'
+        'surat_izin',
+        'status_izin',
     ];
 
     public function pegawai()

@@ -38,6 +38,8 @@ Route::group(['middleware' => ['assign.guard:pegawai-api', 'jwt.verify']], funct
 
     //Pengajuan Izin
     Route::post('/pengajuan-izin', [PengajuanIzinController::class, 'mengajukanIzin']);
+    Route::post('/upload-pengajuan-izin/{id}',  [PengajuanIzinController::class, 'uploadSuratizin']);
+
 
     //Other
     Route::get('/madings', [\App\Http\Controllers\Api\MadingController::class, 'selectAllMading']);

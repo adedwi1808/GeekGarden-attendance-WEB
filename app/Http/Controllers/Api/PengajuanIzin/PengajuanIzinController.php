@@ -15,6 +15,13 @@ class PengajuanIzinController extends Controller
     {
         $id = auth('pegawai-api')->user()->id_pegawai;
         $pegawai = Pegawai::where('id_pegawai', $id)->first();
+        $checkPengajuan = Pengajuan_izin::where('id_pegawai', $id)
+            ->where('status_izin', '=', 'Diajukan')
+            ->get()
+            ->count();
+        if ($checkPengajuan >= 2){
+            return $this->error("Anda Memiliki 2 Pengajuan Yang Belum Di Proses");
+        }
 
         $validasi = Validator::make($request->all(), [
             'jenis_izin' => 'required',
@@ -47,9 +54,32 @@ class PengajuanIzinController extends Controller
         } else {
             return $this->error("Terjadi kesalahan");
         }
+    }
 
+    public function uploadSuratizin(Request $request, $id)
+    {
+        $pengajuan_izin = Pengajuan_izin::where('id_pengajuan_izin', $id)->first();
+        if (!$pengajuan_izin) return $this->error("Pengajuan Izin Tidak Ditemukan");
 
-
+        if ($pengajuan_izin) {
+            $fileName = "";
+            if ($request->image) {
+                $image = $request->image->getClientOriginalName();
+                $image = str_replace(' ', '', $image);
+                $image = date('Hs') . rand(1, 999) . "_" . $image;
+                $fileName = $image;
+                $request->image->storeAs('public/surat-izin', $image);
+            } else {
+                return $this->error("File must be image");
+            }
+            $pengajuan_izin->where('id_pengajuan_izin', $id)
+                ->update([
+                    'surat_izin' => $fileName,
+                ]);
+            $pengajuan_izin_response = Pengajuan_izin::where('id_pengajuan_izin', $id)->first();
+            return $this->success($pengajuan_izin_response);
+        }
+        return $this->error("Terjadi Kesalahan saat mengupload");
     }
 
     public function success($data, $message = "success")
