@@ -13,7 +13,8 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label for="filter">Rentang Waktu:</label>
-                                        <select id="filter" name="rentang_waktu" class="select2" data-placeholder="Any" style="width: 100%;">
+                                        <select id="filter" name="rentang_waktu" class="select2" data-placeholder="Any"
+                                                style="width: 100%;">
                                             <option selected>Satu Bulan Terakhir</option>
                                             <option>Hari Ini</option>
                                             <option>7 Hari Terakhir</option>
@@ -29,7 +30,8 @@
                                             <option>Diluar Kantor</option>
                                         </select>
                                     </div>
-                                </div><div class="col-2">
+                                </div>
+                                <div class="col-2">
                                     <div class="form-group">
                                         <label for="status">Status:</label>
                                         <select name="status" id="status" class="select2" style="width: 100%;">
@@ -53,8 +55,8 @@
                                     <div class="form-group">
                                         <label for="order">Order By:</label>
                                         <select name="order_by" id="order" class="select2" style="width: 100%;">
-                                            <option selected>Tanggal</option>
-                                            <option>Nama</option>
+                                            <option selected value="nama">Nama</option>
+                                            <option value="tanggal">Tanggal</option>
                                         </select>
                                     </div>
                                 </div>
@@ -75,17 +77,18 @@
                 </form>
                 <div class="row">
                     <div class="col-12">
-                        <table class="table table-bordered text-center">
+
+                        <table id="table" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th scope="col" class="col-2">Nama Pegawai</th>
-                                <th scope="col" class="col-1">Tempat</th>
-                                <th scope="col" class="col-1">Longitude</th>
-                                <th scope="col" class="col-1">Latitude</th>
-                                <th scope="col" class="col-1">Foto Absensi</th>
-                                <th scope="col" class="col-1">Status</th>
-                                <th scope="col" class="col-2">Tanggal</th>
-                                <th scope="col" class="col-3">Kelola</th>
+                                <th>Nama Pegawai</th>
+                                <th>Tempat</th>
+                                <th>Longitude</th>
+                                <th>Latitude</th>
+                                <th>Foto Absensi</th>
+                                <th>Status</th>
+                                <th>Tanggal</th>
+                                <th>Kelola</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -126,10 +129,19 @@
                                 </div>
                             @endforelse
                             </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>Nama Pegawai</th>
+                                <th>Tempat</th>
+                                <th>Longitude</th>
+                                <th>Latitude</th>
+                                <th>Foto Absensi</th>
+                                <th>Status</th>
+                                <th>Tanggal</th>
+                                <th>Kelola</th>
+                            </tr>
+                            </tfoot>
                         </table>
-                        <div class="d-flex align-items-center justify-content-center ">
-                            {{$data_absensi->links()}}
-                        </div>
                     </div>
                 </div>
             </div>

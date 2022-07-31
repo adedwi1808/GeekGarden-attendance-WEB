@@ -15,7 +15,7 @@ class KelolaHasilAbsensiController extends Controller
         $title = 'Hasil Absensi';
         $data_absensi = Absensi::with('pegawai')
             ->orderBy('tanggal', 'asc')
-            ->paginate(10);
+            ->get();
         return view('KelolaAbsensi.HasilAbsensi.index', compact('data_absensi', 'title'));
     }
 
@@ -72,8 +72,8 @@ class KelolaHasilAbsensiController extends Controller
                         $tempat,
                         $status
                     ])
-                    ->orderBy(($request->order_by != null) ? $request->order_by : "tanggal", ($request->sort_order != null) ? $request->sort_order : "asc")
-                    ->paginate(10);
+                    ->orderBy($request->order_by,$request->sort_order)
+                    ->get();
 
             }else{
                 $data_absensi = Absensi::join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
@@ -82,8 +82,8 @@ class KelolaHasilAbsensiController extends Controller
                         $waktu,
                         $tempat
                     ])
-                    ->orderBy(($request->order_by != null) ? $request->order_by : "tanggal", ($request->sort_order != null) ? $request->sort_order : "asc")
-                    ->paginate(10);
+                    ->orderBy($request->order_by,$request->sort_order)
+                    ->get();
             }
         } else {
             if (!empty($status)) { // Status
@@ -93,16 +93,16 @@ class KelolaHasilAbsensiController extends Controller
                         $waktu,
                         $status
                     ])
-                    ->orderBy(($request->order_by != null) ? $request->order_by : "tanggal", ($request->sort_order != null) ? $request->sort_order : "asc")
-                    ->paginate(10);
+                    ->orderBy($request->order_by,$request->sort_order)
+                    ->get();
             }else{ //Nothing
                 $data_absensi = Absensi::join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
                     ->where([
                         ['pegawai.nama', 'LIKE', '%' . $request->cari_hasil_absensi . '%'],
                         $waktu
                     ])
-                    ->orderBy(($request->order_by != null) ? $request->order_by : "tanggal", ($request->sort_order != null) ? $request->sort_order : "asc")
-                    ->paginate(10);
+                    ->orderBy($request->order_by,$request->sort_order)
+                    ->get();
             }
         }
         return view('KelolaAbsensi.HasilAbsensi.index', compact('data_absensi', 'title'));
