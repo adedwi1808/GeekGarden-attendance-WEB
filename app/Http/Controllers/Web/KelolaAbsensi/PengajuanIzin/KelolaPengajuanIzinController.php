@@ -14,7 +14,7 @@ class KelolaPengajuanIzinController extends Controller
 
         $data_pengajuan_izin = Pengajuan_izin::with('pegawai')
             ->orderBy('tanggal_mengajukan_izin', 'asc')
-            ->paginate(10);
+            ->get();
         return view('KelolaAbsensi.PengajuanIzin.index', compact('data_pengajuan_izin', 'title'));
     }
 }

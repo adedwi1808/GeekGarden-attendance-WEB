@@ -77,7 +77,6 @@
                 </form>
                 <div class="row">
                     <div class="col-12">
-
                         <table id="table" class="table table-bordered table-hover">
                             <thead>
                             <tr>

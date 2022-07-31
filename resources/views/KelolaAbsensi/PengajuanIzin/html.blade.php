@@ -75,33 +75,34 @@
                 {{--                </form>--}}
                 <div class="row">
                     <div class="col-12">
-                        <table class="table table-bordered text-center">
-                            <thead>
+                        <table id="table" class="table table-bordered table-hover">
+                        <thead>
                             <tr>
-                                <th scope="col" class="col-2">Nama Pegawai</th>
-                                <th scope="col" class="col-1">Jenis Izin</th>
-                                <th scope="col" class="col-1">Tanggal Mulai</th>
-                                <th scope="col" class="col-1">Tanggal Selesai</th>
-                                <th scope="col" class="col-1">Alasan Izin</th>
-                                <th scope="col" class="col-1">Surat Izin</th>
-                                <th scope="col" class="col-2">Tanggal Pengajuakan</th>
-                                <th scope="col" class="col-1">Status</th>
-                                <th scope="col" class="col-1">Kelola</th>
+                                <th>Nama Pegawai</th>
+                                <th>Jenis Izin</th>
+                                <th>Tanggal Mulai</th>
+                                <th>Tanggal Selesai</th>
+                                <th>Alasan Izin</th>
+                                <th>Surat Izin</th>
+                                <th>Tanggal Pengajuakan</th>
+                                <th>Status</th>
+                                <th>Kelola</th>
                             </tr>
                             </thead>
                             <tbody>
 
                             @forelse($data_pengajuan_izin as $index=>$pengajuan_izin)
                                 <tr>
-                                    <td class="col-2">{{$pengajuan_izin->pegawai->nama}}</td>
-                                    <td class="col-1">{{$pengajuan_izin->jenis_izin}}</td>
-                                    <td class="col-1">{{$pengajuan_izin->tanggal_mulai_izin}}</td>
-                                    <td class="col-1">{{$pengajuan_izin->tanggal_selesai_izin}}</td>
-                                    <td class="col-1">{{$pengajuan_izin->alasan_izin}}</td>
-                                    <td class="col-1">{{$pengajuan_izin->surat_izin}}</td>
-                                    <td class="col-2">{{$pengajuan_izin->tanggal_mengajukan_izin}}</td>
-                                    <td class="col-1">{{$pengajuan_izin->status_izin}}</td>
-                                    <td class="col-1">
+                                    <td>{{$pengajuan_izin->pegawai->nama}}</td>
+                                    <td>{{$pengajuan_izin->jenis_izin}}</td>
+                                    <td>{{$pengajuan_izin->tanggal_mulai_izin}}</td>
+                                    <td>{{$pengajuan_izin->tanggal_selesai_izin}}</td>
+                                    <td>{{$pengajuan_izin->alasan_izin}}</td>
+                                    <td><a class="link-primary"
+                                           href="/storage/surat-izin/{{$pengajuan_izin->surat_izin}}">{{(strlen($pengajuan_izin->surat_izin) > 18)? substr($pengajuan_izin->surat_izin, 0,18)."..." : $pengajuan_izin->surat_izin}}</a></td>
+                                    <td>{{$pengajuan_izin->tanggal_mengajukan_izin}}</td>
+                                    <td>{{$pengajuan_izin->status_izin}}</td>
+                                    <td>
                                         <div class="row justify-content-center">
                                             <form class="mx-2"
                                                   action="#"
@@ -119,10 +120,20 @@
                                 </div>
                             @endforelse
                             </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>Nama Pegawai</th>
+                                <th>Jenis Izin</th>
+                                <th>Tanggal Mulai</th>
+                                <th>Tanggal Selesai</th>
+                                <th>Alasan Izin</th>
+                                <th>Surat Izin</th>
+                                <th>Tanggal Pengajuakan</th>
+                                <th>Status</th>
+                                <th>Kelola</th>
+                            </tr>
+                            </tfoot>
                         </table>
-                        <div class="d-flex align-items-center justify-content-center ">
-                                                        {{$data_pengajuan_izin->links()}}
-                        </div>
                     </div>
                 </div>
             </div>
