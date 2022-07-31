@@ -32,6 +32,7 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
+            order:[[6,'asc']]
         });
     });
 </script>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Mading;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\UploadedFile;
 
 class EditMadingController extends Controller
 {
@@ -22,12 +23,12 @@ class EditMadingController extends Controller
         $validasi = $request->validate([
             'judul' => 'required',
             'informasiMading' => 'required',
+            'thumbnailMading' => 'file|mimes:jpeg,jpg,png|max:3000',
         ]);
-
 
         if (!$validasi)
         {
-            return back()->with('fail','Terjadi Kesalahan');
+            return back()->with('fail', $validasi);
         }
 
 
@@ -35,11 +36,12 @@ class EditMadingController extends Controller
             if ($request->has('thumbnailMading')){
                 $fileName = "";
                 if ($request->thumbnailMading){
+                    $file = $request->file('thumbnailMading');
                     $image = $request->file('thumbnailMading')->getClientOriginalName();
                     $image = str_replace(' ', '',$image);
                     $image = date('Hs').rand(1,999)."_".$image;
                     $fileName = $image;
-                    $request->file('thumbnailMading')->storeAs('public/mading', $image);
+                    $request->file('thumbnailMading')->storeAs('public/mading', $fileName);
                 }else{
                     return back()->with('fail','Terjadi Kesalahan');
                 }
@@ -47,7 +49,7 @@ class EditMadingController extends Controller
                 $data = [
                     'judul' => $request->post('judul'),
                     'informasi' => $request->post('informasiMading'),
-                    'foto' => $request->thumbnailMading->storeAs('', $fileName),
+                    'foto' => $fileName,
                 ];
             }else{
                 $data = [

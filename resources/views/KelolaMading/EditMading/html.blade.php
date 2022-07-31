@@ -7,6 +7,11 @@
         <div class="card-body">
             <form action="{{route('admin.edit.mading', $mading->id_mading)}}" method="POST"
                   enctype="multipart/form-data">
+                @if(Session::get('success'))
+                    <div class="alert alert-success">
+                        {{Session::get('success')}}
+                    </div>
+                @endif
                 @if(Session::get('fail'))
                     <div class="alert alert-danger">
                         {{Session::get('fail')}}
@@ -52,7 +57,7 @@
                 <div class="row">
                     <!-- /.col -->
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Buat Mading Baru</button>
+                        <button type="submit" class="btn btn-primary btn-block">Edit Mading</button>
                     </div>
                     <!-- /.col -->
                 </div>
