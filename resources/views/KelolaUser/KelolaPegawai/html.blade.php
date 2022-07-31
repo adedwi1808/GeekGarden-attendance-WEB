@@ -1,7 +1,7 @@
 <section class="content">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Data {{$title}}</h3>
+{{--            <h3 class="card-title">Data {{$title}}</h3>--}}
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -44,29 +44,28 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <table class="table table-bordered text-center">
+                        <table id="table" class="table table-bordered table-hover">
                             <thead>
-                            <tr>
-                                <th scope="col" class="col-2">Nama</th>
-                                <th scope="col" class="col-1">Jenis Kelamin</th>
-                                <th scope="col" class="col-2">Nomor Hp</th>
-                                <th scope="col" class="col-2">Email</th>
-                                <th scope="col" class="col-2">Jabatan / Posisi</th>
-                                <th scope="col" class="col-2">Foto Profile</th>
-                                <th scope="col" class="col-1">Kelola</th>
+                            <tr class="text-center">
+                                <th>Nama</th>
+                                <th>Jenis Kelamin</th>
+                                <th>Nomor Hp</th>
+                                <th>Email</th>
+                                <th>Jabatan / Posisi</th>
+                                <th>Foto Profile</th>
+                                <th>Kelola</th>
                             </tr>
                             </thead>
                             <tbody>
-
                             @forelse($data_pegawai as $index=>$pegawai)
                                 <tr>
-                                    <td class="col-2">{{$pegawai->nama}}</td>
-                                    <td class="col-1">{{$pegawai->jenis_kelamin}}</td>
-                                    <td class="col-2">{{$pegawai->nomor_hp}}</td>
-                                    <td class="col-2">{{(strlen($pegawai->email) > 18)? substr($pegawai->email, 0,18)."..." : $pegawai->email}}</td>
-                                    <td class="col-2">{{$pegawai->jabatan}}</td>
-                                    <td class="col-2">{{($pegawai->foto_profile == null)? "-":$pegawai->foto_profile}}</td>
-                                    <td class="col-1">
+                                    <td>{{$pegawai->nama}}</td>
+                                    <td>{{$pegawai->jenis_kelamin}}</td>
+                                    <td>{{$pegawai->nomor_hp}}</td>
+                                    <td>{{(strlen($pegawai->email) > 18)? substr($pegawai->email, 0,18)."..." : $pegawai->email}}</td>
+                                    <td>{{$pegawai->jabatan}}</td>
+                                    <td>{{($pegawai->foto_profile == null)? "-":((strlen($pegawai->foto_profile) > 18)? substr($pegawai->foto_profile, 0,18)."..." : $pegawai->foto_profile)}}</td>
+                                    <td>
                                         <div class="row justify-content-center">
                                             <form class="mx-2"
                                                   action="{{route('admin.halaman.edit.pegawai', $pegawai->id_pegawai)}}"
@@ -84,10 +83,18 @@
                                 </div>
                             @endforelse
                             </tbody>
+                            <tfoot>
+                            <tr class="text-center">
+                                <th>Nama</th>
+                                <th>Jenis Kelamin</th>
+                                <th>Nomor Hp</th>
+                                <th>Email</th>
+                                <th>Jabatan / Posisi</th>
+                                <th>Foto Profile</th>
+                                <th>Kelola</th>
+                            </tr>
+                            </tfoot>
                         </table>
-                        <div class="d-flex align-items-center justify-content-center ">
-                            {{$data_pegawai->links()}}
-                        </div>
                     </div>
                 </div>
             </div>

@@ -30,20 +30,20 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <table class="table table-bordered text-center">
-                            <thead>
+                        <table id="table" class="table table-bordered table-hover">
+                        <thead>
                             <tr class="text-center">
-                                <th scope="col" class="col-4">Nama</th>
-                                <th scope="col" class="col-3">Email</th>
-                                <th scope="col" class="col-4">Aksi</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Aksi</th>
                             </tr>
                             </thead>
                             <tbody>
                             @forelse($data_admin as $admin)
                                 <tr>
-                                    <td class="col-5">{{$admin->nama}}</td>
-                                    <td class="col-4">{{$admin->email}}</td>
-                                    <td class="col-3">
+                                    <td>{{$admin->nama}}</td>
+                                    <td>{{$admin->email}}</td>
+                                    <td>
                                         <div class="row justify-content-center">
                                             <form class="mx-2" action="{{route('admin.halaman.edit.admin', $admin->id_admin)}}" method="get">
                                                 <button type="submit" class="btn btn-success"><i
@@ -64,10 +64,14 @@
                                 </div>
                             @endforelse
                             </tbody>
+                            <tfoot>
+                            <tr class="text-center">
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Aksi</th>
+                            </tr>
+                            </tfoot>
                         </table>
-                        <div class="d-flex align-items-center justify-content-center ">
-                            {{$data_admin->links()}}
-                        </div>
                     </div>
                 </div>
             </div>

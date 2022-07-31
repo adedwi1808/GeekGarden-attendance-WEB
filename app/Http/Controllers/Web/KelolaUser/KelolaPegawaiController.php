@@ -13,7 +13,7 @@ class KelolaPegawaiController extends Controller
     public function index()
     {
         $data_pegawai = Pegawai::orderBy('nama', 'asc')
-            ->paginate(5);
+            ->get();
         $title = "Pegawai";
 
         return view('KelolaUser.KelolaPegawai.index', compact('data_pegawai', 'title'));
