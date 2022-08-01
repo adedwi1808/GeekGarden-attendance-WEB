@@ -105,7 +105,7 @@
                                     <td>
                                         <div class="row justify-content-center">
                                             <form class="mx-2"
-                                                  action="#"
+                                                  action="{{route('admin.halaman.konfirmasi.pengajuan.izin', $pengajuan_izin->id_pengajuan_izin)}}"
                                                   method="get">
                                                 <button type="submit" class="btn btn-success"><i
                                                         class="fas fa-edit"></i>
