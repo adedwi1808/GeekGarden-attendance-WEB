@@ -21,7 +21,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-2">
+                                <div class="col-4">
                                     <div class="form-group">
                                         <label for="tempat">Tempat :</label>
                                         <select name="tempat" id="tempat" class="select2" style="width: 100%;">
@@ -31,7 +31,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-2">
+                                <div class="col-4">
                                     <div class="form-group">
                                         <label for="status">Status:</label>
                                         <select name="status" id="status" class="select2" style="width: 100%;">
@@ -39,24 +39,6 @@
                                             <option>Hadir</option>
                                             <option>Pulang</option>
                                             <option>Izin</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="form-group">
-                                        <label for="sort">Sort Order:</label>
-                                        <select name="sort_order" id="sort" class="select2" style="width: 100%;">
-                                            <option selected value="asc">ASC</option>
-                                            <option value="desc">DESC</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="form-group">
-                                        <label for="order">Order By:</label>
-                                        <select name="order_by" id="order" class="select2" style="width: 100%;">
-                                            <option selected value="nama">Nama</option>
-                                            <option value="tanggal">Tanggal</option>
                                         </select>
                                     </div>
                                 </div>

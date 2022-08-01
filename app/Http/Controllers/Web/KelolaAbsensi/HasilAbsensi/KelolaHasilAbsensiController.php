@@ -14,7 +14,6 @@ class KelolaHasilAbsensiController extends Controller
 
         $title = 'Hasil Absensi';
         $data_absensi = Absensi::with('pegawai')
-            ->orderBy('tanggal', 'asc')
             ->get();
         return view('KelolaAbsensi.HasilAbsensi.index', compact('data_absensi', 'title'));
     }
@@ -72,7 +71,6 @@ class KelolaHasilAbsensiController extends Controller
                         $tempat,
                         $status
                     ])
-                    ->orderBy($request->order_by,$request->sort_order)
                     ->get();
 
             }else{
@@ -82,7 +80,6 @@ class KelolaHasilAbsensiController extends Controller
                         $waktu,
                         $tempat
                     ])
-                    ->orderBy($request->order_by,$request->sort_order)
                     ->get();
             }
         } else {
@@ -93,7 +90,6 @@ class KelolaHasilAbsensiController extends Controller
                         $waktu,
                         $status
                     ])
-                    ->orderBy($request->order_by,$request->sort_order)
                     ->get();
             }else{ //Nothing
                 $data_absensi = Absensi::join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
@@ -101,7 +97,6 @@ class KelolaHasilAbsensiController extends Controller
                         ['pegawai.nama', 'LIKE', '%' . $request->cari_hasil_absensi . '%'],
                         $waktu
                     ])
-                    ->orderBy($request->order_by,$request->sort_order)
                     ->get();
             }
         }
