@@ -8,6 +8,7 @@ use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\KelolaAbsensi\HasilAbsensi\EditHasilAbsensiController;
 use App\Http\Controllers\Web\KelolaAbsensi\HasilAbsensi\KelolaHasilAbsensiController;
 use App\Http\Controllers\Web\KelolaAbsensi\PengajuanIzin\KelolaPengajuanIzinController;
+use App\Http\Controllers\Web\KelolaAbsensi\PengajuanIzin\KonfirmasiPengajuanIzinController;
 use App\Http\Controllers\Web\KelolaMading\EditMadingController;
 use App\Http\Controllers\Web\KelolaMading\KelolaMadingController;
 use App\Http\Controllers\Web\KelolaUser\KelolaAdminController;
@@ -62,6 +63,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::post('/hapus-absensi/{id}',[EditHasilAbsensiController::class,'hapus'])->name('hapus.absensi');
     //Pengajuan Izin
     Route::get('/pengajuan-izin', [KelolaPengajuanIzinController::class, 'index'])->name('halaman.kelola.pengajuan.izin');
+    Route::get('/pengajuan-izin/{id}', [KonfirmasiPengajuanIzinController::class, 'index'])->name('halaman.konfirmasi.pengajuan.izin');
+    Route::post('/tolak-pengajuan-izin/{id}', [KonfirmasiPengajuanIzinController::class, 'tolak'])->name('tolak.pengajuan.izin');
+    Route::post('/terima-pengajuan-izin/{id}', [KonfirmasiPengajuanIzinController::class, 'terima'])->name('terima.pengajuan.izin');
 
 //    Kelola User
     //Pegawai

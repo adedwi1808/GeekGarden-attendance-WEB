@@ -17,4 +17,6 @@ class KelolaPengajuanIzinController extends Controller
             ->get();
         return view('KelolaAbsensi.PengajuanIzin.index', compact('data_pengajuan_izin', 'title'));
     }
+
+
 }

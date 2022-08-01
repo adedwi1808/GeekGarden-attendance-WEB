@@ -75,6 +75,25 @@
                 {{--                </form>--}}
                 <div class="row">
                     <div class="col-12">
+                        @if(Session::get('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{Session::get('success')}}
+                            </div>
+                        @endif
+                        @if(Session::get('success2'))
+                            <div class="alert alert-warning" role="alert">
+                                {{Session::get('success2')}}
+                            </div>
+                        @endif
+                        @if(Session::get('fail'))
+                            <div class="alert alert-danger" role="alert">
+                                {{Session::get('fail')}}
+                            </div>
+                        @endif
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
                         <table id="table" class="table table-bordered table-hover text-center">
                         <thead>
                             <tr>
