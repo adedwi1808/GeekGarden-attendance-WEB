@@ -25,11 +25,11 @@
     $(function () {
         $('.select2').select2();
         $('#table').DataTable({
-            "paging": true,
+            "paging": false,
             "lengthChange": false,
             "searching": false,
             "ordering": true,
-            "info": true,
+            "info": false,
             "autoWidth": false,
             "responsive": true,
             order:[[3,'desc']]
