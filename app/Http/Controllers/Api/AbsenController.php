@@ -10,7 +10,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class PegawaiController extends Controller
+class AbsenController extends Controller
 {
     public function absensihadir(Request $request): \Illuminate\Http\JsonResponse
     {
@@ -18,6 +18,11 @@ class PegawaiController extends Controller
         $cek = Absensi::where("id_pegawai", $id)
             ->whereDate('tanggal', today())
             ->count();
+        $absensi = Absensi::where("id_pegawai", $id)->whereDate('tanggal', today())->first();
+
+        if ($absensi->status == "Izin"){
+            return $this->error("Anda Sedang Melakukan Izin Saat ini");
+        }
 
         if ($cek == 1) {
             return $this->error("Anda Sudah Mengisi Absensi Hadir");
@@ -92,6 +97,10 @@ class PegawaiController extends Controller
         $cek = Absensi::where("id_pegawai", $id)
             ->whereDate('tanggal', today())
             ->count();
+        $absensi = Absensi::where("id_pegawai", $id)->whereDate('tanggal', today())->first();
+        if ($absensi->status == "Izin"){
+            return $this->error("Anda Sedang Melakukan Izin Saat ini");
+        }
 
         if ($cek == 2) {
             return $this->error("Anda Sudah Melengkapi Absensi");
@@ -137,9 +146,9 @@ class PegawaiController extends Controller
     {
         $id = auth('pegawai-api')->user()->id_pegawai;
         $jumlah_absen = Absensi::where("id_pegawai", $id)
+            ->where('status','!=','Izin')
             ->whereDate('tanggal', today())
             ->count();
-
         if ($jumlah_absen < 1) {
             $data = [
                 'jumlah_absen_hari_ini' => $jumlah_absen,
