@@ -13,7 +13,7 @@ class KelolaMadingController extends Controller
     public function index()
     {
         $title = 'Mading';
-        $data_mading = DB::table('mading')->paginate(5);
+        $data_mading = DB::table('mading')->get();
         return view('KelolaMading.index', compact('data_mading', 'title'));
     }
 
@@ -32,7 +32,7 @@ class KelolaMadingController extends Controller
     {
         $data_mading = Mading::where('judul', 'LIKE', "%". $request->cari_mading. "%")
             ->orWhere('informasi','LIKE','%'.$request->cari_mading.'%')
-            ->paginate(5);
+            ->get();
         $title = 'Mading';
         return view('KelolaMading.index', compact('data_mading', 'title'));
     }

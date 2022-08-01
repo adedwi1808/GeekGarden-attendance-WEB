@@ -44,28 +44,28 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <table class="table table-bordered text-center">
+                        <table id="table" class="table table-bordered table-hover text-center">
                             <thead>
                             <tr>
-                                <th scope="col" class="col-2">Judul</th>
-                                <th scope="col" class="col-4">Informasi</th>
-                                <th scope="col" class="col-2">Foto</th>
-                                <th scope="col" class="col-2">Tanggal</th>
-                                <th scope="col" class="col-2">Kelola</th>
+                                <th>Judul</th>
+                                <th>Informasi</th>
+                                <th>Foto</th>
+                                <th>Tanggal</th>
+                                <th>Kelola</th>
                             </tr>
                             </thead>
                             <tbody>
 
                             @forelse($data_mading as $index=>$mading)
                                 <tr>
-                                    <td class="col-2">{{$mading->judul}}</td>
-                                    <td class="col-4">{{(strlen($mading->informasi) > 60)? substr($mading->informasi, 0,60)."..." : $mading->informasi}}</td>
-                                    <td class="col-2"><a class="link-primary" href="/storage/mading/{{$mading->foto}}">
+                                    <td>{{$mading->judul}}</td>
+                                    <td>{{(strlen($mading->informasi) > 60)? substr($mading->informasi, 0,60)."..." : $mading->informasi}}</td>
+                                    <td><a class="link-primary" href="/storage/mading/{{$mading->foto}}">
                                             {{(strlen($mading->foto) > 18)? substr($mading->foto, 0,18)."..." : $mading->foto}}
                                         </a>
                                     </td>
-                                    <td class="col-2">{{$mading->create_at}}</td>
-                                    <td class="col-2">
+                                    <td>{{$mading->create_at}}</td>
+                                    <td>
                                         <div class="row justify-content-center">
                                             <form class="mx-2"
                                                   action="{{route('admin.lihat.mading',$mading->id_mading)}}"
@@ -90,10 +90,16 @@
                                 </div>
                             @endforelse
                             </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>Judul</th>
+                                <th>Informasi</th>
+                                <th>Foto</th>
+                                <th>Tanggal</th>
+                                <th>Kelola</th>
+                            </tr>
+                            </tfoot>
                         </table>
-                        <div class="d-flex align-items-center justify-content-center ">
-                            {{$data_mading->links()}}
-                        </div>
                     </div>
                 </div>
             </div>

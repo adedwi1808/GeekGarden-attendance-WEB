@@ -45,7 +45,7 @@
     <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-@include('layouts.backend-kelolaabsensi.javascript')
+@include('layouts.backend-kelolamading.javascript')
 <script src="{{asset('assets/AdminLTE/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <script>
     $(function () {
