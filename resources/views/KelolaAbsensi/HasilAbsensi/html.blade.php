@@ -59,7 +59,7 @@
                 </form>
                 <div class="row">
                     <div class="col-12">
-                        <table id="table" class="table table-bordered table-hover">
+                        <table id="table" class="table table-bordered table-hover text-center">
                             <thead>
                             <tr>
                                 <th>Nama Pegawai</th>
