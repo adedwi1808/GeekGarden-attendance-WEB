@@ -15,9 +15,10 @@
                                         <label for="filter">Rentang Waktu:</label>
                                         <select id="filter" name="rentang_waktu" class="select2" data-placeholder="Any"
                                                 style="width: 100%;">
-                                            <option selected>Satu Bulan Terakhir</option>
+                                            <option selected>Semua</option>
                                             <option>Hari Ini</option>
                                             <option>7 Hari Terakhir</option>
+                                            <option>Satu Bulan Terakhir</option>
                                         </select>
                                     </div>
                                 </div>
@@ -59,7 +60,7 @@
                 </form>
                 <div class="row">
                     <div class="col-12">
-                        <table id="table" class="table table-bordered table-hover text-center">
+                        <table id="table" class="table table-bordered table-hover">
                             <thead>
                             <tr>
                                 <th>Nama Pegawai</th>

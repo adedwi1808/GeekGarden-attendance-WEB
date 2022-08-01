@@ -25,6 +25,9 @@ class KelolaHasilAbsensiController extends Controller
         $pastmonth = today()->subDays(today()->dayOfWeek)->subMonth();
 
         switch ($request->rentang_waktu) {
+            case "Semua":
+                $waktu = ['tanggal', '>=', '2022-07-01'];
+                break;
             case "Hari Ini":
                 $waktu = ['tanggal', '>=', $currentDate];
                 break;
