@@ -31,10 +31,6 @@ class Pegawai extends Authenticatable implements JWTSubject
         'password',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
     public function absensi()
     {
         return $this->hasMany(Absensi::class, 'id_pegawai', 'id_pegawai');

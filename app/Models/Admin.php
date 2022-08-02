@@ -47,10 +47,6 @@ class Admin extends Authenticatable
      */
 
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
     public function mading()
     {
         return $this->hasMany(Mading::class, 'id_mading', 'id_mading');
