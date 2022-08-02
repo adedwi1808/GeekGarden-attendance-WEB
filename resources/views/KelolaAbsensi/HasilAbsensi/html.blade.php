@@ -10,19 +10,21 @@
                     <div class="row mb-2">
                         <div class="col">
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label for="filter">Rentang Waktu:</label>
-                                        <select id="filter" name="rentang_waktu" class="select2" data-placeholder="Any"
-                                                style="width: 100%;">
-                                            <option selected>Semua</option>
-                                            <option>Hari Ini</option>
-                                            <option>7 Hari Terakhir</option>
-                                            <option>Satu Bulan Terakhir</option>
-                                        </select>
+                                        <label for="date_range">Rentang Waktu:</label>
+                                        <div id="date_range" class="row">
+                                            <div class="col-6">
+                                                <input type="datetime-local" class="form-control" name="start_date" value="2022-07-01T00:00">
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="datetime-local" class="form-control" name="end_date" value="{{\Carbon\Carbon::now()->toDateTimeString()}}">
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-3">
                                     <div class="form-group">
                                         <label for="tempat">Tempat :</label>
                                         <select name="tempat" id="tempat" class="select2" style="width: 100%;">
@@ -32,7 +34,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-3">
                                     <div class="form-group">
                                         <label for="status">Status:</label>
                                         <select name="status" id="status" class="select2" style="width: 100%;">

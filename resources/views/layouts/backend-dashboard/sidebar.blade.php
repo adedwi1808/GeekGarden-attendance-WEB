@@ -39,8 +39,8 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item {{($title == 'Hasil Absensi') || ($title == 'Pengajuan Izin')? 'menu-is-opening menu-open': ''}}">
-                    <a href="#" class="nav-link {{($title == 'Hasil Absensi') || ($title == 'Pengajuan Izin')? 'active': ''}}">
+                <li class="nav-item {{($title == 'Hasil Absensi') || ($title == 'Pengajuan Izin' || $title == 'Laporan Absensi')? 'menu-is-opening menu-open': ''}}">
+                    <a href="#" class="nav-link {{($title == 'Hasil Absensi') || ($title == 'Pengajuan Izin'|| $title == 'Laporan Absensi')? 'active': ''}}">
                         <i class="nav-icon fas fa-file-invoice"></i>
                         <p>
                             Absensi

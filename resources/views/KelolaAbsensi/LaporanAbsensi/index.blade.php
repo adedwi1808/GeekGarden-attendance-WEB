@@ -1,4 +1,4 @@
-@extends('layouts.backend-kelolaabsensi.app')
+@extends('layouts.backend-kelolalaporanabsensi.app')
 
 @section('title','Kelola '.$title)
 
