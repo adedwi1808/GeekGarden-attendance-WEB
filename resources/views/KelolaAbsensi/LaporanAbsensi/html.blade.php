@@ -26,7 +26,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <table class="table table-bordered table-hover text-center" id="table">
+                    <table class="table table-bordered table-striped table-hover text-center" id="table">
                         <thead>
                         <tr>
                             <th>Nama Pegawai</th>

@@ -18,7 +18,7 @@
                                                 <input type="datetime-local" class="form-control" name="start_date" value="2022-07-01T00:00">
                                             </div>
                                             <div class="col-6">
-                                                <input type="datetime-local" class="form-control" name="end_date" value="{{\Carbon\Carbon::now()->toDateTimeString()}}">
+                                                <input type="datetime-local" class="form-control" name="end_date" value="{{\Carbon\Carbon::now()->endOfDay()->toDateTimeString()}}">
                                             </div>
 
                                         </div>
@@ -62,7 +62,7 @@
                 </form>
                 <div class="row">
                     <div class="col-12">
-                        <table id="table" class="table table-bordered table-hover">
+                        <table id="table" class="table table-bordered table-hover table-striped text-center">
                             <thead>
                             <tr>
                                 <th>Nama Pegawai</th>
