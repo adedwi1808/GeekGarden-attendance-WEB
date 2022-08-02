@@ -12,45 +12,6 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class MadingController extends Controller
 {
-    public function uploadMading(Request $request)
-    {
-        $validasi = Validator::make($request->all(), [
-            'judul_mading' => 'required',
-            'body_mading' => 'required',
-            'foto_mading' => 'required',
-            ]);
-
-        if ($validasi->fails())
-        {
-            return $this->error($validasi->errors()->first());
-        }
-
-        $fileName = "";
-        if ($request->foto_mading){
-            $image = $request->foto_mading->getClientOriginalName();
-            $image = str_replace(' ', '',$image);
-            $image = date('Hs').rand(1,999)."_".$image;
-            $fileName = $image;
-            $request->foto_mading->storeAs('public/mading', $image);
-        }else{
-            return $this->error("File must be image");
-        }
-
-        $data = [
-            'judul_mading' => $request->post('judul_mading'),
-            'body_mading' => $request->post('body_mading'),
-            'foto_mading' => $request->foto_mading->storeAs('', $fileName),
-        ];
-
-        $mading = Mading::create($data);
-
-        if ($mading) {
-            return $this->success($mading, 'Mading Berhasil di Upload : ' . $mading->judul_mading);
-        } else {
-            return $this->error("Terjadi kesalahan");
-        }
-    }
-
     public function selectAllMading(Request $request)
     {
         $madings = Mading::all();
