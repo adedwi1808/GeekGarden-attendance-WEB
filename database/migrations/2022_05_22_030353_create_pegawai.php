@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('jabatan');
             $table->string('foto_profile')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
         });
     }

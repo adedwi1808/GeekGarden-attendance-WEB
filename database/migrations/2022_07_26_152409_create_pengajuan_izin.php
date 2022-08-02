@@ -25,7 +25,8 @@ return new class extends Migration
             $table->date('tanggal_selesai_izin');
             $table->text('alasan_izin');
             $table->string('surat_izin')->nullable();
-            $table->enum('status_izin', ['Diajukan','Diterima', 'Ditolak']);
+            $table->enum('status_izin', ['Diajukan','Diterima', 'Ditolak'])
+                ->default('Diajukan');
             $table->dateTime('tanggal_mengajukan_izin')->useCurrent();
         });
     }

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id('id_admin');
             $table->string('nama');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
         });
     }
