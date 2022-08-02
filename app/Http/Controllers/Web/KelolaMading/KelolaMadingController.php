@@ -13,7 +13,7 @@ class KelolaMadingController extends Controller
     public function index()
     {
         $title = 'Mading';
-        $data_mading = DB::table('mading')->get();
+        $data_mading = Mading::with('admin')->get();
         return view('KelolaMading.index', compact('data_mading', 'title'));
     }
 
