@@ -15,11 +15,16 @@ return new class extends Migration
     {
         Schema::create('laporan_absensi', function (Blueprint $table) {
             $table->id('id_laporan_absensi');
-            $table->foreignId('id_pegawai')->references('id_pegawai')->on('pegawai');
+            $table->foreignId('id_pegawai')
+                ->references('id_pegawai')
+                ->on('pegawai')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->date('tanggal_absen');
             $table->text('keterangan_laporan');
             $table->dateTime('tanggal_laporan')->useCurrent();
-            $table->enum('status_laporan',['Diajukan', 'Ditolak', 'Diterima'])->default('Diajukan');
+            $table->enum('status_laporan',['Diajukan', 'Ditolak', 'Diterima'])
+                ->default('Diajukan');
         });
     }
 

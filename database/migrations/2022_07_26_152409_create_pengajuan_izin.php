@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('pengajuan_izin', function (Blueprint $table) {
             $table->id('id_pengajuan_izin');
-            $table->foreignId('id_pegawai')->references('id_pegawai')->on('pegawai');
+            $table->foreignId('id_pegawai')
+                ->references('id_pegawai')
+                ->on('pegawai')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->enum('jenis_izin', ['Sakit', 'Cuti','Keperluan Lainnya']);
             $table->date('tanggal_mulai_izin');
             $table->date('tanggal_selesai_izin');

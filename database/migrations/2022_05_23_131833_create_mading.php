@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreignId('id_admin')
                 ->references('id_admin')
                 ->on('admin')
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->string('judul');
             $table->text('informasi');
             $table->string('foto');
