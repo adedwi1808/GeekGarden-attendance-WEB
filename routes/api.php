@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Api\Auth\AuthPegawaiController;
 use App\Http\Controllers\Api\EditProfilePegawai\EditProfilePegawaiController;
+use App\Http\Controllers\Api\Mading\MadingController;
 use App\Http\Controllers\Api\PengajuanIzin\PengajuanIzinController;
 use App\Http\Controllers\Api\RiwayatAbsensi\RiwayatAbsensiController;
+use App\Http\Controllers\Api\Absen\AbsenController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,9 +33,9 @@ Route::group(['middleware' => ['assign.guard:pegawai-api', 'jwt.verify']], funct
     Route::post('/logout-pegawai', [AuthPegawaiController::class, 'logout']);
 
     //Attendance
-    Route::post('/absensi-hadir',[\App\Http\Controllers\Api\Absen\AbsenController::class, 'absensihadir']);
-    Route::post('/upload-bukti-absensi/{id}', [\App\Http\Controllers\Api\Absen\AbsenController::class, 'uploadbuktiabsensi']);
-    Route::post('/absensi-pulang',[\App\Http\Controllers\Api\Absen\AbsenController::class, 'absensipulang']);
+    Route::post('/absensi-hadir',[AbsenController::class, 'absensihadir']);
+    Route::post('/upload-bukti-absensi/{id}', [AbsenController::class, 'uploadbuktiabsensi']);
+    Route::post('/absensi-pulang',[AbsenController::class, 'absensipulang']);
     Route::get( '/riwayat-absensi',[RiwayatAbsensiController::class, 'riwayatAbsensi']);
 
     //Pengajuan Izin
@@ -42,8 +44,8 @@ Route::group(['middleware' => ['assign.guard:pegawai-api', 'jwt.verify']], funct
 
 
     //Other
-    Route::get('/madings', [\App\Http\Controllers\Api\Mading\MadingController::class, 'selectAllMading']);
-    Route::get('/cek-absensi', [\App\Http\Controllers\Api\Absen\AbsenController::class, 'checkabsensi']);
+    Route::get('/madings', [MadingController::class, 'selectAllMading']);
+    Route::get('/cek-absensi', [AbsenController::class, 'checkabsensi']);
     //Edit Profile
     Route::post('/foto-pegawai/{id}', [EditProfilePegawaiController::class, 'editfotoprofile']);
     Route::put('/update-pegawai/{id}', [EditProfilePegawaiController::class, 'updatepegawai']);
