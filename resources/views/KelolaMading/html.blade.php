@@ -51,6 +51,7 @@
                                 <th>Informasi</th>
                                 <th>Foto</th>
                                 <th>Tanggal</th>
+                                <th>Penulis</th>
                                 <th>Kelola</th>
                             </tr>
                             </thead>
@@ -65,6 +66,7 @@
                                         </a>
                                     </td>
                                     <td>{{$mading->create_at}}</td>
+                                    <td>{{$mading->admin->nama}}</td>
                                     <td>
                                         <div class="row justify-content-center">
                                             <form class="mx-2"
@@ -96,6 +98,7 @@
                                 <th>Informasi</th>
                                 <th>Foto</th>
                                 <th>Tanggal</th>
+                                <th>Penulis</th>
                                 <th>Kelola</th>
                             </tr>
                             </tfoot>
