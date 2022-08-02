@@ -14,11 +14,17 @@ class Mading extends Model
 
 
     protected $fillable = [
+        'id_admin',
         'judul',
         'informasi',
         'foto',
         'created_at'
     ];
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class,'id_admin','id_admin');
+    }
 
     protected $hidden = [
     ];

@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('mading', function (Blueprint $table) {
             $table->id('id_mading');
+            $table->foreignId('id_admin')
+                ->references('id_admin')
+                ->on('admin')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->string('judul');
             $table->text('informasi');
             $table->string('foto');

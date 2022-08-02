@@ -17,6 +17,7 @@ class MadingFactory extends Factory
     public function definition()
     {
         return [
+            'id_admin'=>1,
             'judul'=>$this->faker->sentence(mt_rand(1,4)),
             'informasi'=>$this->faker->paragraph(mt_rand(10,20)),
             'foto'=>'0222638_95f4614ab7fa00067d5cb3b5cc2747bd.jpeg',
