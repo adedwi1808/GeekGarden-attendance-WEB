@@ -68,39 +68,6 @@ class AuthPegawaiController extends Controller
         return $this->respondWithToken($pegawai, $token);
     }
 
-    public function updatepegawai(Request $request, $id)
-    {
-        $pegawai = Pegawai::where('id_pegawai', $id)->first();
-        if($pegawai){
-            $pegawai->update($request->all());
-            return $this->success($pegawai);
-        }
-        return $this->error("Error User tidak ditemukan");
-    }
-
-    public function editfotoprofile(Request $request, $id)
-    {
-        $pegawai = Pegawai::where('id_pegawai', $id)->first();
-        if($pegawai){
-            $fileName = "";
-            if ($request->image){
-                $image = $request->image->getClientOriginalName();
-                $image = str_replace(' ', '',$image);
-                $image = date('Hs').rand(1,999)."_".$image;
-                $fileName = $image;
-                $request->image->storeAs('public/pegawai', $image);
-            }else{
-                return $this->error("File must be image");
-            }
-            $pegawai->update([
-                'foto_profile' => $fileName,
-            ]);
-            return $this->success($pegawai);
-        }
-
-        return $this->error("Terjadi Kesalahan saat mengupload");
-    }
-
     public function me()
     {
         return response()->json(auth('pegawai-api')->user());

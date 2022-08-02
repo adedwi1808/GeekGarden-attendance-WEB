@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Absen;
 
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class AbsenController extends Controller
