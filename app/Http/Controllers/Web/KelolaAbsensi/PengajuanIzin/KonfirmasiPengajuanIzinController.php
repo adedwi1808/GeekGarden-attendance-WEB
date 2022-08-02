@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Absensi;
 use App\Models\Pegawai;
 use App\Models\Pengajuan_izin;
+use Carbon\Carbon;
 use DateInterval;
 use DatePeriod;
 use DateTime;
-use Illuminate\Support\Facades\Validator;
 
 class KonfirmasiPengajuanIzinController extends Controller
 {
@@ -29,16 +29,16 @@ class KonfirmasiPengajuanIzinController extends Controller
         $data_pengajuan_izin = Pengajuan_izin::with('pegawai')
             ->where('id_pengajuan_izin', $id)
             ->first();
-        if ($data_pengajuan_izin->status_izin == "Diterima"){
+        if ($data_pengajuan_izin->status_izin == "Diterima") {
             return back()->with('fail', "Anda Sudah Mengkonfirmasi Pengajuan Ini Diterima, Tidak bisa diubah");
         }
-        if ($data_pengajuan_izin){
+        if ($data_pengajuan_izin) {
             $nama_pegawai = $data_pengajuan_izin->pegawai->nama;
-            $data_pengajuan_izin->update(['status_izin'=>'Ditolak']);
-            return redirect()->route('admin.halaman.kelola.pengajuan.izin',compact('title'))
+            $data_pengajuan_izin->update(['status_izin' => 'Ditolak']);
+            return redirect()->route('admin.halaman.kelola.pengajuan.izin', compact('title'))
                 ->with('success2', "Pengajuan $nama_pegawai Ditolak");
         }
-        return redirect()->route('admin.halaman.kelola.pengajuan.izin',compact('title'))
+        return redirect()->route('admin.halaman.kelola.pengajuan.izin', compact('title'))
             ->with('fail', "Terjadi Kesalahan");
     }
 
@@ -48,12 +48,12 @@ class KonfirmasiPengajuanIzinController extends Controller
         $data_pengajuan_izin = Pengajuan_izin::with('pegawai')
             ->where('id_pengajuan_izin', $id)
             ->first();
-        if ($data_pengajuan_izin->status_izin == "Diterima"){
+        if ($data_pengajuan_izin->status_izin == "Diterima") {
             return back()->with('fail', "Anda Sudah Mengkonfirmasi Pengajuan Ini Diterima");
         }
         if ($data_pengajuan_izin) {
             $nama_pegawai = $data_pengajuan_izin->pegawai->nama;
-            $data_pengajuan_izin->update(['status_izin'=>'Diterima']);
+            $data_pengajuan_izin->update(['status_izin' => 'Diterima']);
 
             $begin = new DateTime($data_pengajuan_izin->tanggal_mulai_izin);
             $end = new DateTime($data_pengajuan_izin->tanggal_selesai_izin);
@@ -63,27 +63,30 @@ class KonfirmasiPengajuanIzinController extends Controller
             $period = new DatePeriod($begin, $interval, $end);
 
             $pegawai = Pegawai::where('id_pegawai', $data_pengajuan_izin->pegawai->id_pegawai)->first();
-            if (!$pegawai) return redirect()->route('admin.halaman.kelola.pengajuan.izin',compact('title'))
+            if (!$pegawai) return redirect()->route('admin.halaman.kelola.pengajuan.izin', compact('title'))
                 ->with('fail', "Pegawai Tidak Ditemukan");
 
             foreach ($period as $dt) {
-                $data = [
-                    'id_pegawai' => $pegawai->id_pegawai,
-                    'tempat' => '-',
-                    'status' => 'Izin',
-                    'longitude' => '0',
-                    'latitude' => '0',
-                    'foto' =>'',
-                    'tanggal'=> $dt
-            ];
-                $absensi = Absensi::create($data);
-                $absensi->save();
+                $day = new Carbon($dt);
+                if ($day->isWeekday()) {
+                    $data = [
+                        'id_pegawai' => $pegawai->id_pegawai,
+                        'tempat' => '-',
+                        'status' => 'Izin',
+                        'longitude' => '0',
+                        'latitude' => '0',
+                        'foto' => '',
+                        'tanggal' => $dt
+                    ];
+                    $absensi = Absensi::create($data);
+                    $absensi->save();
+                }
             }
 
-            return redirect()->route('admin.halaman.kelola.pengajuan.izin',compact('title'))
+            return redirect()->route('admin.halaman.kelola.pengajuan.izin', compact('title'))
                 ->with('success', "Pengajuan $nama_pegawai diterima");
         }
-        return redirect()->route('admin.halaman.kelola.pengajuan.izin',compact('title'))
+        return redirect()->route('admin.halaman.kelola.pengajuan.izin', compact('title'))
             ->with('fail', "Terjadi Kesalahan");
     }
 }
