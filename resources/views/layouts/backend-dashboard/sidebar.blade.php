@@ -66,7 +66,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('admin.halaman.kelola.laporan.absensi')}}" class="nav-link {{($title == 'Laporan Absensi')? 'active': ''}}">
                                 <i class="nav-icon fas fa-exclamation"></i>
                                 <p>
                                     Laporan Absensi

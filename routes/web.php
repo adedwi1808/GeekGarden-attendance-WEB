@@ -13,6 +13,7 @@ use App\Http\Controllers\Web\KelolaMading\EditMadingController;
 use App\Http\Controllers\Web\KelolaMading\KelolaMadingController;
 use App\Http\Controllers\Web\KelolaUser\KelolaAdminController;
 use App\Http\Controllers\Web\KelolaUser\KelolaPegawaiController;
+use App\Http\Controllers\Web\KelolaAbsensi\LaporanAbsensi\KelolaLaporanAbsensiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,6 +67,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::get('/pengajuan-izin/{id}', [KonfirmasiPengajuanIzinController::class, 'index'])->name('halaman.konfirmasi.pengajuan.izin');
     Route::post('/tolak-pengajuan-izin/{id}', [KonfirmasiPengajuanIzinController::class, 'tolak'])->name('tolak.pengajuan.izin');
     Route::post('/terima-pengajuan-izin/{id}', [KonfirmasiPengajuanIzinController::class, 'terima'])->name('terima.pengajuan.izin');
+    //Laporan Absensi
+    Route::get('/laporan-absensi', [KelolaLaporanAbsensiController::class, 'index'])->name('halaman.kelola.laporan.absensi');
 
 //    Kelola User
     //Pegawai
