@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('absensi', function (Blueprint $table) {
             $table->id('id_absensi');
-            $table->foreignId('id_pegawai')->nullable();
+            $table->foreignId('id_pegawai')->references('id_pegawai')->on('pegawai');
             $table->string('tempat');
             $table->string('status');
             $table->string('longitude');
