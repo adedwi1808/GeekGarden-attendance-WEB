@@ -7,6 +7,7 @@ use App\Models\Absensi;
 use App\Models\Mading;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class KelolaMadingController extends Controller
 {
@@ -65,6 +66,7 @@ class KelolaMadingController extends Controller
         }
 
         $data = [
+            'id_admin'=>Session::get('admin.id_admin'),
             'judul' => $request->post('judul'),
             'informasi' => $request->post('informasiMading'),
             'foto' => $request->thumbnailMading->storeAs('', $fileName),
@@ -72,7 +74,7 @@ class KelolaMadingController extends Controller
 
         $mading = Mading::create($data);
         if ($mading){
-            return redirect()->route('admin.halaman.mading')->with('success','Berhasil, Akun Pegawai siap digunakan');
+            return redirect()->route('admin.halaman.mading')->with('success','Berhasil Menambahkan Mading');
         }else{
             return back()->with('fail','Terjadi Kesalahan');
         }
