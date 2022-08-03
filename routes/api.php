@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Mading\MadingController;
 use App\Http\Controllers\Api\PengajuanIzin\PengajuanIzinController;
 use App\Http\Controllers\Api\RiwayatAbsensi\RiwayatAbsensiController;
 use App\Http\Controllers\Api\Absen\AbsenController;
+use App\Http\Controllers\Api\LaporAbsen\LaporAbsensiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,8 @@ Route::group(['middleware' => ['assign.guard:pegawai-api', 'jwt.verify']], funct
     Route::post('/pengajuan-izin', [PengajuanIzinController::class, 'mengajukanIzin']);
     Route::post('/upload-pengajuan-izin/{id}',  [PengajuanIzinController::class, 'uploadSuratizin']);
 
+    //Laporkan Absensi
+    Route::post('/laporkan-absensi', [LaporAbsensiController::class, 'melaporkanAbsen']);
 
     //Other
     Route::get('/madings', [MadingController::class, 'selectAllMading']);
