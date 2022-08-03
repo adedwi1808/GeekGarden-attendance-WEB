@@ -16,10 +16,13 @@ class AbsenController extends Controller
         $cek = Absensi::where("id_pegawai", $id)
             ->whereDate('tanggal', today())
             ->count();
-        $absensi = Absensi::where("id_pegawai", $id)->whereDate('tanggal', today())->first();
 
-        if ($absensi->status == "Izin"){
-            return $this->error("Anda Sedang Melakukan Izin Saat ini");
+        $absensi_izin = Absensi::where("id_pegawai", $id)->whereDate('tanggal', today())->first();
+
+        if($absensi_izin){
+            if ($absensi_izin->status == "Izin"){
+                return $this->error("Anda Sedang Melakukan Izin Saat ini");
+            }
         }
 
         if ($cek == 1) {
