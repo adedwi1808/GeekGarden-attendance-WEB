@@ -34,6 +34,7 @@
                             <th>Keterangan Laporan</th>
                             <th>Tanggal Pengajuakan</th>
                             <th>Status</th>
+                            <th>Konfirmator</th>
                             <th>Kelola</th>
                         </tr>
                         </thead>
@@ -46,6 +47,7 @@
                                 <td>{{$laporan->keterangan_laporan}}</td>
                                 <td>{{$laporan->tanggal_laporan}}</td>
                                 <td>{{$laporan->status_laporan}}</td>
+                                <td>{{($laporan->id_admin == null)? "-": $laporan->admin->nama}}</td>
                                 <td>
                                     <div class="row justify-content-center">
                                         <form class="mx-2"
@@ -71,6 +73,7 @@
                             <th>Keterangan Laporan</th>
                             <th>Tanggal Pengajuakan</th>
                             <th>Status</th>
+                            <th>Konfirmator</th>
                             <th>Kelola</th>
                         </tr>
                         </tfoot>

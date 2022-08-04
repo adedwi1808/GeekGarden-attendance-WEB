@@ -12,7 +12,7 @@ class KelolaPengajuanIzinController extends Controller
     {
         $title = 'Pengajuan Izin';
 
-        $data_pengajuan_izin = Pengajuan_izin::with('pegawai')
+        $data_pengajuan_izin = Pengajuan_izin::with(['pegawai','admin'])
             ->orderBy('tanggal_mengajukan_izin', 'asc')
             ->get();
         return view('KelolaAbsensi.PengajuanIzin.index', compact('data_pengajuan_izin', 'title'));

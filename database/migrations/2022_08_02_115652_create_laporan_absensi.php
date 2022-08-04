@@ -20,6 +20,12 @@ return new class extends Migration
                 ->on('pegawai')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->foreignId('id_admin')
+                ->nullable()
+                ->references('id_admin')
+                ->on('admin')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->date('tanggal_absen');
             $table->text('keterangan_laporan');
             $table->dateTime('tanggal_laporan')->useCurrent();

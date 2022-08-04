@@ -16,6 +16,7 @@ class Pengajuan_izin extends Model
 
     protected $fillable = [
         'id_pegawai',
+        'id_admin',
         'alasan_izin',
         'jenis_izin',
         'tanggal_mulai_izin',
@@ -27,6 +28,10 @@ class Pengajuan_izin extends Model
     public function pegawai()
     {
         return $this->belongsTo(Pegawai::class, 'id_pegawai', 'id_pegawai');
+    }
+
+    public function admin(){
+        return $this->belongsTo(Admin::class ,'id_admin','id_admin');
     }
 
 }

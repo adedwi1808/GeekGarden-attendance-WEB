@@ -51,4 +51,14 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(Mading::class, 'id_mading', 'id_mading');
     }
+
+    public function pengajuan_izin()
+    {
+        return $this->hasMany(Pengajuan_izin::class,'id_pengajuan_izin','id_pengajuan_izin');
+    }
+
+    public function LaporanAbsensi()
+    {
+        return $this->hasMany(Laporan_Absensi::class, 'id_admin', 'id_admin');
+    }
 }

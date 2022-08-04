@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use DateInterval;
 use DatePeriod;
 use DateTime;
+use Illuminate\Support\Facades\Session;
 
 class KonfirmasiPengajuanIzinController extends Controller
 {
@@ -34,7 +35,10 @@ class KonfirmasiPengajuanIzinController extends Controller
         }
         if ($data_pengajuan_izin) {
             $nama_pegawai = $data_pengajuan_izin->pegawai->nama;
-            $data_pengajuan_izin->update(['status_izin' => 'Ditolak']);
+            $data_pengajuan_izin->update([
+                'status_izin' => 'Ditolak',
+                'id_admin'=>Session::get('admin.id_admin')
+                    ]);
             return redirect()->route('admin.halaman.kelola.pengajuan.izin', compact('title'))
                 ->with('success2', "Pengajuan $nama_pegawai Ditolak");
         }
@@ -53,7 +57,10 @@ class KonfirmasiPengajuanIzinController extends Controller
         }
         if ($data_pengajuan_izin) {
             $nama_pegawai = $data_pengajuan_izin->pegawai->nama;
-            $data_pengajuan_izin->update(['status_izin' => 'Diterima']);
+            $data_pengajuan_izin->update([
+                'status_izin' => 'Diterima',
+                'id_admin'=>Session::get('admin.id_admin'),
+            ]);
 
             $begin = new DateTime($data_pengajuan_izin->tanggal_mulai_izin);
             $end = new DateTime($data_pengajuan_izin->tanggal_selesai_izin);

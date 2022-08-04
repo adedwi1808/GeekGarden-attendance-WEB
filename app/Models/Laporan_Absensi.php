@@ -16,6 +16,7 @@ class Laporan_Absensi extends Model
 
     protected $fillable = [
         'id_pegawai',
+        'id_admin',
         'tanggal_absen',
         'keterangan_laporan',
         'tanggal_laporan',
@@ -25,5 +26,10 @@ class Laporan_Absensi extends Model
     public function pegawai()
     {
         return $this->belongsTo(Pegawai::class, 'id_pegawai', 'id_pegawai');
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class, 'id_admin', 'id_admin');
     }
 }

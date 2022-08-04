@@ -20,6 +20,12 @@ return new class extends Migration
                 ->on('pegawai')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->foreignId('id_admin')
+                ->nullable()
+                ->references('id_admin')
+                ->on('admin')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->enum('jenis_izin', ['Sakit', 'Cuti','Keperluan Lainnya']);
             $table->date('tanggal_mulai_izin');
             $table->date('tanggal_selesai_izin');

@@ -11,7 +11,7 @@ class KelolaLaporanAbsensiController extends Controller
     public function index()
     {
         $title = 'Laporan Absensi';
-        $data_laporan = Laporan_Absensi::with('pegawai')
+        $data_laporan = Laporan_Absensi::with(['pegawai','admin'])
             ->get();
         return view('KelolaAbsensi.LaporanAbsensi.index', compact('data_laporan', 'title'));
     }
