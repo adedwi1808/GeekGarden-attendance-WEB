@@ -24,14 +24,13 @@
                        placeholder="Nama Pegawai" name="namaPegawai" id="namaPegawai" disabled
                        value="{{$data_laporan_absensi->pegawai->nama}}">
             </div>
-
             <div class="form-group mb-3">
-                <label for="alsanIzin">Keterangan Laporan:</label>
-                <textarea class="form-control" id="alsanIzin"
-                          rows="3" name="informasiMading"
-                          placeholder="Informasi Mading" disabled>{{$data_laporan_absensi->keterangan_laporan}}</textarea>
+                <label for="keterangan_laporan">Keterangan Laporan:</label>
+                <textarea class="form-control" id="keterangan_laporan"
+                          rows="3" name="keterangan_laporan"
+                          placeholder="Informasi Mading"
+                          disabled>{{$data_laporan_absensi->keterangan_laporan}}</textarea>
             </div>
-
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
@@ -40,7 +39,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                             </div>
-                            <input type="text" class="form-control float-right"
+                            <input type="text" class="form-control float-right" id="tanggal_absen"
+                                   name="tanggal_absen"
                                    disabled
                                    value="{{$data_laporan_absensi->tanggal_absen}}">
                         </div>
@@ -52,7 +52,8 @@
                         <select class="form-control" disabled="">
                             <option {{($data_laporan_absensi->status_laporan == "Diterima")?"selected":""}}>Diterima
                             </option>
-                            <option {{($data_laporan_absensi->status_laporan == "Ditolak")?"selected":""}}>Ditolak</option>
+                            <option {{($data_laporan_absensi->status_laporan == "Ditolak")?"selected":""}}>Ditolak
+                            </option>
                             <option {{($data_laporan_absensi->status_laporan == "Diajukan")?"selected":""}}>Diajukan
                             </option>
                         </select>
@@ -60,16 +61,122 @@
                 </div>
 
             </div>
-
             <div class="row mt-3">
-                <div class="col-12">
-                    <button type="button" class="btn btn-info btn-block">
-                        <i class="fa fa-search"></i>
-                        Cari Absensi
+                <div class="col-6">
+                    <a href="{{route("admin.cari.absensi", [
+                        $data_laporan_absensi->id_pegawai,
+                        $data_laporan_absensi->tanggal_absen])}}" target="_blank">
+                        <button type="button" class="btn btn-info btn-block">
+                            <i class="fa fa-search"></i>
+                            Cari Absensi
+                        </button>
+                    </a>
+                </div>
+                <div class="col-6">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-secondary btn-block" formaction="" data-toggle="modal"
+                            data-target="#modalTambahAbsen">
+                        <i class="fa fa-plus"></i>
+                        Tambahkan Absen
                     </button>
+                    <form
+                        action="#"
+                        method="post">
+                        @csrf
+                        <div class="modal fade" id="modalTambahAbsen" tabindex="-1" role="dialog"
+                             aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel">Tambah Absen Pegawai</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Nama :</label>
+                                            <div class="input-group mb-3 ">
+                                                <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-user"></i>
+                                            </span>
+                                                </div>
+                                                <input type="text" class="form-control"
+                                                       placeholder="Nama Pegawai" name="namaPegawai" id="namaPegawai"
+                                                       disabled
+                                                       value="{{$data_laporan_absensi->pegawai->nama}}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Tanggal :</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i
+                                                            class="far fa-calendar-alt"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control float-right" id="tanggal_absen"
+                                                       name="tanggal_absen"
+                                                       disabled
+                                                       value="{{$data_laporan_absensi->tanggal_absen}}">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label>Opsi Absensi:</label>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input class="custom-control-input" type="checkbox"
+                                                               id="customCheckbox1" value="Hadir">
+                                                        <label for="customCheckbox1"
+                                                               class="custom-control-label">Hadir</label>
+                                                    </div>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input class="custom-control-input" type="checkbox"
+                                                               id="customCheckbox2" value="Pulang">
+                                                        <label for="customCheckbox2"
+                                                               class="custom-control-label">Pulang</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label>Lokasi Absensi:</label>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                               name="exampleRadios" id="exampleRadios1" value="option1"
+                                                               checked>
+                                                        <label class="form-check-label" for="exampleRadios1">
+                                                            Dikantor
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                               name="exampleRadios" id="exampleRadios1" value="option1"
+                                                               checked>
+                                                        <label class="form-check-label" for="exampleRadios1">
+                                                            Diluar Kantor
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak
+                                        </button>
+                                        <button type="submit" class="btn btn-success">Tambahkan</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-
             <div class="row mt-4">
                 <!-- /.col -->
                 <div class="col-6">
@@ -77,7 +184,9 @@
                     <button type="button" class="btn btn-success btn-block" formaction="" data-toggle="modal"
                             data-target="#modalMengizinkan">Menerima izin
                     </button>
-                    <form action="{{route('admin.terima.laporan.absensi',$data_laporan_absensi->id_laporan_absensi)}}" method="post">
+                    <form
+                        action="{{route('admin.terima.laporan.absensi',$data_laporan_absensi->id_laporan_absensi)}}"
+                        method="post">
                         @csrf
                         <div class="modal fade" id="modalMengizinkan" tabindex="-1" role="dialog"
                              aria-labelledby="modalLabel" aria-hidden="true">
@@ -111,7 +220,9 @@
                     </button>
 
                     <!-- Modal -->
-                    <form action="{{route('admin.tolak.laporan.absensi',$data_laporan_absensi->id_laporan_absensi)}}" method="post">
+                    <form
+                        action="{{route('admin.tolak.laporan.absensi',$data_laporan_absensi->id_laporan_absensi)}}"
+                        method="post">
                         @csrf
                         <div class="modal fade" id="modalMenolakIzin" tabindex="-1" role="dialog"
                              aria-labelledby="modalLabel" aria-hidden="true">
@@ -145,6 +256,7 @@
                 <!-- /.col -->
             </div>
         </div>
+
         <!-- /.card-body -->
     </div>
     <!-- /.card -->
