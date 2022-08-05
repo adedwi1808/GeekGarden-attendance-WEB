@@ -16,6 +16,7 @@ use App\Http\Controllers\Web\KelolaUser\KelolaAdminController;
 use App\Http\Controllers\Web\KelolaUser\KelolaPegawaiController;
 use App\Http\Controllers\Web\KelolaAbsensi\LaporanAbsensi\KelolaLaporanAbsensiController;
 use App\Http\Controllers\Web\KelolaWaktuKerja\KelolaWaktuKerjaController;
+use App\Http\Controllers\Web\KelolaWaktuKerja\TambahHariLiburController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -95,7 +96,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::get('/edit-admin/{id}',[KelolaAdminController::class,'editpage'])->name('halaman.edit.admin');
 
 //    Kelola Waktu Kerja
-    Route::get('/kelola-waktu-kerja', [KelolaWaktuKerjaController::class, 'index'])->name('halaman.kelola.waktu.kerja');;
+    Route::get('/kelola-waktu-kerja', [KelolaWaktuKerjaController::class, 'index'])->name('halaman.kelola.waktu.kerja');
+
+    //Hari Libur
+    Route::post('/tambah-hari-libur', [TambahHariLiburController::class, 'tambah'])->name('tambah.hari.libur');
 
 //    Logout
     Route::post('/logout',[LogoutController::class,'logout'])->name('logout');

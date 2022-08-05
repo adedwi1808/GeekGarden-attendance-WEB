@@ -20,6 +20,7 @@ return new class extends Migration
                 ->on('admin')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->string("nama");
             $table->date("tanggal");
             $table->dateTime('tanggal_dibuat')->useCurrent();
         });

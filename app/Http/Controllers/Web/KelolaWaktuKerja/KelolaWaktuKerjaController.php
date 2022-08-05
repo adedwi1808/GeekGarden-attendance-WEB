@@ -15,9 +15,13 @@ class KelolaWaktuKerjaController extends Controller
         $jam_kerja = Jam_Kerja::with('admin')
             ->get();
 
-        $tanggal_libur = Tanggal_Libur::with('admin')
+        $jam_kerja_terbaru = Jam_Kerja::with('admin')
+            ->latest('tanggal_dibuat')
+            ->first();
+
+        $data_tanggal_libur = Tanggal_Libur::with('admin')
             ->get();
 
-        return view('KelolaWaktuKerja.index', compact('jam_kerja', 'tanggal_libur', 'title'));
+        return view('KelolaWaktuKerja.index', compact('jam_kerja', 'jam_kerja_terbaru', 'data_tanggal_libur', 'title'));
     }
 }

@@ -45,6 +45,6 @@
     <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-@include('layouts.backend-kelolalaporanabsensi.javascript')
+@include('layouts.backend-kelolawaktukerja.javascript')
 </body>
 </html>

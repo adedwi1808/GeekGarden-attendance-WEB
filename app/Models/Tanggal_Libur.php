@@ -15,6 +15,7 @@ class Tanggal_Libur extends Model
     protected $fillable = [
         'id_tanggal_libur',
         'id_admin',
+        'nama',
         'tanggal',
         'tanggal_dibuat'
     ];
