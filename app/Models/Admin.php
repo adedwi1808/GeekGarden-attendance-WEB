@@ -61,4 +61,14 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(Laporan_Absensi::class, 'id_admin', 'id_admin');
     }
+
+    public function tanggal_libur()
+    {
+        return $this->hasMany(Tanggal_Libur::class, 'id_tanggal_libur', 'id_tanggal_libur');
+    }
+
+    public function jam()
+    {
+        return $this->hasMany(Jam_Kerja::class, 'id_jam_kerja', 'id_jam_kerja');
+    }
 }
