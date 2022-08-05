@@ -68,4 +68,18 @@ class KonfirmasiLaporanAbsensiController extends Controller
         return redirect()->route('admin.halaman.kelola.laporan.absensi', compact('title'))
             ->with('fail', "Terjadi Kesalahan");
     }
+
+    public function cariAbsensi(Request $request, $id, $tanggal_absen)
+    {
+        $title = 'Hasil Absensi';
+
+        $data_absensi = Absensi::join('pegawai','absensi.id_pegawai', '=', 'pegawai.id_pegawai')
+            ->where('absensi.id_pegawai', '=', $id)
+            ->whereDate('tanggal', $tanggal_absen)
+            ->get();
+
+        return view('KelolaAbsensi.HasilAbsensi.index', compact('data_absensi', 'title'));
+
+    }
+
 }
