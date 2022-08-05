@@ -112,29 +112,16 @@
                 </li>
 
                 {{--                Waktu Kerja------------------------------------------------------------------------------------------------------------------------}}
-                <li class="nav-item {{($title == 'Jam Kerja') || ($title == 'Tanggal Libur')? 'menu-is-opening menu-open': ''}}">
-                    <a href="#" class="nav-link {{($title == 'Jam Kerja') || ($title == 'Tanggal Libur')? 'active': ''}}">
+                <li class="nav-item {{($title == 'Waktu Kerja')? 'menu-is-opening menu-open': ''}}">
+                    <a href="#" class="nav-link {{($title == 'Waktu Kerja')? 'active': ''}}">
                         <i class="nav-icon fas fa-calendar-alt"></i>
                         <p>
                             Kelola Waktu Kerja
-                            <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link {{($title == 'Jam Kerja')? 'active': ''}}">
-                                <i class="nav-icon fas fa-clock"></i>
-                                <p>Kelola Jam Kerja</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link {{($title == 'Tanggal Libur')? 'active': ''}}">
-                                <i class="nav-icon fas fa-calendar-day"></i>
-                                <p>Kelola Tanggal Libur</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
+                {{--                Logout------------------------------------------------------------------------------------------------------------------------}}
+
                 <li class="nav-item {{($title == 'Logout')? 'menu-is-opening menu-open': ''}}">
                     <a href="#" class="nav-link {{($title == 'Logout')? 'active': ''}}">
                         <i class="nav-icon fas fa-power-off"></i>
