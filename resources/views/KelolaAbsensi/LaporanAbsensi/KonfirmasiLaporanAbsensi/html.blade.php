@@ -61,14 +61,23 @@
 
             </div>
 
-            <div class="row mt-5">
+            <div class="row mt-3">
+                <div class="col-12">
+                    <button type="button" class="btn btn-info btn-block">
+                        <i class="fa fa-search"></i>
+                        Cari Absensi
+                    </button>
+                </div>
+            </div>
+
+            <div class="row mt-4">
                 <!-- /.col -->
                 <div class="col-6">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-success btn-block" formaction="" data-toggle="modal"
                             data-target="#modalMengizinkan">Menerima izin
                     </button>
-                    <form action="#" method="post">
+                    <form action="{{route('admin.terima.laporan.absensi',$data_laporan_absensi->id_laporan_absensi)}}" method="post">
                         @csrf
                         <div class="modal fade" id="modalMengizinkan" tabindex="-1" role="dialog"
                              aria-labelledby="modalLabel" aria-hidden="true">
