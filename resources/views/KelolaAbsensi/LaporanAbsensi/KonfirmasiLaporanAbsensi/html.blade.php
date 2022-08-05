@@ -80,7 +80,7 @@
                         Tambahkan Absen
                     </button>
                     <form
-                        action="#"
+                        action="{{route("admin.tambah.absensi", $data_laporan_absensi->id_laporan_absensi)}}"
                         method="post">
                         @csrf
                         <div class="modal fade" id="modalTambahAbsen" tabindex="-1" role="dialog"
@@ -123,21 +123,20 @@
                                             </div>
                                         </div>
 
-
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label>Opsi Absensi:</label>
                                                     <div class="custom-control custom-checkbox">
                                                         <input class="custom-control-input" type="checkbox"
-                                                               id="customCheckbox1" value="Hadir">
-                                                        <label for="customCheckbox1"
+                                                               id="hadir" name="hadir" value="Hadir">
+                                                        <label for="hadir"
                                                                class="custom-control-label">Hadir</label>
                                                     </div>
                                                     <div class="custom-control custom-checkbox">
                                                         <input class="custom-control-input" type="checkbox"
-                                                               id="customCheckbox2" value="Pulang">
-                                                        <label for="customCheckbox2"
+                                                               id="pulang" name="pulang" value="Pulang">
+                                                        <label for="pulang"
                                                                class="custom-control-label">Pulang</label>
                                                     </div>
                                                 </div>
@@ -147,24 +146,23 @@
                                                     <label>Lokasi Absensi:</label>
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio"
-                                                               name="exampleRadios" id="exampleRadios1" value="option1"
-                                                               checked>
-                                                        <label class="form-check-label" for="exampleRadios1">
+                                                               name="tempat" id="Dikantor" value="Dikantor"
+                                                        checked
+                                                        >
+                                                        <label class="form-check-label" for="Dikantor">
                                                             Dikantor
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio"
-                                                               name="exampleRadios" id="exampleRadios1" value="option1"
-                                                               checked>
-                                                        <label class="form-check-label" for="exampleRadios1">
+                                                               name="tempat" id="Diluar_kantor" value="Diluar Kantor">
+                                                        <label class="form-check-label" for="Diluar_kantor">
                                                             Diluar Kantor
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak

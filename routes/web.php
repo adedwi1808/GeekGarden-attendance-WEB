@@ -74,6 +74,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::post('/tolak-laporan-absensi/{id}', [KonfirmasiLaporanAbsensiController::class, 'tolak'])->name('tolak.laporan.absensi');
     Route::post('/terima-laporan-absensi/{id}', [KonfirmasiLaporanAbsensiController::class, 'terima'])->name('terima.laporan.absensi');
     Route::get('/cari-absensi/{id}/{tanggal_absen}', [KonfirmasiLaporanAbsensiController::class, 'cariAbsensi'])->name('cari.absensi');
+    Route::post('/tambah-absensi/{id}', [KonfirmasiLaporanAbsensiController::class, 'tambahAbsen'])->name('tambah.absensi');
 
 //    Kelola User
     //Pegawai
