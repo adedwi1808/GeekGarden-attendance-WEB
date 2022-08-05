@@ -113,7 +113,7 @@
 
                 {{--                Waktu Kerja------------------------------------------------------------------------------------------------------------------------}}
                 <li class="nav-item {{($title == 'Waktu Kerja')? 'menu-is-opening menu-open': ''}}">
-                    <a href="#" class="nav-link {{($title == 'Waktu Kerja')? 'active': ''}}">
+                    <a href="{{route('admin.halaman.kelola.waktu.kerja')}}" class="nav-link {{($title == 'Waktu Kerja')? 'active': ''}}">
                         <i class="nav-icon fas fa-calendar-alt"></i>
                         <p>
                             Kelola Waktu Kerja

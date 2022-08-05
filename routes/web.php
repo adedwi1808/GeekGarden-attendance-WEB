@@ -15,6 +15,7 @@ use App\Http\Controllers\Web\KelolaMading\KelolaMadingController;
 use App\Http\Controllers\Web\KelolaUser\KelolaAdminController;
 use App\Http\Controllers\Web\KelolaUser\KelolaPegawaiController;
 use App\Http\Controllers\Web\KelolaAbsensi\LaporanAbsensi\KelolaLaporanAbsensiController;
+use App\Http\Controllers\Web\KelolaWaktuKerja\KelolaWaktuKerjaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -93,6 +94,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::get('/tambah-admin',[KelolaAdminController::class,'tambahpage'])->name('halaman.tambah.admin');
     Route::get('/edit-admin/{id}',[KelolaAdminController::class,'editpage'])->name('halaman.edit.admin');
 
-    //    Logout
+//    Kelola Waktu Kerja
+    Route::get('/kelola-waktu-kerja', [KelolaWaktuKerjaController::class, 'index'])->name('halaman.kelola.waktu.kerja');;
+
+//    Logout
     Route::post('/logout',[LogoutController::class,'logout'])->name('logout');
 });
