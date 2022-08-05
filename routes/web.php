@@ -8,6 +8,7 @@ use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\KelolaAbsensi\HasilAbsensi\EditHasilAbsensiController;
 use App\Http\Controllers\Web\KelolaAbsensi\HasilAbsensi\KelolaHasilAbsensiController;
 use App\Http\Controllers\Web\KelolaAbsensi\PengajuanIzin\KelolaPengajuanIzinController;
+use App\Http\Controllers\Web\KelolaAbsensi\LaporanAbsensi\KonfirmasiLaporanAbsensiController;
 use App\Http\Controllers\Web\KelolaAbsensi\PengajuanIzin\KonfirmasiPengajuanIzinController;
 use App\Http\Controllers\Web\KelolaMading\EditMadingController;
 use App\Http\Controllers\Web\KelolaMading\KelolaMadingController;
@@ -69,6 +70,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::post('/terima-pengajuan-izin/{id}', [KonfirmasiPengajuanIzinController::class, 'terima'])->name('terima.pengajuan.izin');
     //Laporan Absensi
     Route::get('/laporan-absensi', [KelolaLaporanAbsensiController::class, 'index'])->name('halaman.kelola.laporan.absensi');
+    Route::get('/konfirmasi-laporan-absensi/{id}',[KonfirmasiLaporanAbsensiController::class, 'index'])->name('halaman.konfirmasi.laporan.absensi');
+    Route::post('/tolak-laporan-absensi/{id}', [KonfirmasiLaporanAbsensiController::class, 'tolak'])->name('tolak.laporan.absensi');
 
 //    Kelola User
     //Pegawai

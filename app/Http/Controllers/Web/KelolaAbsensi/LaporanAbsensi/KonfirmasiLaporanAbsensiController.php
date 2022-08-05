@@ -1,0 +1,99 @@
+<?php
+
+namespace App\Http\Controllers\Web\KelolaAbsensi\LaporanAbsensi;
+
+use App\Http\Controllers\Controller;
+use App\Models\Absensi;
+use App\Models\Laporan_Absensi;
+use App\Models\Pegawai;
+use App\Models\Pengajuan_izin;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
+class KonfirmasiLaporanAbsensiController extends Controller
+{
+    public function index($id)
+    {
+        $title = 'Laporan Absensi';
+
+        $data_laporan_absensi = Laporan_Absensi::with('pegawai')
+            ->where('id_laporan_absensi', $id)
+            ->first();
+        return view('KelolaAbsensi.LaporanAbsensi.KonfirmasiLaporanAbsensi.index', compact('data_laporan_absensi', 'title'));
+    }
+
+    public function tolak($id)
+    {
+        $title = 'Laporan Absensi';
+
+        $data_laporan_absensi = Laporan_Absensi::with('pegawai')
+            ->where('id_laporan_absensi', $id)
+            ->first();
+        if ($data_laporan_absensi->status_laporan == "Diterima") {
+            return back()->with('fail', "Anda Sudah Mengkonfirmasi Laporan Ini Diterima, Tidak bisa diubah");
+        }
+        if ($data_laporan_absensi) {
+            $nama_pegawai = $data_laporan_absensi->pegawai->nama;
+            $data_laporan_absensi->update([
+                'status_laporan' => 'Ditolak',
+                'id_admin'=>Session::get('admin.id_admin')
+            ]);
+            return redirect()->route('admin.halaman.kelola.laporan.absensi', compact('title'))
+                ->with('success2', "Laporan $nama_pegawai Ditolak");
+        }
+        return redirect()->route('admin.halaman.kelola.laporan.absensi', compact('title'))
+            ->with('fail', "Terjadi Kesalahan");
+    }
+
+    public function terima($id)
+    {
+        $title = 'Pengajuan Izin';
+        $data_pengajuan_izin = Pengajuan_izin::with('pegawai')
+            ->where('id_pengajuan_izin', $id)
+            ->first();
+        if ($data_pengajuan_izin->status_izin == "Diterima") {
+            return back()->with('fail', "Anda Sudah Mengkonfirmasi Pengajuan Ini Diterima");
+        }
+        if ($data_pengajuan_izin) {
+            $nama_pegawai = $data_pengajuan_izin->pegawai->nama;
+            $data_pengajuan_izin->update([
+                'status_izin' => 'Diterima',
+                'id_admin'=>Session::get('admin.id_admin'),
+            ]);
+
+            $begin = new DateTime($data_pengajuan_izin->tanggal_mulai_izin);
+            $end = new DateTime($data_pengajuan_izin->tanggal_selesai_izin);
+            $end->add(DateInterval::createFromDateString('+ 1 day'));
+
+            $interval = DateInterval::createFromDateString('1 day');
+            $period = new DatePeriod($begin, $interval, $end);
+
+            $pegawai = Pegawai::where('id_pegawai', $data_pengajuan_izin->pegawai->id_pegawai)->first();
+            if (!$pegawai) return redirect()->route('admin.halaman.kelola.pengajuan.izin', compact('title'))
+                ->with('fail', "Pegawai Tidak Ditemukan");
+
+            foreach ($period as $dt) {
+                $day = new Carbon($dt);
+                if ($day->isWeekday()) {
+                    $data = [
+                        'id_pegawai' => $pegawai->id_pegawai,
+                        'tempat' => '-',
+                        'status' => 'Izin',
+                        'longitude' => '0',
+                        'latitude' => '0',
+                        'foto' => '',
+                        'tanggal' => $dt
+                    ];
+                    $absensi = Absensi::create($data);
+                    $absensi->save();
+                }
+            }
+
+            return redirect()->route('admin.halaman.kelola.pengajuan.izin', compact('title'))
+                ->with('success', "Pengajuan $nama_pegawai diterima");
+        }
+        return redirect()->route('admin.halaman.kelola.pengajuan.izin', compact('title'))
+            ->with('fail', "Terjadi Kesalahan");
+    }
+}

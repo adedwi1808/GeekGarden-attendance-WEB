@@ -32,7 +32,7 @@
                             <th>Nama Pegawai</th>
                             <th>Tanggal Absen</th>
                             <th>Keterangan Laporan</th>
-                            <th>Tanggal Pengajuakan</th>
+                            <th>Tanggal Pengajuan</th>
                             <th>Status</th>
                             <th>Konfirmator</th>
                             <th>Kelola</th>
@@ -51,7 +51,7 @@
                                 <td>
                                     <div class="row justify-content-center">
                                         <form class="mx-2"
-                                              action="#"
+                                              action="{{route('admin.halaman.konfirmasi.laporan.absensi', $laporan->id_laporan_absensi)}}"
                                               method="get">
                                             <button type="submit" class="btn btn-success"><i
                                                     class="fas fa-edit"></i>
@@ -71,7 +71,7 @@
                             <th>Nama Pegawai</th>
                             <th>Tanggal Absen</th>
                             <th>Keterangan Laporan</th>
-                            <th>Tanggal Pengajuakan</th>
+                            <th>Tanggal Pengajuan</th>
                             <th>Status</th>
                             <th>Konfirmator</th>
                             <th>Kelola</th>

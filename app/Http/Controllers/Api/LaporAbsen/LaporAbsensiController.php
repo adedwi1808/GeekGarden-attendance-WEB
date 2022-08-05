@@ -17,7 +17,6 @@ class LaporAbsensiController extends Controller
 
         if (!$pegawai){
             return $this->error("Error User tidak ditemukan");
-
         }
         $check_lapor_absensi = Laporan_Absensi::where('id_pegawai', $id)
             ->where('status_laporan', '=', 'Diajukan')
@@ -46,7 +45,8 @@ class LaporAbsensiController extends Controller
         $laporan_absensi = Laporan_Absensi::create($data);
         $laporan_absensi->save();
 
-        $laporan_absensi_response = Laporan_Absensi::where('id_laporan_absensi', $laporan_absensi->id_laporan_absensi)->first();
+        $laporan_absensi_response = Laporan_Absensi::with('admin')
+            ->where('id_pegawai', $id)->get();
         if ($laporan_absensi) {
             return $this->success($laporan_absensi_response, 'Anda berhasil melakukan laporan absensi');
         } else {
