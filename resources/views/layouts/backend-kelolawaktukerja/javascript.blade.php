@@ -25,7 +25,7 @@
     $(function () {
         $('.select2').select2();
         $('#table').DataTable({
-            "paging": false,
+            "paging": true,
             "lengthChange": false,
             "searching": false,
             "ordering": true,
@@ -33,7 +33,7 @@
             "autoWidth": false,
             "responsive": true,
             order:[[3,'desc']],
-            pageLength: 3
+            pageLength: 5
         });
 
         $('#table2').DataTable({

@@ -17,6 +17,7 @@ use App\Http\Controllers\Web\KelolaUser\KelolaPegawaiController;
 use App\Http\Controllers\Web\KelolaAbsensi\LaporanAbsensi\KelolaLaporanAbsensiController;
 use App\Http\Controllers\Web\KelolaWaktuKerja\KelolaWaktuKerjaController;
 use App\Http\Controllers\Web\KelolaWaktuKerja\TambahHariLiburController;
+use App\Http\Controllers\Web\KelolaWaktuKerja\UbahJamKerjaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -100,6 +101,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
 
     //Hari Libur
     Route::post('/tambah-hari-libur', [TambahHariLiburController::class, 'tambah'])->name('tambah.hari.libur');
+    Route::post('/ubah-jam-kerja', [UbahJamKerjaController::class, 'ubah'])->name('ubah.jam.kerja');
 
 //    Logout
     Route::post('/logout',[LogoutController::class,'logout'])->name('logout');
