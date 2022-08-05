@@ -52,15 +52,6 @@
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="row">
-                        <div class="col-12">
-                            <p>
-                                *Isi yang kiri saja bila hanya ingin menambahkan 1 hari libur
-                            </p>
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal
