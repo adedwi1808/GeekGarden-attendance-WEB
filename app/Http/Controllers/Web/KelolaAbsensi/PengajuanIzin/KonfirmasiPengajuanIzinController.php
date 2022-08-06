@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Absensi;
 use App\Models\Pegawai;
 use App\Models\Pengajuan_izin;
+use App\Models\Tanggal_Libur;
 use Carbon\Carbon;
 use DateInterval;
 use DatePeriod;
@@ -75,21 +76,40 @@ class KonfirmasiPengajuanIzinController extends Controller
 
             foreach ($period as $dt) {
                 $day = new Carbon($dt);
-                if ($day->isWeekday()) {
-                    $data = [
-                        'id_pegawai' => $pegawai->id_pegawai,
-                        'tempat' => '-',
-                        'status' => ($data_pengajuan_izin->jenis_izin == 'Cuti')? 'Cuti': 'Izin',
-                        'longitude' => '0',
-                        'latitude' => '0',
-                        'foto' => '',
-                        'tanggal' => $dt
-                    ];
-                    $absensi = Absensi::create($data);
-                    $absensi->save();
+
+                $hari_libur = Tanggal_Libur::Where("tanggal", $day)->first();
+
+                if ($hari_libur){
+                    $libur = new Carbon($hari_libur->tanggal);
+                    if ($day->isWeekday() && $day != $libur) {
+                        $data = [
+                            'id_pegawai' => $pegawai->id_pegawai,
+                            'tempat' => '-',
+                            'status' => ($data_pengajuan_izin->jenis_izin == 'Cuti')? 'Cuti': 'Izin',
+                            'longitude' => '0',
+                            'latitude' => '0',
+                            'foto' => '',
+                            'tanggal' => $dt
+                        ];
+                        $absensi = Absensi::create($data);
+                        $absensi->save();
+                    }
+                }else{
+                    if ($day->isWeekday()) {
+                        $data = [
+                            'id_pegawai' => $pegawai->id_pegawai,
+                            'tempat' => '-',
+                            'status' => ($data_pengajuan_izin->jenis_izin == 'Cuti')? 'Cuti': 'Izin',
+                            'longitude' => '0',
+                            'latitude' => '0',
+                            'foto' => '',
+                            'tanggal' => $dt
+                        ];
+                        $absensi = Absensi::create($data);
+                        $absensi->save();
+                    }
                 }
             }
-
             return redirect()->route('admin.halaman.kelola.pengajuan.izin', compact('title'))
                 ->with('success', "Pengajuan $nama_pegawai diterima");
         }
