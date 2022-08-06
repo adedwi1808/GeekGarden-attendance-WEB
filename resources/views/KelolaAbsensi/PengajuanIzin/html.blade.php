@@ -1,78 +1,70 @@
 <section class="content">
     <div class="card">
         <div class="card-header">
-            {{--            <h3 class="card-title">Data {{$title}}</h3>--}}
+            <h3 class="card-title">Data {{$title}}</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
             <div class="container">
-                {{--                <form method="get" action="#">--}}
-                {{--                    <div class="row mb-2">--}}
-                {{--                        <div class="col">--}}
-                {{--                            <div class="row">--}}
-                {{--                                <div class="col-4">--}}
-                {{--                                    <div class="form-group">--}}
-                {{--                                        <label for="filter">Rentang Waktu:</label>--}}
-                {{--                                        <select id="filter" name="rentang_waktu" class="select2" data-placeholder="Any" style="width: 100%;">--}}
-                {{--                                            <option selected>Satu Bulan Terakhir</option>--}}
-                {{--                                            <option>Hari Ini</option>--}}
-                {{--                                            <option>7 Hari Terakhir</option>--}}
-                {{--                                        </select>--}}
-                {{--                                    </div>--}}
-                {{--                                </div>--}}
-                {{--                                <div class="col-2">--}}
-                {{--                                    <div class="form-group">--}}
-                {{--                                        <label for="tempat">Tempat :</label>--}}
-                {{--                                        <select name="tempat" id="tempat" class="select2" style="width: 100%;">--}}
-                {{--                                            <option selected>All</option>--}}
-                {{--                                            <option>Dikantor</option>--}}
-                {{--                                            <option>Diluar Kantor</option>--}}
-                {{--                                        </select>--}}
-                {{--                                    </div>--}}
-                {{--                                </div><div class="col-2">--}}
-                {{--                                    <div class="form-group">--}}
-                {{--                                        <label for="status">Status:</label>--}}
-                {{--                                        <select name="status" id="status" class="select2" style="width: 100%;">--}}
-                {{--                                            <option selected>All</option>--}}
-                {{--                                            <option>Hadir</option>--}}
-                {{--                                            <option>Pulang</option>--}}
-                {{--                                            <option>Izin</option>--}}
-                {{--                                        </select>--}}
-                {{--                                    </div>--}}
-                {{--                                </div>--}}
-                {{--                                <div class="col-2">--}}
-                {{--                                    <div class="form-group">--}}
-                {{--                                        <label for="sort">Sort Order:</label>--}}
-                {{--                                        <select name="sort_order" id="sort" class="select2" style="width: 100%;">--}}
-                {{--                                            <option selected value="asc">ASC</option>--}}
-                {{--                                            <option value="desc">DESC</option>--}}
-                {{--                                        </select>--}}
-                {{--                                    </div>--}}
-                {{--                                </div>--}}
-                {{--                                <div class="col-2">--}}
-                {{--                                    <div class="form-group">--}}
-                {{--                                        <label for="order">Order By:</label>--}}
-                {{--                                        <select name="order_by" id="order" class="select2" style="width: 100%;">--}}
-                {{--                                            <option selected>Tanggal</option>--}}
-                {{--                                            <option>Nama</option>--}}
-                {{--                                        </select>--}}
-                {{--                                    </div>--}}
-                {{--                                </div>--}}
-                {{--                            </div>--}}
-                {{--                            <div class="form-group">--}}
-                {{--                                <div class="input-group input-group-lg">--}}
-                {{--                                    <input type="search" class="form-control form-control-lg"--}}
-                {{--                                           placeholder="Cari Hasil Absensi" name="cari_hasil_absensi">--}}
-                {{--                                    <div class="input-group-append">--}}
-                {{--                                        <button type="submit" class="btn btn-lg btn-default">--}}
-                {{--                                            <i class="fa fa-search"></i>--}}
-                {{--                                        </button>--}}
-                {{--                                    </div>--}}
-                {{--                                </div>--}}
-                {{--                            </div>--}}
-                {{--                        </div>--}}
-                {{--                    </div>--}}
-                {{--                </form>--}}
+                <form method="get" action="{{route('admin.cari.pengajuan.izin')}}">
+                    <div class="row mb-2">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="date_range">Rentang Waktu:</label>
+                                        <div id="date_range" class="row">
+                                            <div class="col-6">
+                                                <input type="datetime-local" class="form-control" name="start_date"
+                                                       value="2022-07-01T00:00">
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="datetime-local" class="form-control" name="end_date"
+                                                       value="{{\Carbon\Carbon::now()->endOfDay()->toDateTimeString()}}">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="jenis_izin">Jenis Izin :</label>
+                                        <select name="jenis_izin" id="jenis_izin" class="select2" style="width: 100%;">
+                                            <option selected>All</option>
+                                            <option>Sakit</option>
+                                            <option>Cuti</option>
+                                            <option>Keperluan Lainnya</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="status_izin">Status:</label>
+                                        <select name="status_izin" id="status_izin" class="select2"
+                                                style="width: 100%;">
+                                            <option selected>All</option>
+                                            <option>Diajukan</option>
+                                            <option>Ditolak</option>
+                                            <option>Diterima</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group input-group-lg">
+                                    <input type="search" class="form-control form-control-lg"
+                                           placeholder="Cari Pengajuan Izin" name="cari_hasil_absensi">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-lg btn-default">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
                 <div class="row">
                     <div class="col-12">
                         @if(Session::get('success'))
@@ -95,7 +87,7 @@
                 <div class="row">
                     <div class="col-12">
                         <table class="table table-bordered table-striped table-hover text-center" id="table">
-                        <thead>
+                            <thead>
                             <tr>
                                 <th>Nama Pegawai</th>
                                 <th>Jenis Izin</th>
@@ -119,7 +111,8 @@
                                     <td>{{$pengajuan_izin->tanggal_selesai_izin}}</td>
                                     <td>{{$pengajuan_izin->alasan_izin}}</td>
                                     <td><a class="link-primary"
-                                           href="/storage/surat-izin/{{$pengajuan_izin->surat_izin}}">{{(strlen($pengajuan_izin->surat_izin) > 18)? substr($pengajuan_izin->surat_izin, 0,18)."..." : $pengajuan_izin->surat_izin}}</a></td>
+                                           href="/storage/surat-izin/{{$pengajuan_izin->surat_izin}}">{{(strlen($pengajuan_izin->surat_izin) > 18)? substr($pengajuan_izin->surat_izin, 0,18)."..." : $pengajuan_izin->surat_izin}}</a>
+                                    </td>
                                     <td>{{$pengajuan_izin->tanggal_mengajukan_izin}}</td>
                                     <td>{{$pengajuan_izin->status_izin}}</td>
                                     <td>{{($pengajuan_izin->id_admin == null)? "-": $pengajuan_izin->admin->nama}}</td>
