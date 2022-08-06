@@ -10,6 +10,7 @@ use DatePeriod;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -29,7 +30,21 @@ class TambahHariLiburController extends Controller
             return redirect()->route('admin.halaman.kelola.waktu.kerja', compact('title'))
                 ->with('fail', $validasi->errors()->first());
         }
-        if ($request->has('tanggal_selesai') && ($request->post('tanggal_selesai') != $request->post('tanggal_mulai'))){
+
+        if ($request->post('tanggal_selesai') < $request->post('tanggal_mulai')){
+            return redirect()->route('admin.halaman.kelola.waktu.kerja', compact('title'))
+                ->with('fail', "Harap Masukkan Format Inputan Yang Benar");
+        }
+
+        if (($request->post('tanggal_selesai') == $request->post('tanggal_mulai')) || $request->post('tanggal_selesai') == null){
+            $data = [
+                'id_admin' => Session::get('admin.id_admin'),
+                'nama' => $request->post('nama'),
+                'tanggal' => $request->post('tanggal_mulai')
+            ];
+            $tanggal_hari_libur = Tanggal_Libur::create($data);
+            $tanggal_hari_libur->save();
+        }else{
             $end = new DateTime($request->post('tanggal_selesai'));
             $begin = new DateTime($request->post('tanggal_mulai'));
             $end->add(DateInterval::createFromDateString('+ 1 day'));
@@ -45,20 +60,9 @@ class TambahHariLiburController extends Controller
                 $tanggal_hari_libur = Tanggal_Libur::create($data);
                 $tanggal_hari_libur->save();
             }
-        } else{
-            $data = [
-                'id_admin' => Session::get('admin.id_admin'),
-                'nama' => $request->post('nama'),
-                'tanggal' => $request->post('tanggal_mulai')
-            ];
-            $tanggal_hari_libur = Tanggal_Libur::create($data);
-            $tanggal_hari_libur->save();
         }
-
-
             return redirect()->route('admin.halaman.kelola.waktu.kerja', compact('title'))
                 ->with('success', "Hari Libur Berhasil Ditambahkan");
-
     }
 
 }

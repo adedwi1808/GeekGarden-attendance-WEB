@@ -19,6 +19,11 @@ class UbahJamKerjaController extends Controller
             'jam_selesai' => 'required',
         ]);
 
+        if (($request->post('jam_selesai') < $request->post('jam_mulai')) || ($request->post('jam_selesai') == $request->post('jam_mulai'))){
+            return redirect()->route('admin.halaman.kelola.waktu.kerja', compact('title'))
+                ->with('fail_jam_kerja', "Harap Masukkan Jam Kerja Yang Benar");
+        }
+
         if ($validasi->fails()){
             return redirect()->route('admin.halaman.kelola.waktu.kerja', compact('title'))
                 ->with('fail_jam_kerja', $validasi->errors()->first());
