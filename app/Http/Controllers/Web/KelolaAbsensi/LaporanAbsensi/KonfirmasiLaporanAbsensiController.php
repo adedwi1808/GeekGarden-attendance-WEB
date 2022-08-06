@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web\KelolaAbsensi\LaporanAbsensi;
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
 use App\Models\Laporan_Absensi;
+use App\Models\Tanggal_Libur;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -50,6 +51,14 @@ class KonfirmasiLaporanAbsensiController extends Controller
         $data_laporan_absensi = Laporan_Absensi::with('pegawai')
             ->where('id_laporan_absensi', $id)
             ->first();
+
+        $tanggal_absen = new Carbon($data_laporan_absensi->tanggal_absen);
+
+        $hari_libur = Tanggal_Libur::Where("tanggal", $tanggal_absen)->first();
+
+        if ($hari_libur){
+            return back()->with('warning', "Tanggal Yang Dilaporkan Merupakan Hari Libur");
+        }
         if ($data_laporan_absensi->status_laporan == "Diterima") {
             return back()->with('fail', "Anda Sudah Mengkonfirmasi Laporan Ini Diterima, Tidak bisa diubah");
         }
@@ -87,6 +96,14 @@ class KonfirmasiLaporanAbsensiController extends Controller
         $data_laporan_absensi = Laporan_Absensi::with('pegawai')
             ->where('id_laporan_absensi', $id)
             ->first();
+
+        $tanggal_absen = new Carbon($data_laporan_absensi->tanggal_absen);
+
+        $hari_libur = Tanggal_Libur::Where("tanggal", $tanggal_absen)->first();
+
+        if ($hari_libur){
+            return back()->with('warning', "Tanggal Yang Dilaporkan Merupakan Hari Libur");
+        }
 
         if ($data_laporan_absensi->status_laporan == "Diterima") {
             return back()->with('fail', "Anda Sudah Mengkonfirmasi Laporan Ini Diterima, Tidak bisa diubah");

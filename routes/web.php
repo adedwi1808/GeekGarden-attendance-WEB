@@ -48,7 +48,6 @@ Route::prefix('admin')->name('admin.')->middleware('guest:admin')->group(functio
 Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function (){
 //    Dashboard
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
-
 //    Mading
     Route::get('/mading', [KelolaMadingController::class, 'index'])->name('halaman.mading');
     Route::get('/car-mading', [KelolaMadingController::class, 'cariMading'])->name('cari.mading');

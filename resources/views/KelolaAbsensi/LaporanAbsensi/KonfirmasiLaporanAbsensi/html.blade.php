@@ -12,6 +12,12 @@
                             {{Session::get('fail')}}
                         </div>
                     @endif
+
+                    @if(Session::get('warning'))
+                        <div class="alert alert-warning" role="alert">
+                            {{Session::get('warning')}}
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="input-group mb-3 ">
@@ -147,7 +153,7 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio"
                                                                name="tempat" id="Dikantor" value="Dikantor"
-                                                        checked
+                                                               checked
                                                         >
                                                         <label class="form-check-label" for="Dikantor">
                                                             Dikantor
