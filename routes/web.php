@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Web\Auth\LoginController;
 use App\Http\Controllers\Web\Auth\LogoutController;
+use App\Http\Controllers\Web\Auth\LupaPasswordController;
 use App\Http\Controllers\Web\Auth\RegisterController;
 use App\Http\Controllers\Web\CetakLaporan\CetakLaporanController;
 use App\Http\Controllers\Web\CetakLaporan\CetakLaporanHasilAbsensiController;
@@ -36,9 +37,9 @@ Route::get('/', function () {
     return redirect()->route('admin.login');
 });
 
-//Register
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/do-register',[RegisterController::class,'register'])->name('doregister');
+//LupaPassword
+Route::get('/lupa-passowrd', [LupaPasswordController::class, 'index'])->name('lupa.password');
+Route::post('/reset-password',[LupaPasswordController::class,'resetpassword'])->name('reset.password');
 
 //Guest
 Route::prefix('admin')->name('admin.')->middleware('guest:admin')->group(function (){
