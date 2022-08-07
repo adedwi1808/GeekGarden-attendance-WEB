@@ -69,14 +69,14 @@
                                     <td>{{$mading->admin->nama}}</td>
                                     <td>
                                         <div class="row justify-content-center">
-                                            <form class="mx-2"
+                                            <form class="col-6"
                                                   action="{{route('admin.lihat.mading',$mading->id_mading)}}"
                                                   method="get" target="_blank">
                                                 <button type="submit" class="btn btn-info"><i
                                                         class="fas fa-eye"></i>
                                                 </button>
                                             </form>
-                                            <form class="mx-2"
+                                            <form class="col-6"
                                                   action="{{route('admin.halaman.edit.mading',$mading->id_mading)}}"
                                                   method="get">
                                                 <button type="submit" class="btn btn-success"><i

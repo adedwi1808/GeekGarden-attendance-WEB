@@ -3,7 +3,7 @@
         <div class="card-header">
             <h3 class="card-title">Lihat {{$title}}</h3>
         </div>
-        <img src="/storage/mading/{{$mading->foto}}" class="card-img-top" alt="Thumbnail Mading" style="height: 30vw">
+        <img src="/storage/mading/{{$mading->foto}}" class="card-img-top img-fluid" alt="Thumbnail Mading" style="height: 30vw; object-fit: cover">
 
         <!-- /.card-header -->
         <div class="card-body">
