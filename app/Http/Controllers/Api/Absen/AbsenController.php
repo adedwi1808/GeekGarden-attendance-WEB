@@ -23,6 +23,9 @@ class AbsenController extends Controller
         if ($hari_libur){
             return $this->error("Hari ini adalah hari libur");
         }
+//        if ($hari_libur || today()->isWeekend()){
+//            return $this->error("Hari ini adalah hari libur");
+//        }
 
 
         $jam_kerja = Jam_Kerja::latest('tanggal_dibuat')->first();
@@ -116,11 +119,23 @@ class AbsenController extends Controller
     {
         $id = auth('pegawai-api')->user()->id_pegawai;
 
+        $hari_libur = Tanggal_Libur::Where("tanggal", today())->first();
+
+//        if ($hari_libur || today()->isWeekend()){
+//            return $this->error("Hari ini adalah hari libur");
+//        }
+
+        if ($hari_libur){
+            return $this->error("Hari ini adalah hari libur");
+        }
+
         $jam_kerja = Jam_Kerja::latest('tanggal_dibuat')->first();
 
         if ($jam_kerja->jam_selesai > now()->toTimeString()){
             return $this->error("Sekarang Belumlah jam Pulang kerja");
         }
+
+
         $absensi_izin = Absensi::where("id_pegawai", $id)->whereDate('tanggal', today())->first();
 
         if($absensi_izin){
