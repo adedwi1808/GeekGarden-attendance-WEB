@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use App\Models\Jam_Kerja;
 use App\Models\Mading;
 use App\Models\Pegawai;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -49,6 +50,7 @@ class DatabaseSeeder extends Seeder
 
         Pegawai::factory(10)->create();
         Mading::factory(5)->create();
+        Jam_Kerja::factory(1)->create();
 
     }
 }
