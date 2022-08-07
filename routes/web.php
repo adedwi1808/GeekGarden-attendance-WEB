@@ -5,6 +5,7 @@ use App\Http\Controllers\Web\Auth\LoginController;
 use App\Http\Controllers\Web\Auth\LogoutController;
 use App\Http\Controllers\Web\Auth\RegisterController;
 use App\Http\Controllers\Web\CetakLaporan\CetakLaporanController;
+use App\Http\Controllers\Web\CetakLaporan\CetakLaporanHasilAbsensiController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\KelolaAbsensi\HasilAbsensi\EditHasilAbsensiController;
 use App\Http\Controllers\Web\KelolaAbsensi\HasilAbsensi\KelolaHasilAbsensiController;
@@ -84,6 +85,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
 
 //    Cetak Laporan
     Route::get('/cetak-laporan', [CetakLaporanController::class, 'index'])->name('halaman.cetak.laporan');
+    Route::get('/cetak-laporan-hasil-absensi', [CetakLaporanHasilAbsensiController::class, 'cetakhasilAbsensiPDF'])->name('cetak.laporan.hasil');
 
 
 //    Kelola User

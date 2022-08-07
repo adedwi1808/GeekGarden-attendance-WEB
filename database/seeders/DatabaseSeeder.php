@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Absensi;
 use App\Models\Admin;
 use App\Models\Jam_Kerja;
 use App\Models\Mading;
@@ -18,39 +19,41 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Pegawai::create([
-            "nama" => "Ade Dwi Prayitno",
-            "jenis_kelamin" => "Laki-laki",
-            "nomor_hp" => "42342342",
-            "jabatan" => "Mobile Engineer",
-            "email" => "adedwip1808@gmail.com",
-            "password" => '$2y$10$iUu6128DzUs7Kt/l.Eer9ebo4UopLfm2pxfp3tz.5YBmU05vmnuQ2'
-        ]);
+//        Pegawai::create([
+//            "nama" => "Ade Dwi Prayitno",
+//            "jenis_kelamin" => "Laki-laki",
+//            "nomor_hp" => "42342342",
+//            "jabatan" => "Mobile Engineer",
+//            "email" => "adedwip1808@gmail.com",
+//            "password" => '$2y$10$iUu6128DzUs7Kt/l.Eer9ebo4UopLfm2pxfp3tz.5YBmU05vmnuQ2'
+//        ]);
+//
+//        Pegawai::create([
+//            "nama" => "Sephia Dwinadella",
+//            "jenis_kelamin" => "Perempuan",
+//            "nomor_hp" => "0823132343432323221",
+//            "jabatan" => "HRD",
+//            "email" => "sephia@gmail.com",
+//            "password" => '$2y$10$iUu6128DzUs7Kt/l.Eer9ebo4UopLfm2pxfp3tz.5YBmU05vmnuQ2'
+//        ]);
+//
+//        Admin::create([
+//            "nama"=>"Ade",
+//            "email"=>"ade@gmail.com",
+//            "password" => '$2y$10$iUu6128DzUs7Kt/l.Eer9ebo4UopLfm2pxfp3tz.5YBmU05vmnuQ2'
+//        ]);
+//
+//        Admin::create([
+//            "nama"=>"Sephia",
+//            "email"=>"sephia@gmail.com",
+//            "password" => '$2y$10$iUu6128DzUs7Kt/l.Eer9ebo4UopLfm2pxfp3tz.5YBmU05vmnuQ2'
+//        ]);
+//
+//        Pegawai::factory(10)->create();
+//        Mading::factory(5)->create();
+//        Jam_Kerja::factory(1)->create();
 
-        Pegawai::create([
-            "nama" => "Sephia Dwinadella",
-            "jenis_kelamin" => "Perempuan",
-            "nomor_hp" => "0823132343432323221",
-            "jabatan" => "HRD",
-            "email" => "sephia@gmail.com",
-            "password" => '$2y$10$iUu6128DzUs7Kt/l.Eer9ebo4UopLfm2pxfp3tz.5YBmU05vmnuQ2'
-        ]);
-
-        Admin::create([
-            "nama"=>"Ade",
-            "email"=>"ade@gmail.com",
-            "password" => '$2y$10$iUu6128DzUs7Kt/l.Eer9ebo4UopLfm2pxfp3tz.5YBmU05vmnuQ2'
-        ]);
-
-        Admin::create([
-            "nama"=>"Sephia",
-            "email"=>"sephia@gmail.com",
-            "password" => '$2y$10$iUu6128DzUs7Kt/l.Eer9ebo4UopLfm2pxfp3tz.5YBmU05vmnuQ2'
-        ]);
-
-        Pegawai::factory(10)->create();
-        Mading::factory(5)->create();
-        Jam_Kerja::factory(1)->create();
+        Absensi::factory(12)->create();
 
     }
 }
