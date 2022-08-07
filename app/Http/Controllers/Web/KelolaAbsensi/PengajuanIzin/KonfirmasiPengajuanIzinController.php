@@ -85,7 +85,13 @@ class KonfirmasiPengajuanIzinController extends Controller
 
                         Absensi::where('id_pegawai', $pegawai->id_pegawai)
                             ->where('status','Cuti')
-                            ->orWhere('status','izin')
+                            ->orWhere('status','Izin')
+                            ->orWhere('status','Hadir')
+                            ->whereDate('tanggal', $day)
+                            ->delete();
+
+                        Absensi::where('id_pegawai', $pegawai->id_pegawai)
+                            ->where('status','Pulang')
                             ->whereDate('tanggal', $day)
                             ->delete();
 
@@ -106,7 +112,13 @@ class KonfirmasiPengajuanIzinController extends Controller
 
                         Absensi::where('id_pegawai', $pegawai->id_pegawai)
                             ->where('status','Cuti')
-                            ->orWhere('status','izin')
+                            ->orWhere('status','Izin')
+                            ->orWhere('status','Hadir')
+                            ->whereDate('tanggal', $day)
+                            ->delete();
+
+                        Absensi::where('id_pegawai', $pegawai->id_pegawai)
+                            ->where('status','Pulang')
                             ->whereDate('tanggal', $day)
                             ->delete();
 

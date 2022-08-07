@@ -136,6 +136,8 @@ class KonfirmasiLaporanAbsensiController extends Controller
 
                 Absensi::where('id_pegawai', $data_laporan_absensi->id_pegawai)
                     ->where('status','Hadir')
+                    ->orWhere('status','Izin')
+                    ->orWhere('status','Cuti')
                     ->whereDate('tanggal', $data_laporan_absensi->tanggal_absen)
                     ->delete();
 
@@ -158,6 +160,8 @@ class KonfirmasiLaporanAbsensiController extends Controller
 
                 Absensi::where('id_pegawai', $data_laporan_absensi->id_pegawai)
                     ->where('status','Pulang')
+                    ->orWhere('status','Izin')
+                    ->orWhere('status','Cuti')
                     ->whereDate('tanggal', $data_laporan_absensi->tanggal_absen)
                     ->delete();
 
