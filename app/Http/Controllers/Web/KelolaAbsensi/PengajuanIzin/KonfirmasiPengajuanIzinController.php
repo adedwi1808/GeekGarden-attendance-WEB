@@ -82,6 +82,13 @@ class KonfirmasiPengajuanIzinController extends Controller
                 if ($hari_libur){
                     $libur = new Carbon($hari_libur->tanggal);
                     if ($day->isWeekday() && $day != $libur) {
+
+                        Absensi::where('id_pegawai', $pegawai->id_pegawai)
+                            ->where('status','Cuti')
+                            ->orWhere('status','izin')
+                            ->whereDate('tanggal', $day)
+                            ->delete();
+
                         $data = [
                             'id_pegawai' => $pegawai->id_pegawai,
                             'tempat' => '-',
@@ -96,6 +103,13 @@ class KonfirmasiPengajuanIzinController extends Controller
                     }
                 }else{
                     if ($day->isWeekday()) {
+
+                        Absensi::where('id_pegawai', $pegawai->id_pegawai)
+                            ->where('status','Cuti')
+                            ->orWhere('status','izin')
+                            ->whereDate('tanggal', $day)
+                            ->delete();
+
                         $data = [
                             'id_pegawai' => $pegawai->id_pegawai,
                             'tempat' => '-',

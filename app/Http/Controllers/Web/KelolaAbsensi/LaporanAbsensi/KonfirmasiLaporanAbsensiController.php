@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\KelolaAbsensi\LaporanAbsensi;
 
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
+use App\Models\Jam_Kerja;
 use App\Models\Laporan_Absensi;
 use App\Models\Tanggal_Libur;
 use Carbon\Carbon;
@@ -125,10 +126,20 @@ class KonfirmasiLaporanAbsensiController extends Controller
                     $latitude= 0;
                     break;
             }
+            $jam_kerja = Jam_Kerja::latest('tanggal_dibuat')->first();
+
 
             $nama_pegawai = $data_laporan_absensi->pegawai->nama;
+
+
             if ($request->has('hadir')){
-                $tanggal = Carbon::create($data_laporan_absensi->tanggal_absen)->setTime(8,0,0);
+
+                Absensi::where('id_pegawai', $data_laporan_absensi->id_pegawai)
+                    ->where('status','Hadir')
+                    ->whereDate('tanggal', $data_laporan_absensi->tanggal_absen)
+                    ->delete();
+
+                $tanggal = Carbon::create($data_laporan_absensi->tanggal_absen)->setTimeFrom(Carbon::createFromTimeString($jam_kerja->jam_mulai));
                 $data = [
                     'id_pegawai' => $data_laporan_absensi->id_pegawai,
                     'tempat' => $request->post('tempat'),
@@ -140,8 +151,17 @@ class KonfirmasiLaporanAbsensiController extends Controller
                 $absensi = Absensi::create($data);
                 $absensi->save();
             }
+
+
+
             if ($request->has('pulang')){
-                $tanggal = Carbon::create($data_laporan_absensi->tanggal_absen)->setTime(15,59,59);
+
+                Absensi::where('id_pegawai', $data_laporan_absensi->id_pegawai)
+                    ->where('status','Pulang')
+                    ->whereDate('tanggal', $data_laporan_absensi->tanggal_absen)
+                    ->delete();
+
+                $tanggal = Carbon::create($data_laporan_absensi->tanggal_absen)->setTimeFrom(Carbon::createFromTimeString($jam_kerja->jam_selesai));
                 $data = [
                     'id_pegawai' => $data_laporan_absensi->id_pegawai,
                     'tempat' => $request->post('tempat'),
