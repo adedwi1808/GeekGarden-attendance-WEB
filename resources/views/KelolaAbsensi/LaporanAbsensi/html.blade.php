@@ -101,7 +101,9 @@
                                 <td>{{$laporan->tanggal_absen}}</td>
                                 <td>{{$laporan->keterangan_laporan}}</td>
                                 <td>{{$laporan->tanggal_laporan}}</td>
-                                <td>{{$laporan->status_laporan}}</td>
+                                <td><span  class="badge @if($laporan->status_laporan == "Diterima") badge-success
+                                        @elseif($laporan->status_laporan == "Ditolak") badge-danger @else badge-info
+@endif badge-pill">{{$laporan->status_laporan}}</span></td>
                                 <td>{{($laporan->id_admin == null)? "-": $laporan->admin->nama}}</td>
                                 <td>
                                     <div class="row justify-content-center">

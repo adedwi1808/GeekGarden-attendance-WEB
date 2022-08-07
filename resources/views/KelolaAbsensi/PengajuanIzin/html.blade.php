@@ -114,7 +114,11 @@
                                            href="/storage/surat-izin/{{$pengajuan_izin->surat_izin}}">{{(strlen($pengajuan_izin->surat_izin) > 18)? substr($pengajuan_izin->surat_izin, 0,18)."..." : $pengajuan_izin->surat_izin}}</a>
                                     </td>
                                     <td>{{$pengajuan_izin->tanggal_mengajukan_izin}}</td>
-                                    <td>{{$pengajuan_izin->status_izin}}</td>
+                                    <td>
+                                        <span  class="badge @if($pengajuan_izin->status_izin == "Diterima") badge-success
+                                        @elseif($pengajuan_izin->status_izin == "Ditolak") badge-danger @else badge-info
+@endif badge-pill">
+                                            {{$pengajuan_izin->status_izin}}</span></td>
                                     <td>{{($pengajuan_izin->id_admin == null)? "-": $pengajuan_izin->admin->nama}}</td>
                                     <td>
                                         <div class="row justify-content-center">
