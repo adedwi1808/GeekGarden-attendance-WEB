@@ -83,6 +83,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item {{($title == 'Cetak Laporan')? 'menu-is-opening menu-open': ''}}">
+                    <a href="{{route('admin.halaman.cetak.laporan')}}" class="nav-link {{($title == 'Cetak Laporan')? 'active': ''}}">
+                        <i class="nav-icon fas fa-print"></i>
+                        <p>
+                            Cetak Laporan
+                        </p>
+                    </a>
+                </li>
 {{--                LAINNYA------------------------------------------------------------------------------------------------------------------------}}
                 <li class="nav-header">Lainnya</li>
                 {{--                Kelola User------------------------------------------------------------------------------------------------------------------------}}
