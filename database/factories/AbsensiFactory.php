@@ -37,10 +37,10 @@ class AbsensiFactory extends Factory
             'tanggal' => function () {
                 if (self::$pulang) {
                     self::$pulang = false;
-                    return Carbon::now()->addDay(3)->setTime(15,59);
+                    return Carbon::now()->subDay(12)->setTime(15,59);
                 }
                 self::$pulang = true;
-                return Carbon::now()->addDay(3)->setTime(8,1);
+                return Carbon::now()->subDay(12)->setTime(8,1);
             }
         ];
     }
