@@ -74,6 +74,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
 
     //Laporan Absensi
     Route::get('/laporan-absensi', [KelolaLaporanAbsensiController::class, 'index'])->name('halaman.kelola.laporan.absensi');
+    Route::get('/cari-laporan-absensi',[KelolaLaporanAbsensiController::class, 'cariLaporanAbsensi'])->name('cari.laporan.absensi');
     Route::get('/konfirmasi-laporan-absensi/{id}',[KonfirmasiLaporanAbsensiController::class, 'index'])->name('halaman.konfirmasi.laporan.absensi');
     Route::post('/tolak-laporan-absensi/{id}', [KonfirmasiLaporanAbsensiController::class, 'tolak'])->name('tolak.laporan.absensi');
     Route::post('/terima-laporan-absensi/{id}', [KonfirmasiLaporanAbsensiController::class, 'terima'])->name('terima.laporan.absensi');
