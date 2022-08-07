@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\CetakLaporan;
 
+use App\Exports\AbsensiPegawaiExport;
 use App\Exports\DetailAbsensiPegawaiExport;
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
@@ -16,10 +17,14 @@ use Maatwebsite\Excel\Excel;
 
 class CetakLaporanHasilAbsensiController extends Controller
 {
-    public function cetakhasilAbsensiPDF()
+    public function cetakhasilAbsensiPDF(Request $request)
     {
+        $waktu = [$request->start_date, $request->end_date];
+
         $data_absensi = Absensi::with('pegawai')
+            ->whereBetween('tanggal', $waktu)
             ->get();
+
 
         $pdf = PDF::loadview('CetakLaporan.CetakPDF.index', compact('data_absensi'))->setOptions(['defaultFont' => 'sans-serif']);
         $pdf->setPaper('A4', 'landscape');
@@ -27,10 +32,11 @@ class CetakLaporanHasilAbsensiController extends Controller
         return $pdf->stream();
     }
 
-    public function export(Request $request)
+    public function cetakhasilAbsensiEXCEL(Request $request)
     {
         $waktu = [$request->start_date, $request->end_date];
 
-        return \Maatwebsite\Excel\Facades\Excel::download(new DetailAbsensiPegawaiExport($waktu), 'DetailAbsensi.xlsx');
+        return \Maatwebsite\Excel\Facades\Excel::download(new AbsensiPegawaiExport($waktu), 'Absensi.xlsx');
     }
+
 }

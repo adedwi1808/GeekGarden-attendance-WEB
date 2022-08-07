@@ -86,7 +86,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
 //    Cetak Laporan
     Route::get('/cetak-laporan', [CetakLaporanController::class, 'index'])->name('halaman.cetak.laporan');
     Route::get('/cetak-laporan-hasil-absensi', [CetakLaporanHasilAbsensiController::class, 'cetakhasilAbsensiPDF'])->name('cetak.laporan.hasil');
-    Route::get('/cetak-laporan-hasil-absensi-excel', [CetakLaporanHasilAbsensiController::class, 'export'])->name('cetak.laporan.hasil.excel');
+    Route::get('/cetak-laporan-hasil-absensi-excel', [CetakLaporanHasilAbsensiController::class, 'cetakhasilAbsensiEXCEL'])->name('cetak.laporan.hasil.excel');
 
 
 //    Kelola User
