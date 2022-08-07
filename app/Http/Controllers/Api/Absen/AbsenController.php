@@ -4,26 +4,46 @@ namespace App\Http\Controllers\Api\Absen;
 
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
+use App\Models\Jam_Kerja;
 use App\Models\Pegawai;
+use App\Models\Tanggal_Libur;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class AbsenController extends Controller
 {
+
     public function absensihadir(Request $request): \Illuminate\Http\JsonResponse
     {
         $id = auth('pegawai-api')->user()->id_pegawai;
-        $cek = Absensi::where("id_pegawai", $id)
-            ->whereDate('tanggal', today())
-            ->count();
+
+        $hari_libur = Tanggal_Libur::Where("tanggal", today())->first();
+
+        if ($hari_libur){
+            return $this->error("Hari ini adalah hari libur");
+        }
+
+
+        $jam_kerja = Jam_Kerja::latest('tanggal_dibuat')->first();
+
+        if ($jam_kerja->jam_mulai > now()->toTimeString()){
+            return $this->error("Sekarang Belumlah jam masuk kerja");
+        }
 
         $absensi_izin = Absensi::where("id_pegawai", $id)->whereDate('tanggal', today())->first();
 
         if($absensi_izin){
             if ($absensi_izin->status == "Izin"){
                 return $this->error("Anda Sedang Melakukan Izin Saat ini");
+            }elseif ($absensi_izin->status == "Cuti"){
+                return $this->error("Anda Sedang Melakukan Cuti Saat ini");
             }
         }
+
+        $cek = Absensi::where("id_pegawai", $id)
+            ->whereDate('tanggal', today())
+            ->count();
 
         if ($cek == 1) {
             return $this->error("Anda Sudah Mengisi Absensi Hadir");
@@ -95,12 +115,32 @@ class AbsenController extends Controller
     public function absensipulang(Request $request)
     {
         $id = auth('pegawai-api')->user()->id_pegawai;
+
+        $jam_kerja = Jam_Kerja::latest('tanggal_dibuat')->first();
+
+        if ($jam_kerja->jam_selesai > now()->toTimeString()){
+            return $this->error("Sekarang Belumlah jam Pulang kerja");
+        }
+        $absensi_izin = Absensi::where("id_pegawai", $id)->whereDate('tanggal', today())->first();
+
+        if($absensi_izin){
+            if ($absensi_izin->status == "Izin"){
+                return $this->error("Anda Sedang Melakukan Izin Saat ini");
+            }elseif ($absensi_izin->status == "Cuti"){
+                return $this->error("Anda Sedang Melakukan Cuti Saat ini");
+            }
+        }
+
         $cek = Absensi::where("id_pegawai", $id)
             ->whereDate('tanggal', today())
             ->count();
+
         $absensi = Absensi::where("id_pegawai", $id)->whereDate('tanggal', today())->first();
+
         if ($absensi->status == "Izin"){
             return $this->error("Anda Sedang Melakukan Izin Saat ini");
+        }elseif ($absensi->status == "Cuti"){
+            return $this->error("Anda Sedang Melakukan Cuti Saat ini");
         }
 
         if ($cek == 2) {
@@ -141,47 +181,6 @@ class AbsenController extends Controller
         } else {
             return $this->error("Terjadi kesalahan");
         }
-    }
-
-    public function checkabsensi(Request $request)
-    {
-        $id = auth('pegawai-api')->user()->id_pegawai;
-        $jumlah_absen = Absensi::where("id_pegawai", $id)
-            ->where('status','!=','Izin')
-            ->whereDate('tanggal', today())
-            ->count();
-        if ($jumlah_absen < 1) {
-            $data = [
-                'jumlah_absen_hari_ini' => $jumlah_absen,
-            ];
-        }else if ($jumlah_absen == 1){
-            $data = [
-                'jumlah_absen_hari_ini' => $jumlah_absen,
-                'jam_hadir' => Absensi::select("tanggal")
-                    ->where("id_pegawai", $id)
-                    ->whereDate('tanggal', today())
-                    ->where("status","Hadir")
-                    ->get()->first(),
-            ];
-        }else {
-            $data = [
-                'jumlah_absen_hari_ini' => $jumlah_absen,
-                'jam_hadir' => Absensi::select("tanggal")
-                    ->where("id_pegawai", $id)
-                    ->whereDate('tanggal', today())
-                    ->where("status","Hadir")
-                    ->get()->first(),
-                'jam_pulang' => Absensi::select("tanggal")
-                    ->where("id_pegawai", $id)
-                    ->whereDate('tanggal', today())
-                    ->where("status","Pulang")
-                    ->get()->first()
-            ];
-        }
-
-
-        return
-            $this->success($data);
     }
 
     public function success($data, $message = "success")

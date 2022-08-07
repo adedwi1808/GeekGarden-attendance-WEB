@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Absen\CheckAbsensiController;
 use App\Http\Controllers\Api\Auth\AuthPegawaiController;
 use App\Http\Controllers\Api\EditProfilePegawai\EditProfilePegawaiController;
 use App\Http\Controllers\Api\Mading\MadingController;
@@ -48,7 +49,8 @@ Route::group(['middleware' => ['assign.guard:pegawai-api', 'jwt.verify']], funct
 
     //Other
     Route::get('/madings', [MadingController::class, 'selectAllMading']);
-    Route::get('/cek-absensi', [AbsenController::class, 'checkabsensi']);
+    Route::get('/cek-absensi', [CheckAbsensiController::class, 'checkabsensi']);
+
     //Edit Profile
     Route::post('/foto-pegawai/{id}', [EditProfilePegawaiController::class, 'editfotoprofile']);
     Route::put('/update-pegawai/{id}', [EditProfilePegawaiController::class, 'updatepegawai']);
