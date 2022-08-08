@@ -138,12 +138,12 @@ class KonfirmasiLaporanAbsensiController extends Controller
 
             Absensi::where('id_pegawai', $data_laporan_absensi->id_pegawai)
                 ->where('status','Izin')
-                ->where('tanggal', $tanggal_absen)
+                ->whereDate('tanggal', $tanggal_absen)
                 ->delete();
 
             Absensi::where('id_pegawai', $data_laporan_absensi->id_pegawai)
                 ->where('status','Cuti')
-                ->where('tanggal', $tanggal_absen)
+                ->whereDate('tanggal', $tanggal_absen)
                 ->delete();
 
 
