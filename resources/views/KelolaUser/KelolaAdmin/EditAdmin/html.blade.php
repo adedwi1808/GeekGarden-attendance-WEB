@@ -46,20 +46,15 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password" id="password">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                    <span class="invalid-feedback">
-                        @error('password'){{$message}} @enderror
-                    </span>
+                    <button class="btn btn-warning btn-block text-white" formaction="{{route('lupa.password')}}">
+                        <i class="fas fa-lock"></i>
+                        Reset Password
+                    </button>
                 </div>
                 <div class="row">
                     <!-- /.col -->
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Edit Admin</button>
+                        <button type="button" class="btn btn-primary btn-block">Edit Admin</button>
                     </div>
                     <!-- /.col -->
                 </div>
