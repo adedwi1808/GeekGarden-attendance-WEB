@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthPegawaiController extends Controller
 {
-    
+
     public function pegawailogin(Request $request)
     {
         $validasi = Validator::make($request->all(), [

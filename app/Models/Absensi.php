@@ -33,6 +33,11 @@ protected $primaryKey = "id_absensi";
         return $this->hasMany(Lembur::class, 'id_absensi', 'id_absensi');
     }
 
+    public function progress()
+    {
+        return $this->hasOne(Progress::class, 'id_progress', 'id_progress');
+    }
+
     protected $hidden = [
     ];
 
