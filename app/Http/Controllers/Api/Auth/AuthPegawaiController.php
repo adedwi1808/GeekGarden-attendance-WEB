@@ -11,33 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthPegawaiController extends Controller
 {
-
-    public function pegawairegister(Request $request)
-    {
-        $validasi = Validator::make($request->all(), [
-            'nama' => 'required',
-            'jenis_kelamin' => 'required',
-            'email' => 'required|unique:pegawai',
-            'nomor_hp' => 'required|unique:pegawai',
-            'password' => 'required|min:6'
-        ]);
-
-        if ($validasi->fails())
-        {
-            return $this->error($validasi->errors()->first());
-        }
-
-        $pegawai = Pegawai::create(array_merge($request->all(), [
-            'password' => bcrypt($request->password)
-        ]));
-
-        if ($pegawai) {
-            return $this->success($pegawai, 'selamat datang ' . $pegawai->name);
-        } else {
-            return $this->error("Terjadi kesalahan");
-        }
-    }
-
+    
     public function pegawailogin(Request $request)
     {
         $validasi = Validator::make($request->all(), [

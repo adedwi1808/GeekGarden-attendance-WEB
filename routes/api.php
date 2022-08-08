@@ -28,7 +28,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //Pegawai
-Route::post('/register-pegawai', [AuthPegawaiController::class, 'pegawairegister'])->name('pegawairegister');
 Route::post('/login-pegawai', [AuthPegawaiController::class, 'pegawailogin'])->name('pegawailogin');
 Route::post('/lupa-password',[LupaPasswordPegawaiController::class, 'lupapassword'])->name('lupa.password.pegawai');
 Route::group(['middleware' => ['assign.guard:pegawai-api', 'jwt.verify']], function () {
