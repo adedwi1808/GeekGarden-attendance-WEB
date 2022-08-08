@@ -24,7 +24,7 @@ class LupaPasswordPegawaiController extends Controller
             'token'=>$token
         ]);
 
-        $action_link = route('link.reset.password', ['token'=>$token, 'email'=>$request->email]);
+        $action_link = route('link.reset.password.pegawai', ['token'=>$token, 'email'=>$request->email]);
         $body = "Kami menerima bahwa anda kehilangan password anda yaitu ".$request->email." anda bisa melakukan reset password dengan menekan link dibawah";
         Mail::send('Auth.RecoverPassword.email-forgot', ['action_link'=>$action_link, 'body'=>$body], function ($message) use ($request){
             $pegawai = Pegawai::where('email', $request->email)->first();
@@ -34,7 +34,9 @@ class LupaPasswordPegawaiController extends Controller
                 ->subject('Lupa Password');
         });
 
-        return $this->success("","Silahkan Cek Email Anda Untuk Menreset Password");
+        $pegawai = Pegawai::where('email', $request->email)->first();
+
+        return $this->success(data: $pegawai , message: "Silahkan Cek Email Anda Untuk Mereset Password");
     }
 
     public function formresetpassword(Request $request, $token = null)

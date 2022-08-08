@@ -45,7 +45,6 @@ Route::get('/', function () {
     Route::get('/reset-password/{token}',[LupaPasswordAdminController::class,'formresetpassword'])->name('link.reset.password');
     Route::post('/reset-password',[LupaPasswordAdminController::class,'resetpassword'])->name('reset.password');
 //PEGAWAI
-    Route::post('/lupa-password-pegawai',[LupaPasswordPegawaiController::class, 'lupapassword'])->name('lupa.password.pegawai');
     Route::get('/reset-password-pegawai/{token}',[LupaPasswordPegawaiController::class,'formresetpassword'])->name('link.reset.password.pegawai');
     Route::post('/reset-password-pegawai',[LupaPasswordPegawaiController::class,'resetpassword'])->name('reset.password.pegawai');
 

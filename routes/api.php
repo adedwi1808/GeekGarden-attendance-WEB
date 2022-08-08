@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Absen\CheckAbsensiController;
 use App\Http\Controllers\Api\Auth\AuthPegawaiController;
+use App\Http\Controllers\Api\Auth\LupaPasswordPegawaiController;
 use App\Http\Controllers\Api\EditProfilePegawai\EditProfilePegawaiController;
 use App\Http\Controllers\Api\Mading\MadingController;
 use App\Http\Controllers\Api\PengajuanIzin\PengajuanIzinController;
@@ -29,6 +30,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //Pegawai
 Route::post('/register-pegawai', [AuthPegawaiController::class, 'pegawairegister'])->name('pegawairegister');
 Route::post('/login-pegawai', [AuthPegawaiController::class, 'pegawailogin'])->name('pegawailogin');
+Route::post('/lupa-password',[LupaPasswordPegawaiController::class, 'lupapassword'])->name('lupa.password.pegawai');
 Route::group(['middleware' => ['assign.guard:pegawai-api', 'jwt.verify']], function () {
     //Auth
     Route::post('/me-pegawai', [AuthPegawaiController::class, 'me'])->name('me');
