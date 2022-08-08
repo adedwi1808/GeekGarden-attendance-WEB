@@ -25,7 +25,7 @@
                             <i class="fas fa-user"></i>
                         </span>
                     </div>
-                    <input type="text" class="form-control @error('nama')is-invalid @enderror" placeholder="Nama Lengkap" name="nama" id="nama" value="{{$data_admin['nama']}}">
+                    <input type="text" class="form-control @error('nama')is-invalid @enderror" placeholder="Nama Lengkap" name="nama" id="nama" value="{{$data_admin->nama}}">
                     <span class="invalid-feedback">
                         @error('nama'){{$message}} @enderror
                     </span>
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <input type="email" class="form-control @error('email') is-invalid @enderror"
-                           placeholder="Email" name="email" id="email" value="{{$data_admin['email']}}">
+                           placeholder="Email" name="email" id="email" value="{{$data_admin->email}}">
                     <span class="invalid-feedback">
                         @error('email'){{$message}} @enderror
                     </span>

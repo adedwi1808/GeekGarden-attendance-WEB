@@ -28,11 +28,8 @@ class KelolaAdminController extends Controller
     public function editpage(Request $request, $id)
     {
         $title = 'Admin';
-        $admin = Admin::where('id_admin', $id)->first();
-        $data_admin = [
-            'nama' => $admin->nama,
-            'email' => $admin->email,
-        ];
+        $data_admin = Admin::where('id_admin', $id)->first();
+
         return view('KelolaUser.KelolaAdmin.EditAdmin.index', compact('data_admin', 'title', 'id'));
 
     }

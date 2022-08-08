@@ -39,7 +39,7 @@ class LupaPasswordController extends Controller
                     ->subject('Lupa Password');
         });
 
-        return back()->with('success', 'Silahkan Cek email anda');
+        return back()->with('success', 'Silahkan Cek Email Untuk Melakukan Reset Password');
     }
 
     public function formresetpassword(Request $request, $token = null)
