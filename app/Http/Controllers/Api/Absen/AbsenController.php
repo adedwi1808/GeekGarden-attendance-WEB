@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Absensi;
 use App\Models\Jam_Kerja;
 use App\Models\Pegawai;
+use App\Models\Progress;
 use App\Models\Tanggal_Libur;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -150,14 +151,6 @@ class AbsenController extends Controller
             ->whereDate('tanggal', today())
             ->count();
 
-        $absensi = Absensi::where("id_pegawai", $id)->whereDate('tanggal', today())->first();
-
-        if ($absensi->status == "Izin"){
-            return $this->error("Anda Sedang Melakukan Izin Saat ini");
-        }elseif ($absensi->status == "Cuti"){
-            return $this->error("Anda Sedang Melakukan Cuti Saat ini");
-        }
-
         if ($cek == 2) {
             return $this->error("Anda Sudah Melengkapi Absensi");
         }
@@ -183,7 +176,6 @@ class AbsenController extends Controller
             'status' => $request->post('status'),
             'longitude' => $request->post('longitude'),
             'latitude' => $request->post('latitude'),
-            'progress_hari_ini' => $request->post('progress_hari_ini'),
         ];
 
 
@@ -191,7 +183,17 @@ class AbsenController extends Controller
         $absensi->save();
 
         $absensiResponse = Absensi::where('id_absensi', $absensi->id_absensi)->first();
-        if ($absensi) {
+
+
+        if ($absensiResponse) {
+
+            $progress = Progress::create([
+                'id_absensi'=>$absensiResponse->id_absensi,
+                'progress_pekerjaan'=>$request->post('progress_hari_ini')
+            ]);
+
+            $progress->save();
+
             return $this->success($absensiResponse, 'Anda berhasil melakukan absensi pulang');
         } else {
             return $this->error("Terjadi kesalahan");
