@@ -1,9 +1,10 @@
 <?php
 
 
+use App\Http\Controllers\Api\Auth\LupaPasswordPegawaiController;
 use App\Http\Controllers\Web\Auth\LoginController;
 use App\Http\Controllers\Web\Auth\LogoutController;
-use App\Http\Controllers\Web\Auth\LupaPasswordController;
+use App\Http\Controllers\Web\Auth\LupaPasswordAdminController;
 use App\Http\Controllers\Web\Auth\RegisterController;
 use App\Http\Controllers\Web\CetakLaporan\CetakLaporanController;
 use App\Http\Controllers\Web\CetakLaporan\CetakLaporanHasilAbsensiController;
@@ -38,10 +39,15 @@ Route::get('/', function () {
 });
 
 //LupaPassword
-Route::get('/lupa-passowrd', [LupaPasswordController::class, 'index'])->name('lupa.password');
-Route::post('/lupa-password',[LupaPasswordController::class, 'lupapassword'])->name('lupa.password');
-Route::get('/reset-password/{token}',[LupaPasswordController::class,'formresetpassword'])->name('link.reset.password');
-Route::post('/reset-password',[LupaPasswordController::class,'resetpassword'])->name('reset.password');
+//ADMIN
+    Route::get('/lupa-passowrd', [LupaPasswordAdminController::class, 'index'])->name('lupa.password');
+    Route::post('/lupa-password',[LupaPasswordAdminController::class, 'lupapassword'])->name('lupa.password');
+    Route::get('/reset-password/{token}',[LupaPasswordAdminController::class,'formresetpassword'])->name('link.reset.password');
+    Route::post('/reset-password',[LupaPasswordAdminController::class,'resetpassword'])->name('reset.password');
+//PEGAWAI
+    Route::post('/lupa-password-pegawai',[LupaPasswordPegawaiController::class, 'lupapassword'])->name('lupa.password.pegawai');
+    Route::get('/reset-password-pegawai/{token}',[LupaPasswordPegawaiController::class,'formresetpassword'])->name('link.reset.password.pegawai');
+    Route::post('/reset-password-pegawai',[LupaPasswordPegawaiController::class,'resetpassword'])->name('reset.password.pegawai');
 
 //Guest
 Route::prefix('admin')->name('admin.')->middleware('guest:admin')->group(function (){

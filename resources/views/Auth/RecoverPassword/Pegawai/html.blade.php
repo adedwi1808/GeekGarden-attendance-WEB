@@ -21,7 +21,7 @@
                     </div>
                 </div>
 
-                <form action="{{route('reset.password')}}" method="post">
+                <form action="{{route('reset.password.pegawai')}}" method="post">
                     @csrf
                     <input type="hidden" name="token", value="{{$token}}">
                     <div class="input-group mb-3">
@@ -66,10 +66,6 @@
                         <!-- /.col -->
                     </div>
                 </form>
-
-                <p class="mt-3 mb-1">
-                    <a href="{{route('admin.login')}})}}">Login</a>
-                </p>
             </div>
             <!-- /.login-card-body -->
         </div>

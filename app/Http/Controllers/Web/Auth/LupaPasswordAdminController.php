@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
-class LupaPasswordController extends Controller
+class LupaPasswordAdminController extends Controller
 {
     public function index()
     {
@@ -24,6 +24,7 @@ class LupaPasswordController extends Controller
            'email'=>'required|email|exists:Admin'
         ]);
 
+
         $token = Str::random(64);
 
         Reset_Password::create([
@@ -34,8 +35,10 @@ class LupaPasswordController extends Controller
         $action_link = route('link.reset.password', ['token'=>$token, 'email'=>$request->email]);
         $body = "Kami menerima bahwa anda kehilangan password anda yaitu ".$request->email." anda bisa melakukan reset password dengan menekan link dibawah";
         Mail::send('Auth.RecoverPassword.email-forgot', ['action_link'=>$action_link, 'body'=>$body], function ($message) use ($request){
-           $message->from('noreply@example.com', 'GeekGarden Attendance');
-           $message->to($request->email,'asdasda')
+            $admin = Admin::where('email', $request->email)->first();
+
+            $message->from('noreply@example.com', 'GeekGarden Attendance');
+           $message->to($request->email, $admin->nama)
                     ->subject('Lupa Password');
         });
 
