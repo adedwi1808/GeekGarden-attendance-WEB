@@ -1,28 +1,31 @@
 <table class="table table-bordered table-hover table-striped text-center" cellspacing="0" style="width: 100%">
     <thead>
     <tr>
-        <th>Nama Pegawai</th>
-        <th>Tempat</th>
-        <th>Longitude</th>
-        <th>Latitude</th>
-        <th>Foto Absensi</th>
-        <th>Status</th>
-        <th>Tanggal</th>
+        <th class="col-1">Nama Pegawai</th>
+        <th class="col-1">Tempat</th>
+        <th class="col-1">Longitude</th>
+        <th class="col-1">Latitude</th>
+        <th class="col-1">Foto Absensi</th>
+        <th class="col-3">Progress</th>
+        <th class="col-1">Status</th>
+        <th class="col-3">Tanggal</th>
     </tr>
     </thead>
     <tbody >
 
     @forelse($data_absensi as $index=>$absensi)
         <tr>
-            <td>{{$absensi->pegawai->nama}}</td>
-            <td>{{$absensi->tempat}}</td>
-            <td>{{$absensi->longitude}}</td>
-            <td>{{$absensi->latitude}}</td>
-            <td><a class="link-primary"
-                   href="/storage/bukti-absen/{{$absensi->foto}}">{{(strlen($absensi->foto) > 18)? substr($absensi->foto, 0,18)."..." : $absensi->foto}}</a>
+            <td  class="col-1">{{$absensi->pegawai->nama}}</td>
+            <td  class="col-1">{{$absensi->tempat}}</td>
+            <td  class="col-1">{{$absensi->longitude}}</td>
+            <td  class="col-1">{{$absensi->latitude}}</td>
+            <td  class="col-1"><a class="link-primary"
+                                  href="/storage/bukti-absen/{{$absensi->foto}}">Link</a>
             </td>
-            <td>{{$absensi->status}}</td>
-            <td>{{$absensi->tanggal}}</td>
+            <td class="col-3">{{(\App\Models\Progress::where('id_absensi',$absensi->id_absensi)->first())?
+\App\Models\Progress::where('id_absensi',$absensi->id_absensi)->first()->progress_pekerjaan:"-"}}</td>
+            <td  class="col-1">{{$absensi->status}}</td>
+            <td  class="col-3">{{$absensi->tanggal}}</td>
         </tr>
     @empty
         <div class="alert alert-danger">
@@ -30,15 +33,4 @@
         </div>
     @endforelse
     </tbody>
-    <tfoot>
-    <tr >
-        <th>Nama Pegawai</th>
-        <th>Tempat</th>
-        <th>Longitude</th>
-        <th>Latitude</th>
-        <th>Foto Absensi</th>
-        <th>Status</th>
-        <th>Tanggal</th>
-    </tr>
-    </tfoot>
 </table>

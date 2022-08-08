@@ -34,5 +34,15 @@
             "responsive": true,
             order:[[6,'desc']]
         });
+        $('#tableAbsensi').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            order:[[7,'desc']]
+        });
     });
 </script>

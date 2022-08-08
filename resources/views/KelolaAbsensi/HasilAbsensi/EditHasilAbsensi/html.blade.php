@@ -56,6 +56,16 @@
                     </span>
                 </div>
 
+                    @if(\App\Models\Progress::where('id_absensi',$absensi->id_absensi)->first())
+
+
+                    <div class="form-group mb-3">
+                        <label for="informasiMading">Progress Pekerjaan:</label>
+                        <textarea class="form-control" id="informasiMading" disabled
+                                  rows="5"
+                                  placeholder="">{{\App\Models\Progress::where('id_absensi',$absensi->id_absensi)->first()->progress_pekerjaan}}</textarea>
+                    </div>
+                    @endif
                 <div class="row mb-3">
                     {{--Tempat--}}
                     <div class="col-4">

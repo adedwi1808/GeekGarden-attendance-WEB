@@ -62,7 +62,7 @@
                 </form>
                 <div class="row">
                     <div class="col-12">
-                        <table id="table" class="table table-bordered table-hover table-striped text-center">
+                        <table id="tableAbsensi" class="table table-bordered table-hover table-striped text-center">
                             <thead>
                             <tr>
                                 <th>Nama Pegawai</th>
@@ -70,6 +70,7 @@
                                 <th>Longitude</th>
                                 <th>Latitude</th>
                                 <th>Foto Absensi</th>
+                                <th>Progress</th>
                                 <th>Status</th>
                                 <th>Tanggal</th>
                                 <th>Kelola</th>
@@ -79,27 +80,29 @@
 
                             @forelse($data_absensi as $index=>$absensi)
                                 <tr>
-                                    <td class="col-2">{{$absensi->pegawai->nama}}</td>
-                                    <td class="col-1">{{$absensi->tempat}}</td>
-                                    <td class="col-1">{{$absensi->longitude}}</td>
-                                    <td class="col-1">{{$absensi->latitude}}</td>
-                                    <td class="col-1"><a class="link-primary"
-                                                         href="/storage/bukti-absen/{{$absensi->foto}}">{{(strlen($absensi->foto) > 18)? substr($absensi->foto, 0,18)."..." : $absensi->foto}}</a>
+                                    <td>{{$absensi->pegawai->nama}}</td>
+                                    <td>{{$absensi->tempat}}</td>
+                                    <td>{{$absensi->longitude}}</td>
+                                    <td>{{$absensi->latitude}}</td>
+                                    <td><a class="link-primary"
+                                                         href="/storage/bukti-absen/{{$absensi->foto}}">{{(strlen($absensi->foto) > 9)? substr($absensi->foto, 0,9)."..." : $absensi->foto}}</a>
                                     </td>
-                                    <td class="col-1">{{$absensi->status}}</td>
-                                    <td class="col-2">{{$absensi->tanggal}}</td>
-                                    <td class="col-3">
+                                    <td>{{(\App\Models\Progress::where('id_absensi',$absensi->id_absensi)->first())?
+(strlen(\App\Models\Progress::where('id_absensi',$absensi->id_absensi)->first()->progress_pekerjaan) > 25)?
+substr(\App\Models\Progress::where('id_absensi',$absensi->id_absensi)->first()->progress_pekerjaan,0,25)."...":
+\App\Models\Progress::where('id_absensi',$absensi->id_absensi)->first()->progress_pekerjaan:"-"}}</td>
+                                    <td>{{$absensi->status}}</td>
+                                    <td>{{$absensi->tanggal}}</td>
+                                    <td>
                                         <div class="row justify-content-center">
-
-
-                                            <form class="mx-2"
+                                            <form class="col-6"
                                                   action="https://www.google.com/maps/search/{{$absensi->latitude.','.$absensi->longitude}}"
                                                   method="get" target="_blank">
                                                 <button type="submit" class="btn btn-info"><i
                                                         class="fas fa-map-marked"></i>
                                                 </button>
                                             </form>
-                                            <form class="mx-2"
+                                            <form class="col-6"
                                                   action="{{route('admin.halaman.edit.absensi', $absensi->id_absensi)}}"
                                                   method="get">
                                                 <button type="submit" class="btn btn-success"><i
@@ -122,6 +125,7 @@
                                 <th>Longitude</th>
                                 <th>Latitude</th>
                                 <th>Foto Absensi</th>
+                                <th>Progress</th>
                                 <th>Status</th>
                                 <th>Tanggal</th>
                                 <th>Kelola</th>

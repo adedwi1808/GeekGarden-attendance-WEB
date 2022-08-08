@@ -70,41 +70,13 @@
                                     <td>
                                         <div class="row justify-content-center">
 
-                                            <div class="col-6">
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-info" formaction="" data-toggle="modal"
-                                                        data-target="#modalTambahAbsen">
-                                                    <i class="fa fa-eye"></i>
+                                            <form class="col-6"
+                                                  action="{{route('admin.lihat.mading',$mading->id_mading)}}"
+                                                  method="get">
+                                                <button type="submit" class="btn btn-info"><i
+                                                        class="fas fa-eye"></i>
                                                 </button>
-                                                    <div class="modal fade" id="modalTambahAbsen" tabindex="-1" role="dialog"
-                                                         aria-labelledby="modalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="modalLabel">{{$mading->judul}}</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                        <img src="/storage/mading/{{$mading->foto}}" class="card-img-top img-fluid" alt="Thumbnail Mading" style="height: 30vw; object-fit: cover">
-
-                                                                        <!-- /.card-header -->
-                                                                        <div class="card-body">
-                                                                            <h3 class="card-title text-bold mb-3">{{$mading->judul}}</h3>
-                                                                            <p class="card-text">{{$mading->informasi}}</p>
-                                                                            <p><span class="fas fa-calendar mr-2" style="color:grey"></span> {{$mading->create_at}}</p>
-                                                                        </div>
-                                                                        <!-- /.card-body -->
-                                                                    </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                            </div>
+                                            </form>
 
                                             <form class="col-6"
                                                   action="{{route('admin.halaman.edit.mading',$mading->id_mading)}}"
