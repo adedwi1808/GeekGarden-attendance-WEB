@@ -17,7 +17,6 @@ class Lembur extends Model
     protected $fillable = [
         'id_lembur',
         'id_absensi',
-        'lama_lembur',
         'tanggal_dibuat'
     ];
 

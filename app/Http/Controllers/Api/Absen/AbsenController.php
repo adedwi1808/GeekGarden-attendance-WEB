@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Absen;
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
 use App\Models\Jam_Kerja;
+use App\Models\Lembur;
 use App\Models\Pegawai;
 use App\Models\Progress;
 use App\Models\Tanggal_Libur;
@@ -184,15 +185,26 @@ class AbsenController extends Controller
 
         $absensiResponse = Absensi::where('id_absensi', $absensi->id_absensi)->first();
 
-
         if ($absensiResponse) {
-
             $progress = Progress::create([
                 'id_absensi'=>$absensiResponse->id_absensi,
                 'progress_pekerjaan'=>$request->post('progress_hari_ini')
             ]);
 
             $progress->save();
+
+            if (now()->toTimeString() > Carbon::createFromTimeString($jam_kerja->jam_selesai)->addHour()->toTimeString()){
+                $cek_absensi_datang = Absensi::where('id_pegawai', $absensi->id_pegawai)
+                    ->where('tempat', 'Dikantor')
+                    ->whereDate('tanggal', Carbon::today())
+                    ->first();
+                if ($absensiResponse->tempat == "Dikantor" && $cek_absensi_datang)
+                $lembur = Lembur::create([
+                    'id_absensi'=> $absensiResponse->id_absensi,
+                ]);
+
+                $lembur->save();
+            }
 
             return $this->success($absensiResponse, 'Anda berhasil melakukan absensi pulang');
         } else {

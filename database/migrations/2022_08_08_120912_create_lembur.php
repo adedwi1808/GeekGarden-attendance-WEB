@@ -20,7 +20,6 @@ return new class extends Migration
                 ->on('absensi')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->integer('lama_lembur');
             $table->dateTime('tanggal_dibuat')
                 ->useCurrent();
         });
