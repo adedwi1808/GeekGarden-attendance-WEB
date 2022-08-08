@@ -90,6 +90,8 @@
                                     <td class="col-2">{{$absensi->tanggal}}</td>
                                     <td class="col-3">
                                         <div class="row justify-content-center">
+
+
                                             <form class="mx-2"
                                                   action="https://www.google.com/maps/search/{{$absensi->latitude.','.$absensi->longitude}}"
                                                   method="get" target="_blank">
