@@ -63,6 +63,7 @@ class KonfirmasiPengajuanIzinController extends Controller
                 'id_admin'=>Session::get('admin.id_admin'),
             ]);
 
+
             $begin = new DateTime($data_pengajuan_izin->tanggal_mulai_izin);
             $end = new DateTime($data_pengajuan_izin->tanggal_selesai_izin);
             $end->add(DateInterval::createFromDateString('+ 1 day'));
@@ -74,6 +75,35 @@ class KonfirmasiPengajuanIzinController extends Controller
             if (!$pegawai) return redirect()->route('admin.halaman.kelola.pengajuan.izin', compact('title'))
                 ->with('fail', "Pegawai Tidak Ditemukan");
 
+            if ($begin == $end){
+
+                $day = new Carbon($data_pengajuan_izin->tanggal_mulai_izin);
+                $hari_libur = Tanggal_Libur::WhereDate("tanggal", $day)->first();
+
+                if (!$day->isWeekend() || $day!=$hari_libur){
+                    Absensi::where('id_pegawai', $pegawai->id_pegawai)
+                        ->whereDate('tanggal', '=', $day)
+                        ->delete();
+
+                    $data = [
+                        'id_pegawai' => $pegawai->id_pegawai,
+                        'tempat' => '-',
+                        'status' => ($data_pengajuan_izin->jenis_izin == 'Cuti')? 'Cuti': 'Izin',
+                        'longitude' => '0',
+                        'latitude' => '0',
+                        'foto' => '',
+                        'tanggal' => $data_pengajuan_izin->tanggal_mulai_izin
+                    ];
+                    $absensi = Absensi::create($data);
+                    $absensi->save();
+
+                    return redirect()->route('admin.halaman.kelola.pengajuan.izin', compact('title'))
+                        ->with('success', "Pengajuan $nama_pegawai diterima");
+                }
+                return redirect()->route('admin.halaman.kelola.pengajuan.izin', compact('title'))
+                    ->with('fail', "Terjadi Kesalahan");
+            }
+
             foreach ($period as $dt) {
                 $day = new Carbon($dt);
 
@@ -84,15 +114,7 @@ class KonfirmasiPengajuanIzinController extends Controller
                     if ($day->isWeekday() && $day != $libur) {
 
                         Absensi::where('id_pegawai', $pegawai->id_pegawai)
-                            ->where('status','Cuti')
-                            ->orWhere('status','Izin')
-                            ->orWhere('status','Hadir')
-                            ->whereDate('tanggal', $day)
-                            ->delete();
-
-                        Absensi::where('id_pegawai', $pegawai->id_pegawai)
-                            ->where('status','Pulang')
-                            ->whereDate('tanggal', $day)
+                            ->whereDate('tanggal', '=', $day)
                             ->delete();
 
                         $data = [
@@ -111,15 +133,7 @@ class KonfirmasiPengajuanIzinController extends Controller
                     if ($day->isWeekday()) {
 
                         Absensi::where('id_pegawai', $pegawai->id_pegawai)
-                            ->where('status','Cuti')
-                            ->orWhere('status','Izin')
-                            ->orWhere('status','Hadir')
-                            ->whereDate('tanggal', $day)
-                            ->delete();
-
-                        Absensi::where('id_pegawai', $pegawai->id_pegawai)
-                            ->where('status','Pulang')
-                            ->whereDate('tanggal', $day)
+                            ->whereDate('tanggal', '=', $day)
                             ->delete();
 
                         $data = [

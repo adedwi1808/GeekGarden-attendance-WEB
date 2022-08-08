@@ -100,7 +100,12 @@ class KonfirmasiLaporanAbsensiController extends Controller
 
         $tanggal_absen = new Carbon($data_laporan_absensi->tanggal_absen);
 
+
         $hari_libur = Tanggal_Libur::Where("tanggal", $tanggal_absen)->first();
+
+        if ($tanggal_absen->isWeekend()){
+            return back()->with('warning', "Tanggal Yang Dilaporkan Merupakan Weekend");
+        }
 
         if ($hari_libur){
             return back()->with('warning', "Tanggal Yang Dilaporkan Merupakan Hari Libur");
@@ -131,14 +136,22 @@ class KonfirmasiLaporanAbsensiController extends Controller
 
             $nama_pegawai = $data_laporan_absensi->pegawai->nama;
 
+            Absensi::where('id_pegawai', $data_laporan_absensi->id_pegawai)
+                ->where('status','Izin')
+                ->where('tanggal', $tanggal_absen)
+                ->delete();
+
+            Absensi::where('id_pegawai', $data_laporan_absensi->id_pegawai)
+                ->where('status','Cuti')
+                ->where('tanggal', $tanggal_absen)
+                ->delete();
+
 
             if ($request->has('hadir')){
 
                 Absensi::where('id_pegawai', $data_laporan_absensi->id_pegawai)
                     ->where('status','Hadir')
-                    ->orWhere('status','Izin')
-                    ->orWhere('status','Cuti')
-                    ->whereDate('tanggal', $data_laporan_absensi->tanggal_absen)
+                    ->whereDate('tanggal', $tanggal_absen)
                     ->delete();
 
                 $tanggal = Carbon::create($data_laporan_absensi->tanggal_absen)->setTimeFrom(Carbon::createFromTimeString($jam_kerja->jam_mulai));
@@ -160,9 +173,7 @@ class KonfirmasiLaporanAbsensiController extends Controller
 
                 Absensi::where('id_pegawai', $data_laporan_absensi->id_pegawai)
                     ->where('status','Pulang')
-                    ->orWhere('status','Izin')
-                    ->orWhere('status','Cuti')
-                    ->whereDate('tanggal', $data_laporan_absensi->tanggal_absen)
+                    ->whereDate('tanggal', $tanggal_absen)
                     ->delete();
 
                 $tanggal = Carbon::create($data_laporan_absensi->tanggal_absen)->setTimeFrom(Carbon::createFromTimeString($jam_kerja->jam_selesai));
