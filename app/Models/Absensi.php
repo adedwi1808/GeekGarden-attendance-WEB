@@ -28,6 +28,11 @@ protected $primaryKey = "id_absensi";
         return $this->belongsTo(Pegawai::class,'id_pegawai','id_pegawai');
     }
 
+    public function lembur()
+    {
+        return $this->hasMany(Lembur::class, 'id_absensi', 'id_absensi');
+    }
+
     protected $hidden = [
     ];
 
