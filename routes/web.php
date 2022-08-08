@@ -39,6 +39,8 @@ Route::get('/', function () {
 
 //LupaPassword
 Route::get('/lupa-passowrd', [LupaPasswordController::class, 'index'])->name('lupa.password');
+Route::post('/lupa-password',[LupaPasswordController::class, 'lupapassword'])->name('lupa.password');
+Route::get('/reset-password/{token}',[LupaPasswordController::class,'formresetpassword'])->name('link.reset.password');
 Route::post('/reset-password',[LupaPasswordController::class,'resetpassword'])->name('reset.password');
 
 //Guest

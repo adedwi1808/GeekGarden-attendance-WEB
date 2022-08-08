@@ -5,9 +5,9 @@
 
     <div class="card">
         <div class="card-body register-card-body">
-            <p class="login-box-msg">Register a new membership</p>
+            <p class="login-box-msg">Lupa Password</p>
 
-            <form action="#" method="post">
+            <form action="{{route('lupa.password')}}" method="post">
                 @if(Session::get('success'))
                     <div class="alert alert-success">
                         {{Session::get('success')}}
