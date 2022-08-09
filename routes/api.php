@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\PengajuanIzin\PengajuanIzinController;
 use App\Http\Controllers\Api\RiwayatAbsensi\RiwayatAbsensiController;
 use App\Http\Controllers\Api\Absen\AbsenController;
 use App\Http\Controllers\Api\LaporAbsen\LaporAbsensiController;
+use App\Http\Controllers\Api\RiwayatLaporanAbsensi\RiwayatLaporanAbsensiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +48,7 @@ Route::group(['middleware' => ['assign.guard:pegawai-api', 'jwt.verify']], funct
 
     //Laporkan Absensi
     Route::post('/laporkan-absensi', [LaporAbsensiController::class, 'melaporkanAbsen']);
+    Route::get( '/riwayat-laporan-absensi',[RiwayatLaporanAbsensiController::class, 'riwayatlaporanabsensi']);
 
     //Other
     Route::get('/madings', [MadingController::class, 'selectAllMading']);
