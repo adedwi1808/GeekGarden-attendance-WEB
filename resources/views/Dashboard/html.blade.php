@@ -16,7 +16,7 @@
                     <div class="icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <a href="{{route('admin.kelola.pegawai')}}" class="small-box-footer">
                         More info <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>
@@ -32,7 +32,7 @@
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <a href="{{route('admin.halaman.kelola.hasil.absensi')}}" class="small-box-footer">
                         More info <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>
@@ -47,12 +47,12 @@
                 <div class="small-box bg-danger">
                     <div class="inner">
                         <h3>{{$jumlah_laporan_absensi}}</h3>
-                        <p>Laporan Absensi Yang Belum Diproses</p>
+                        <p>Laporan Absensi</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-exclamation-circle"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <a href="{{route('admin.halaman.kelola.laporan.absensi')}}" class="small-box-footer">
                         More info <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>
@@ -63,12 +63,12 @@
                 <div class="small-box bg-warning">
                     <div class="inner">
                         <h3>{{$jumlah_pengajuan_izin}}</h3>
-                        <p>Pengajuan Izin Yang Belum Diproses</p>
+                        <p>Pengajuan Izin</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-chart-pie"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <a href="{{route('admin.halaman.kelola.pengajuan.izin')}}" class="small-box-footer">
                         More info <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>

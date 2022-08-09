@@ -1,16 +1,19 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('admin.dashboard')}}" class="brand-link">
-        <img src="{{asset('assets/AdminLTE/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{asset('assets/gg.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light text-md">GeekGarden Attendance</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 ml-2 d-flex">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="{{asset('assets/admin.jpg')}}" class="img-circle elevation-2" alt="User Image">
+            </div>
             <div class="info">
-                <a href="#" class="d-block">ADM-{{\Illuminate\Support\Facades\Session::get('admin.nama')}}</a>
+                <a href="#" class="d-block">{{\Illuminate\Support\Facades\Session::get('admin.nama')}}</a>
             </div>
         </div>
 
@@ -91,6 +94,15 @@
                         </p>
                     </a>
                 </li>
+                {{--                Waktu Kerja------------------------------------------------------------------------------------------------------------------------}}
+                <li class="nav-item {{($title == 'Waktu Kerja')? 'menu-is-opening menu-open': ''}}">
+                    <a href="{{route('admin.halaman.kelola.waktu.kerja')}}" class="nav-link {{($title == 'Waktu Kerja')? 'active': ''}}">
+                        <i class="nav-icon fas fa-calendar-alt"></i>
+                        <p>
+                            Kelola Waktu Kerja
+                        </p>
+                    </a>
+                </li>
 {{--                LAINNYA------------------------------------------------------------------------------------------------------------------------}}
                 <li class="nav-header">Lainnya</li>
                 {{--                Kelola User------------------------------------------------------------------------------------------------------------------------}}
@@ -117,26 +129,6 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-
-                {{--                Waktu Kerja------------------------------------------------------------------------------------------------------------------------}}
-                <li class="nav-item {{($title == 'Waktu Kerja')? 'menu-is-opening menu-open': ''}}">
-                    <a href="{{route('admin.halaman.kelola.waktu.kerja')}}" class="nav-link {{($title == 'Waktu Kerja')? 'active': ''}}">
-                        <i class="nav-icon fas fa-calendar-alt"></i>
-                        <p>
-                            Kelola Waktu Kerja
-                        </p>
-                    </a>
-                </li>
-                {{--                Logout------------------------------------------------------------------------------------------------------------------------}}
-
-                <li class="nav-item {{($title == 'Logout')? 'menu-is-opening menu-open': ''}}">
-                    <a href="#" class="nav-link {{($title == 'Logout')? 'active': ''}}">
-                        <i class="nav-icon fas fa-power-off"></i>
-                        <p>
-                            Logout
-                        </p>
-                    </a>
                 </li>
 
             </ul>
