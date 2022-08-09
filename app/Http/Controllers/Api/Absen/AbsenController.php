@@ -198,12 +198,13 @@ class AbsenController extends Controller
                     ->where('tempat', 'Dikantor')
                     ->whereDate('tanggal', Carbon::today())
                     ->first();
-                if ($absensiResponse->tempat == "Dikantor" && $cek_absensi_datang)
-                $lembur = Lembur::create([
-                    'id_absensi'=> $absensiResponse->id_absensi,
-                ]);
+                if ($absensiResponse->tempat == "Dikantor" && $cek_absensi_datang){
+                    $lembur = Lembur::create([
+                        'id_absensi'=> $absensiResponse->id_absensi,
+                    ]);
 
-                $lembur->save();
+                    $lembur->save();
+                }
             }
 
             return $this->success($absensiResponse, 'Anda berhasil melakukan absensi pulang');

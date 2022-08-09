@@ -35,10 +35,10 @@ class DataAbsensiPegawaiController extends Controller
             ->count();
 
         $data = [
-          "Cuti"=>$cuti,
-          "Izin"=> $izin,
-          "Lembur"=> $lembur,
-            "Hadir"=>$hadir
+          "cuti"=>$cuti,
+          "izin"=> $izin,
+          "lembur"=> $lembur,
+            "hadir"=>$hadir
         ];
 
         return $this->success($data, "Kiw");
