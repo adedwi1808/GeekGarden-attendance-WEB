@@ -78,7 +78,12 @@
                             </thead>
                             <tbody>
 
+
                             @forelse($data_absensi as $index=>$absensi)
+                                @php
+                                    $progress = \App\Models\Progress::where('id_absensi',$absensi->id_absensi)->first();
+                                    $lembur = \App\Models\Lembur::where('id_absensi', $absensi->id_absensi)->first();
+                                @endphp
                                 <tr>
                                     <td>{{$absensi->pegawai->nama}}</td>
                                     <td>{{$absensi->tempat}}</td>
@@ -87,12 +92,19 @@
                                     <td><a class="link-primary"
                                                          href="/storage/bukti-absen/{{$absensi->foto}}">{{(strlen($absensi->foto) > 9)? substr($absensi->foto, 0,9)."..." : $absensi->foto}}</a>
                                     </td>
-                                    <td>{{(\App\Models\Progress::where('id_absensi',$absensi->id_absensi)->first())?
-(strlen(\App\Models\Progress::where('id_absensi',$absensi->id_absensi)->first()->progress_pekerjaan) > 25)?
-substr(\App\Models\Progress::where('id_absensi',$absensi->id_absensi)->first()->progress_pekerjaan,0,25)."...":
-\App\Models\Progress::where('id_absensi',$absensi->id_absensi)->first()->progress_pekerjaan:"-"}}</td>
-                                    <td>{{$absensi->status}}</td>
-                                    <td>{{$absensi->tanggal}}</td>
+                                    @if($progress)
+                                    <td>{{(strlen($progress->progress_pekerjaan) > 25)?substr($progress->progress_pekerjaan,0,25)."...":$progress->progress_pekerjaan}}</td>
+                                    @else
+                                        <td>{{"-"}}</td>
+                                    @endif
+
+                                    @if($lembur)
+                                        <td><span class="badge badge-warning badge-pill">{{$absensi->status}}<br>Lembur</span></td>
+                                        <td><span class="badge badge-warning badge-pill">{{$absensi->tanggal}}</span></td>
+                                    @else
+                                        <td>{{$absensi->status}}</td>
+                                        <td><span class="badge badge-info badge-pill">{{$absensi->tanggal}}</span></td>
+                                    @endif
                                     <td>
                                         <div class="row justify-content-center">
                                             <form class="col-6"
