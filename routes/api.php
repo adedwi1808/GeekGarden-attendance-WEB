@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Absen\CheckAbsensiController;
 use App\Http\Controllers\Api\Auth\AuthPegawaiController;
 use App\Http\Controllers\Api\Auth\LupaPasswordPegawaiController;
+use App\Http\Controllers\Api\DataAbsensiPegawai\DataAbsensiPegawaiController;
 use App\Http\Controllers\Api\EditProfilePegawai\EditProfilePegawaiController;
 use App\Http\Controllers\Api\Mading\MadingController;
 use App\Http\Controllers\Api\PengajuanIzin\PengajuanIzinController;
@@ -53,6 +54,7 @@ Route::group(['middleware' => ['assign.guard:pegawai-api', 'jwt.verify']], funct
     //Other
     Route::get('/madings', [MadingController::class, 'selectAllMading']);
     Route::get('/cek-absensi', [CheckAbsensiController::class, 'checkabsensi']);
+    Route::get('/data-absensi', [DataAbsensiPegawaiController::class, 'dataabsensi']);
 
     //Edit Profile
     Route::post('/foto-pegawai/{id}', [EditProfilePegawaiController::class, 'editfotoprofile']);
