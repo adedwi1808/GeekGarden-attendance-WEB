@@ -20,8 +20,8 @@ return new class extends Migration
                 ->on('pegawai')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->string('tempat');
-            $table->string('status');
+            $table->enum('tempat',['Dikantor', 'Diluar Kantor']);
+            $table->enum('status', ['Hadir', 'Pulang', 'Izin', 'Cuti']);
             $table->string('longitude');
             $table->string('latitude');
             $table->string('foto')->nullable();

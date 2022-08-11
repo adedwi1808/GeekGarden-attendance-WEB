@@ -40,7 +40,7 @@ Route::get('/', function () {
 
 //LupaPassword
 //ADMIN
-    Route::get('/lupa-passowrd', [LupaPasswordAdminController::class, 'index'])->name('lupa.password');
+    Route::get('/lupa-password', [LupaPasswordAdminController::class, 'index'])->name('halaman.lupa.password');
     Route::post('/lupa-password',[LupaPasswordAdminController::class, 'lupapassword'])->name('lupa.password');
     Route::get('/reset-password/{token}',[LupaPasswordAdminController::class,'formresetpassword'])->name('link.reset.password');
     Route::post('/reset-password',[LupaPasswordAdminController::class,'resetpassword'])->name('reset.password');
@@ -112,6 +112,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::post('/hapus-admin/{email}',[KelolaAdminController::class,'hapus'])->name('hapus.admin');
     Route::post('/edit-admin/{id}',[KelolaAdminController::class,'editadmin'])->name('edit.admin');
     Route::get('/tambah-admin',[KelolaAdminController::class,'tambahpage'])->name('halaman.tambah.admin');
+    Route::post('/tambahkan-admin',[KelolaAdminController::class,'tambah'])->name('tambahkan.admin');
     Route::get('/edit-admin/{id}',[KelolaAdminController::class,'editpage'])->name('halaman.edit.admin');
 
 //    Kelola Waktu Kerja

@@ -6,7 +6,7 @@
         <!-- /.card-header -->
         <div class="card-body">
             <p class="login-box-msg">Silahkan Masukkan Data Admin Baru</p>
-            <form action="{{route('doregister')}}" method="post">
+            <form action="{{route('admin.tambahkan.admin')}}" method="post">
                 @if(Session::get('success'))
                     <div class="alert alert-success">
                         Berhasil Menambahkan Admin

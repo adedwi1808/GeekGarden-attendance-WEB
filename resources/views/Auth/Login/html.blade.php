@@ -43,7 +43,7 @@
             </form>
 
             <p class="mb-1">
-                <a href="{{route('lupa.password')}}">I forgot my password</a>
+                <a href="{{route('halaman.lupa.password')}}">I forgot my password</a>
             </p>
         </div>
         <!-- /.login-card-body -->
