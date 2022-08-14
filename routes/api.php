@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\Absen\AbsensiHadirController;
+use App\Http\Controllers\Api\Absen\AbsensiPulangController;
 use App\Http\Controllers\Api\Absen\CheckAbsensiController;
+use App\Http\Controllers\Api\Absen\UploadBuktiAbsensiController;
 use App\Http\Controllers\Api\Auth\AuthPegawaiController;
 use App\Http\Controllers\Api\Auth\LupaPasswordPegawaiController;
 use App\Http\Controllers\Api\DataAbsensiPegawai\DataAbsensiPegawaiController;
@@ -38,9 +41,9 @@ Route::group(['middleware' => ['assign.guard:pegawai-api', 'jwt.verify']], funct
     Route::post('/logout-pegawai', [AuthPegawaiController::class, 'logout']);
 
     //Attendance
-    Route::post('/absensi-hadir',[AbsenController::class, 'absensihadir']);
-    Route::post('/upload-bukti-absensi/{id}', [AbsenController::class, 'uploadbuktiabsensi']);
-    Route::post('/absensi-pulang',[AbsenController::class, 'absensipulang']);
+    Route::post('/absensi-hadir',[AbsensiHadirController::class, 'absensihadir']);
+    Route::post('/upload-bukti-absensi/{id}', [UploadBuktiAbsensiController::class, 'uploadbuktiabsensi']);
+    Route::post('/absensi-pulang',[AbsensiPulangController::class, 'absensipulang']);
     Route::get( '/riwayat-absensi',[RiwayatAbsensiController::class, 'riwayatAbsensi']);
 
     //Pengajuan Izin
