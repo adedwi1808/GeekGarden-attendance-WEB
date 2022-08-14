@@ -44,6 +44,5 @@ class UbahJamKerjaController extends Controller
             return redirect()->route('admin.halaman.kelola.waktu.kerja', compact('title'))
                 ->with('fail_jam_kerja', "Terjadi Kesalahan");
         }
-
     }
 }

@@ -90,7 +90,6 @@ class KelolaPegawaiController extends Controller
             }
         }
         return $this->back()->with('fail', 'Terjadi Kesalahan Saat Melakukan Edit Data');
-
     }
 
     public function hapus($id)

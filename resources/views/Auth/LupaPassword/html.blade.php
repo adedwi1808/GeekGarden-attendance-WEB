@@ -1,6 +1,6 @@
 <div class="register-box">
     <div class="register-logo">
-        <a href="/login"><b>Admin</b>LTE</a>
+        <a href="#"><b>GeekGarden</b>Attendance</a>
     </div>
 
     <div class="card">

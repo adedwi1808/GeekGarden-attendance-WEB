@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('latitude');
             $table->string('foto')->nullable();
             $table->dateTime('tanggal')->useCurrent();
-
         });
     }
 
