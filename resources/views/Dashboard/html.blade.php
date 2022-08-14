@@ -1,10 +1,4 @@
 <section class="content">
-    @php
-    $jumlah_pegawai = \App\Models\Pegawai::count();
-    $jumlah_absensi = \App\Models\Absensi::whereMonth('tanggal', \Carbon\Carbon::today()->month)->count();
-    $jumlah_laporan_absensi = \App\Models\Laporan_Absensi::where("status_laporan", "Diajukan")->count();
-    $jumlah_pengajuan_izin = \App\Models\Pengajuan_izin::where("status_izin", "Diajukan")->count();
-    @endphp
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6 col-12">
@@ -75,5 +69,5 @@
             </div>
 
         </div>
-
+    </div>
 </section>
