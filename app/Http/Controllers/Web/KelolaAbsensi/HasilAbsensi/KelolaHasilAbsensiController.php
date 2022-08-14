@@ -23,51 +23,18 @@ class KelolaHasilAbsensiController extends Controller
 
         $waktu = [$request->start_date, $request->end_date];
 
-        if ($request->tempat != 'All'){
-            $tempat = ['tempat', '=', $request->tempat];
-        }
+        $data_absensi= Absensi::join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
+            ->where(function ($query) use ($request) {
+                $query->where('nama', 'LIKE', '%' . $request->cari_hasil_absensi . '%');
+                if($request->tempat != 'All') {
+                    $query->where('tempat', '=', $request->tempat);
+                }
+                if ($request->status != 'All'){
+                    $query->where('status', '=', $request->status);
+                }
 
-        if ($request->status != 'All'){
-            $status = ['status', '=', $request->status];
-        }
-
-        if (!empty($tempat)) { // Tempat -> all
-            if (!empty($status)) { //tempat  & status
-                $data_absensi = Absensi::join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
-                    ->where([
-                        ['nama', 'LIKE', '%' . $request->cari_hasil_absensi . '%'],
-                        $tempat,
-                        $status
-                    ])
-                    ->whereBetween('tanggal', $waktu)
-                    ->get();
-            }else{
-                $data_absensi = Absensi::join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
-                    ->where([
-                        ['nama', 'LIKE', '%' . $request->cari_hasil_absensi . '%'],
-                        $tempat
-                    ])
-                    ->whereBetween('tanggal', $waktu)
-                    ->get();
-            }
-        } else {
-            if (!empty($status)) { // Status
-                $data_absensi = Absensi::join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
-                    ->where([
-                        ['nama', 'LIKE', '%' . $request->cari_hasil_absensi . '%'],
-                        $status
-                    ])
-                    ->whereBetween('tanggal', $waktu)
-                    ->get();
-            }else{ //Nothing
-                $data_absensi = Absensi::join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
-                    ->where([
-                        ['pegawai.nama', 'LIKE', '%' . $request->cari_hasil_absensi . '%'],
-                    ])
-                    ->whereBetween('tanggal', $waktu)
-                    ->get();
-            }
-        }
+            })->whereBetween('tanggal', $waktu)
+            ->get();
         return view('KelolaAbsensi.HasilAbsensi.index', compact('data_absensi', 'title'));
     }
 }

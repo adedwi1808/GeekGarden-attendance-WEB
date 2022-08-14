@@ -87,7 +87,6 @@ class KonfirmasiLaporanAbsensiController extends Controller
             ->get();
 
         return view('KelolaAbsensi.HasilAbsensi.index', compact('data_absensi', 'title'));
-
     }
 
     public function tambahAbsen(Request $request, $id)
