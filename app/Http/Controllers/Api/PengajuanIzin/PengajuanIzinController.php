@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Absensi;
 use App\Models\Pegawai;
 use App\Models\Pengajuan_izin;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -66,7 +67,7 @@ class PengajuanIzinController extends Controller
             if ($request->image) {
                 $image = $request->image->getClientOriginalName();
                 $image = str_replace(' ', '', $image);
-                $image = date('Hs') . rand(1, 999) . "_" . $image;
+                $image = 'SI_'.Carbon::now()->format('YmdHis') . "_" . $image;
                 $fileName = $image;
                 $request->image->storeAs('public/surat-izin', $image);
             } else {

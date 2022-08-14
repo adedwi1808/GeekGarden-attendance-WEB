@@ -101,7 +101,7 @@ class AbsenController extends Controller
             if ($request->image) {
                 $foto = $request->image->getClientOriginalName();
                 $foto = str_replace(' ', '', $foto);
-                $foto = date('Hs') . rand(1, 999) . "_" . $foto;
+                $foto = Carbon::now()->format('YmdHis') . "_" . $foto;
                 $fileName = $foto;
                 $request->image->storeAs('public/bukti-absen', $foto);
             } else {
