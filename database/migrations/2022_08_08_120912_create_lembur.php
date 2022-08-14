@@ -20,6 +20,14 @@ return new class extends Migration
                 ->on('absensi')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->foreignId('id_admin')
+                ->nullable()
+                ->references('id_admin')
+                ->on('admin')
+                ->cascadeOnUpdate()
+                ->nullOnDelete();
+            $table->enum('status_lembur', ['Diajukan','Diterima', 'Ditolak'])
+                ->default('Diajukan');
             $table->dateTime('tanggal_dibuat')
                 ->useCurrent();
         });

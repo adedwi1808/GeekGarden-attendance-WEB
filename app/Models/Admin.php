@@ -71,4 +71,9 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(Jam_Kerja::class, 'id_jam_kerja', 'id_jam_kerja');
     }
+
+    public function lembur()
+    {
+        return $this->hasMany(Lembur::class, 'id_jam_kerja', 'id_jam_kerja');
+    }
 }

@@ -17,12 +17,18 @@ class Lembur extends Model
     protected $fillable = [
         'id_lembur',
         'id_absensi',
+        'id_admin',
+        'status_lembur',
         'tanggal_dibuat'
     ];
 
 
     public function absensi(){
         return $this->belongsTo(Absensi::class, 'id_absensi', 'id_absensi');
+    }
+
+    public function admin(){
+        return $this->belongsTo(Admin::class, 'id_admin', 'id_admin');
     }
 
 }
