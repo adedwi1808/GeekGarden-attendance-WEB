@@ -95,6 +95,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
 
     //Lembur
     Route::get('/lembur', [KelolaLemburController::class, 'index'])->name('halaman.kelola.lembur');
+    Route::get('/cari-lembur', [KelolaLemburController::class, 'cariLembur'])->name('cari.lembur');
     Route::get('/konfirmasi-lembur/{id}', [KonfirmasiLemburController::class, 'index'])->name('halaman.konfirmasi.lembur');
     Route::post('/terima-lembur/{id}', [KonfirmasiLemburController::class, 'terima'])->name('terima.lembur');
     Route::post('/tolak-lembur/{id}', [KonfirmasiLemburController::class, 'tolak'])->name('tolak.lembur');

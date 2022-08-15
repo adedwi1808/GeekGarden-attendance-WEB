@@ -6,7 +6,7 @@
         <!-- /.card-header -->
         <div class="card-body">
             <div class="container">
-                <form method="get" action="#">
+                <form method="get" action="{{route('admin.cari.lembur')}}">
                     <div class="row mb-2">
                         <div class="col">
                             <div class="row">
