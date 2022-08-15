@@ -44,5 +44,15 @@
             "responsive": true,
             order:[[7,'desc']]
         });
+        $('#tableLembur').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            order:[[3,'desc']]
+        });
     });
 </script>

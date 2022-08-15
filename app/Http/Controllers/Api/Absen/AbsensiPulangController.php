@@ -91,18 +91,25 @@ class AbsensiPulangController extends Controller
 
             $progress->save();
 
-            if (now()->toTimeString() > Carbon::createFromTimeString($jam_kerja->jam_selesai)->addHour()->toTimeString()){
-                $cek_absensi_datang = Absensi::where('id_pegawai', $absensi->id_pegawai)
-                    ->where('tempat', 'Dikantor')
-                    ->whereDate('tanggal', Carbon::today())
-                    ->first();
-                if ($absensiResponse->tempat == "Dikantor" && $cek_absensi_datang){
+            $jam_aktif_lembur = Carbon::createFromTimeString($jam_kerja->jam_selesai)->addHour()->toTimeString();
+
+            $absensiDatang = Absensi::where('id_pegawai', $absensi->id_pegawai)
+                ->whereDate('tanggal', Carbon::today())
+                ->first();
+
+            $mulai = Carbon::parse($absensiDatang->tanggal);
+            $selesai = Carbon::parse($absensiResponse->tanggal);
+
+            //menit
+            $selisih = $mulai->diffInMinutes($selesai);
+            //jam
+//            $selisih = $mulai->diffInHours($selesai);
+            //5
+            if ((now()->toTimeString() > $jam_aktif_lembur) && ($selisih > 5)){
                     $lembur = Lembur::create([
                         'id_absensi'=> $absensiResponse->id_absensi,
                     ]);
-
                     $lembur->save();
-                }
             }
 
             return $this->success($absensiResponse, 'Anda berhasil melakukan absensi pulang');

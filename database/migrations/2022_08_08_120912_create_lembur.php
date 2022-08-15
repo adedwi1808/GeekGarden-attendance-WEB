@@ -30,6 +30,8 @@ return new class extends Migration
                 ->default('Diajukan');
             $table->dateTime('tanggal_dibuat')
                 ->useCurrent();
+            $table->dateTime('tanggal_konfirm')
+                ->nullable();
         });
     }
 

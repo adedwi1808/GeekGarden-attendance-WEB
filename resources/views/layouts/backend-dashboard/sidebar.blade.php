@@ -42,8 +42,9 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item {{($title == 'Hasil Absensi') || ($title == 'Pengajuan Izin' || $title == 'Laporan Absensi')? 'menu-is-opening menu-open': ''}}">
-                    <a href="#" class="nav-link {{($title == 'Hasil Absensi') || ($title == 'Pengajuan Izin'|| $title == 'Laporan Absensi')? 'active': ''}}">
+
+                <li class="nav-item {{($title == 'Hasil Absensi') || ($title == 'Pengajuan Izin' || $title == 'Laporan Absensi' || $title == 'Lembur')? 'menu-is-opening menu-open': ''}}">
+                    <a href="#" class="nav-link {{($title == 'Hasil Absensi') || ($title == 'Pengajuan Izin'|| $title == 'Laporan Absensi' || $title == 'Lembur')? 'active': ''}}">
                         <i class="nav-icon fas fa-file-invoice"></i>
                         <p>
                             Absensi
@@ -60,6 +61,7 @@
                                 </p>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a href="{{route('admin.halaman.kelola.pengajuan.izin')}}" class="nav-link {{($title == 'Pengajuan Izin')? 'active': ''}}">
                                 <i class="nav-icon fas fa-file-contract"></i>
@@ -68,6 +70,7 @@
                                 </p>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a href="{{route('admin.halaman.kelola.laporan.absensi')}}" class="nav-link {{($title == 'Laporan Absensi')? 'active': ''}}">
                                 <i class="nav-icon fas fa-exclamation"></i>
@@ -75,6 +78,15 @@
                                     Laporan Absensi
                                 </p>
                             </a>
+
+                        <li class="nav-item">
+                            <a href="{{route('admin.halaman.kelola.lembur')}}" class="nav-link {{($title == 'Lembur')? 'active': ''}}">
+                                <i class="nav-icon fas fa-user-clock"></i>
+                                <p>
+                                    Lembur
+                                </p>
+                            </a>
+                        </li>
                         </li>
                     </ul>
                 </li>

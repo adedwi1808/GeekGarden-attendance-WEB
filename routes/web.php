@@ -11,6 +11,7 @@ use App\Http\Controllers\Web\CetakLaporan\CetakLaporanHasilAbsensiController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\KelolaAbsensi\HasilAbsensi\EditHasilAbsensiController;
 use App\Http\Controllers\Web\KelolaAbsensi\HasilAbsensi\KelolaHasilAbsensiController;
+use App\Http\Controllers\Web\KelolaAbsensi\Lembur\KelolaLemburController;
 use App\Http\Controllers\Web\KelolaAbsensi\PengajuanIzin\KelolaPengajuanIzinController;
 use App\Http\Controllers\Web\KelolaAbsensi\LaporanAbsensi\KonfirmasiLaporanAbsensiController;
 use App\Http\Controllers\Web\KelolaAbsensi\PengajuanIzin\KonfirmasiPengajuanIzinController;
@@ -90,6 +91,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::post('/terima-laporan-absensi/{id}', [KonfirmasiLaporanAbsensiController::class, 'terima'])->name('terima.laporan.absensi');
     Route::get('/cari-absensi/{id}/{tanggal_absen}', [KonfirmasiLaporanAbsensiController::class, 'cariAbsensi'])->name('cari.absensi');
     Route::post('/tambah-absensi/{id}', [KonfirmasiLaporanAbsensiController::class, 'tambahAbsen'])->name('tambah.absensi');
+
+    //Lembur
+    Route::get('/lembur', [KelolaLemburController::class, 'index'])->name('halaman.kelola.lembur');
+
 
 //    Cetak Laporan
     Route::get('/cetak-laporan', [CetakLaporanController::class, 'index'])->name('halaman.cetak.laporan');

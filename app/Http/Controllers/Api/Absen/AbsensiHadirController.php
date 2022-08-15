@@ -7,6 +7,7 @@ use App\Models\Absensi;
 use App\Models\Jam_Kerja;
 use App\Models\Pegawai;
 use App\Models\Tanggal_Libur;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -25,8 +26,11 @@ class AbsensiHadirController extends Controller
 //            return $this->error("Hari ini adalah hari libur");
 //        }
 
-
         $jam_kerja = Jam_Kerja::latest('tanggal_dibuat')->first();
+
+//        if (now()->toTimeString() > Carbon::createFromTimeString($jam_kerja->jam_mulai)->addHours(2)->toTimeString()){
+//            return $this->error("Anda Telat, Silahkan Lapor Ke Admin");
+//        }
 
         if ($jam_kerja->jam_mulai > now()->toTimeString()){
             return $this->error("Sekarang Belumlah jam masuk kerja");

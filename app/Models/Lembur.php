@@ -19,7 +19,8 @@ class Lembur extends Model
         'id_absensi',
         'id_admin',
         'status_lembur',
-        'tanggal_dibuat'
+        'tanggal_dibuat',
+        'tanggal_konfirm',
     ];
 
 
