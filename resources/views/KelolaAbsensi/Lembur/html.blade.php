@@ -94,6 +94,7 @@
                                 <th>Status Lembur</th>
                                 <th>Tanggal</th>
                                 <th>Konfirmator</th>
+                                <th>Tanggal Dikonfirmasi</th>
                                 <th>Kelola</th>
                             </tr>
                             </thead>
@@ -101,8 +102,8 @@
 
                             @forelse($data_pengajuan_lembur as $index=>$lembur)
                                 <tr>
-                                    <td>{{$lembur->absensi->pegawai->nama}}</td>
-                                    <td>{{$lembur->absensi->tempat}}</td>
+                                    <td>{{$lembur->nama_pegawai}}</td>
+                                    <td>{{$lembur->tempat}}</td>
                                     <td>
                                         <span class="badge @if($lembur->status_lembur == "Diterima") badge-success
                                         @elseif($lembur->status_lembur == "Ditolak") badge-danger @else badge-info
@@ -114,7 +115,7 @@
                                     <td>
                                         <div class="row justify-content-center">
                                             <form class="mx-2"
-                                                  action="#"
+                                                  action="{{route("admin.halaman.konfirmasi.lembur", $lembur->id_lembur)}}"
                                                   method="get">
                                                 <button type="submit" class="btn btn-success"><i
                                                         class="fas fa-edit"></i>
@@ -136,6 +137,7 @@
                                 <th>Status Lembur</th>
                                 <th>Tanggal</th>
                                 <th>Konfirmator</th>
+                                <th>Tanggal Dikonfirmasi</th>
                                 <th>Kelola</th>
                             </tr>
                             </tfoot>

@@ -100,8 +100,10 @@ class AbsensiPulangController extends Controller
             $mulai = Carbon::parse($absensiDatang->tanggal);
             $selesai = Carbon::parse($absensiResponse->tanggal);
 
+            //detik
+            $selisih = $mulai->diffInSeconds($selesai);
             //menit
-            $selisih = $mulai->diffInMinutes($selesai);
+//            $selisih = $mulai->diffInMinutes($selesai);
             //jam
 //            $selisih = $mulai->diffInHours($selesai);
             //5

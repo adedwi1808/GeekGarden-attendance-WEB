@@ -22,7 +22,7 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->enum('tempat',['Dikantor', 'Diluar Kantor'])
             ->nullable();
-            $table->enum('status', ['Hadir', 'Pulang', 'Izin', 'Cuti']);
+            $table->enum('status', ['Hadir', 'Pulang', 'Izin', 'Cuti', 'Lembur']);
             $table->string('longitude');
             $table->string('latitude');
             $table->string('foto')->nullable();

@@ -12,6 +12,7 @@ use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\KelolaAbsensi\HasilAbsensi\EditHasilAbsensiController;
 use App\Http\Controllers\Web\KelolaAbsensi\HasilAbsensi\KelolaHasilAbsensiController;
 use App\Http\Controllers\Web\KelolaAbsensi\Lembur\KelolaLemburController;
+use App\Http\Controllers\Web\KelolaAbsensi\Lembur\KonfirmasiLemburController;
 use App\Http\Controllers\Web\KelolaAbsensi\PengajuanIzin\KelolaPengajuanIzinController;
 use App\Http\Controllers\Web\KelolaAbsensi\LaporanAbsensi\KonfirmasiLaporanAbsensiController;
 use App\Http\Controllers\Web\KelolaAbsensi\PengajuanIzin\KonfirmasiPengajuanIzinController;
@@ -94,6 +95,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
 
     //Lembur
     Route::get('/lembur', [KelolaLemburController::class, 'index'])->name('halaman.kelola.lembur');
+    Route::get('/konfirmasi-lembur/{id}', [KonfirmasiLemburController::class, 'index'])->name('halaman.konfirmasi.lembur');
+    Route::post('/terima-lembur/{id}', [KonfirmasiLemburController::class, 'terima'])->name('terima.lembur');
+    Route::post('/tolak-lembur/{id}', [KonfirmasiLemburController::class, 'tolak'])->name('tolak.lembur');
 
 
 //    Cetak Laporan
