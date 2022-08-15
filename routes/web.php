@@ -5,7 +5,6 @@ use App\Http\Controllers\Api\Auth\LupaPasswordPegawaiController;
 use App\Http\Controllers\Web\Auth\LoginController;
 use App\Http\Controllers\Web\Auth\LogoutController;
 use App\Http\Controllers\Web\Auth\LupaPasswordAdminController;
-use App\Http\Controllers\Web\Auth\RegisterController;
 use App\Http\Controllers\Web\CetakLaporan\CetakLaporanController;
 use App\Http\Controllers\Web\CetakLaporan\CetakLaporanHasilAbsensiController;
 use App\Http\Controllers\Web\DashboardController;
@@ -21,6 +20,7 @@ use App\Http\Controllers\Web\KelolaMading\KelolaMadingController;
 use App\Http\Controllers\Web\KelolaUser\KelolaAdminController;
 use App\Http\Controllers\Web\KelolaUser\KelolaPegawaiController;
 use App\Http\Controllers\Web\KelolaAbsensi\LaporanAbsensi\KelolaLaporanAbsensiController;
+use App\Http\Controllers\Web\KelolaWaktuKerja\HapusTanggalLiburController;
 use App\Http\Controllers\Web\KelolaWaktuKerja\KelolaWaktuKerjaController;
 use App\Http\Controllers\Web\KelolaWaktuKerja\TambahHariLiburController;
 use App\Http\Controllers\Web\KelolaWaktuKerja\UbahJamKerjaController;
@@ -130,6 +130,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
 
     //Hari Libur
     Route::post('/tambah-hari-libur', [TambahHariLiburController::class, 'tambah'])->name('tambah.hari.libur');
+    Route::post('/hapus-hari-libur/{id}', [HapusTanggalLiburController::class, 'hapus'])->name('hapus.hari.libur');
+
+    //Jam Kerja
     Route::post('/ubah-jam-kerja', [UbahJamKerjaController::class, 'ubah'])->name('ubah.jam.kerja');
 
 //    Logout

@@ -174,19 +174,43 @@
                                     <td>{{$tanggal->tanggal_dibuat}}</td>
                                     <td>
                                         <div class="row justify-content-center">
+                                            <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                    data-target="#modalHapus"><i
+                                                    class="fas fa-trash"></i>
+                                            </button>
                                             <form class="mx-2"
-                                                  action="#"
-                                                  method="get">
-                                                <button type="submit" class="btn btn-success"><i
-                                                        class="fas fa-edit"></i>
-                                                </button>
+                                                  action="{{route('admin.hapus.hari.libur', $tanggal->id_tanggal_libur)}}"
+                                                  method="post">
+                                                @csrf
+
+                                                <div class="modal fade" id="modalHapus" tabindex="-1" role="dialog"
+                                                     aria-labelledby="modalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="modalLabel">Konfirmasi Untuk hapus</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Yakin ingin Menghapus Tanggal Libur ?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak
+                                                                </button>
+                                                                <button type="submit" class="btn btn-danger">Ya, hapus</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </form>
                                         </div>
                                     </td>
                                 </tr>
                             @empty
                                 <div class="alert alert-danger">
-                                    Data Absensi Tidak Ditemukan / Belum Tersedia.
+                                    Data Tanggal Libur Tidak Ditemukan / Belum Tersedia.
                                 </div>
                             @endforelse
                             </tbody>
