@@ -1,11 +1,11 @@
 <section class="content">
     <div class="card">
         <div class="card-header">
-                        <h3 class="card-title">Data {{$title}}</h3>
+            <h3 class="card-title">Data {{$title}}</h3>
         </div>
         <!-- /.card-header -->
         <div class="container">
-            <form method="get" action="{{route('admin.cari.laporan.absensi')}}">
+            <form method="get" action="{{route('admin.cari.pengaduan.absensi')}}">
                 <div class="row mb-2">
                     <div class="col">
                         <div class="row">
@@ -35,7 +35,7 @@
                             <div class="col-3">
                                 <div class="form-group">
                                     <label for="status_izin">Status:</label>
-                                    <select name="status_izin" id="status_izin" class="select2"
+                                    <select name="status_izin" id="status_pengaduan" class="select2"
                                             style="width: 100%;">
                                         <option selected>All</option>
                                         <option>Diajukan</option>
@@ -49,7 +49,7 @@
                         <div class="form-group">
                             <div class="input-group input-group-lg">
                                 <input type="search" class="form-control form-control-lg"
-                                       placeholder="Cari Laporan absen" name="cari_laporan_absensi">
+                                       placeholder="Cari Pengaduan absen" name="cari_pengaduan_absensi">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-lg btn-default">
                                         <i class="fa fa-search"></i>
@@ -86,7 +86,7 @@
                         <tr>
                             <th>Nama Pegawai</th>
                             <th>Tanggal Absen</th>
-                            <th>Keterangan Laporan</th>
+                            <th>Keterangan pengaduan</th>
                             <th>Tanggal Pengajuan</th>
                             <th>Status</th>
                             <th>Konfirmator</th>
@@ -95,20 +95,20 @@
                         </thead>
                         <tbody>
 
-                        @forelse($data_laporan as $index=>$laporan)
+                        @forelse($data_pengaduan as $index=>$pengaduan)
                             <tr>
-                                <td>{{$laporan->pegawai->nama}}</td>
-                                <td>{{$laporan->tanggal_absen}}</td>
-                                <td>{{$laporan->keterangan_laporan}}</td>
-                                <td>{{$laporan->tanggal_laporan}}</td>
-                                <td><span  class="badge @if($laporan->status_laporan == "Diterima") badge-success
-                                        @elseif($laporan->status_laporan == "Ditolak") badge-danger @else badge-info
-@endif badge-pill">{{$laporan->status_laporan}}</span></td>
-                                <td>{{($laporan->id_admin == null)? "-": $laporan->admin->nama}}</td>
+                                <td>{{$pengaduan->pegawai->nama}}</td>
+                                <td>{{$pengaduan->tanggal_absen}}</td>
+                                <td>{{$pengaduan->keterangan_pengaduan}}</td>
+                                <td>{{$pengaduan->tanggal_pengaduan}}</td>
+                                <td><span class="badge @if($pengaduan->status_pengaduan == "Diterima") badge-success
+                                        @elseif($pengaduan->status_pengaduan == "Ditolak") badge-danger @else badge-info
+@endif badge-pill">{{$pengaduan->status_pengaduan}}</span></td>
+                                <td>{{($pengaduan->id_admin == null)? "-": $pengaduan->admin->nama}}</td>
                                 <td>
                                     <div class="row justify-content-center">
                                         <form class="mx-2"
-                                              action="{{route('admin.halaman.konfirmasi.laporan.absensi', $laporan->id_laporan_absensi)}}"
+                                              action="{{route('admin.halaman.konfirmasi.pengaduan.absensi', $pengaduan->id_pengaduan_absensi)}}"
                                               method="get">
                                             <button type="submit" class="btn btn-success"><i
                                                     class="fas fa-edit"></i>
@@ -119,7 +119,7 @@
                             </tr>
                         @empty
                             <div class="alert alert-danger">
-                                Data Laporan Absensi Tidak Ditemukan / Belum Tersedia.
+                                Data pengaduan Absensi Tidak Ditemukan / Belum Tersedia.
                             </div>
                         @endforelse
                         </tbody>
@@ -127,7 +127,7 @@
                         <tr>
                             <th>Nama Pegawai</th>
                             <th>Tanggal Absen</th>
-                            <th>Keterangan Laporan</th>
+                            <th>Keterangan pengaduan</th>
                             <th>Tanggal Pengajuan</th>
                             <th>Status</th>
                             <th>Konfirmator</th>

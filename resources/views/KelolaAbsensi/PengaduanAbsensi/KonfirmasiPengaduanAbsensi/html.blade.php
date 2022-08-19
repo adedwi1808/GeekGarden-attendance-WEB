@@ -28,14 +28,14 @@
                 </div>
                 <input type="text" class="form-control"
                        placeholder="Nama Pegawai" name="namaPegawai" id="namaPegawai" disabled
-                       value="{{$data_laporan_absensi->pegawai->nama}}">
+                       value="{{$data_pengaduan_absensi->pegawai->nama}}">
             </div>
             <div class="form-group mb-3">
-                <label for="keterangan_laporan">Keterangan Laporan:</label>
-                <textarea class="form-control" id="keterangan_laporan"
-                          rows="3" name="keterangan_laporan"
+                <label for="keterangan_pengaduan">Keterangan pengaduan:</label>
+                <textarea class="form-control" id="keterangan_pengaduan"
+                          rows="3" name="keterangan_pengaduan"
                           placeholder="Informasi Mading"
-                          disabled>{{$data_laporan_absensi->keterangan_laporan}}</textarea>
+                          disabled>{{$data_pengaduan_absensi->keterangan_pengaduan}}</textarea>
             </div>
             <div class="row">
                 <div class="col-6">
@@ -48,19 +48,19 @@
                             <input type="text" class="form-control float-right" id="tanggal_absen"
                                    name="tanggal_absen"
                                    disabled
-                                   value="{{$data_laporan_absensi->tanggal_absen}}">
+                                   value="{{$data_pengaduan_absensi->tanggal_absen}}">
                         </div>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Status Laporan:</label>
+                        <label>Status pengaduan:</label>
                         <select class="form-control" disabled="">
-                            <option {{($data_laporan_absensi->status_laporan == "Diterima")?"selected":""}}>Diterima
+                            <option {{($data_pengaduan_absensi->status_pengaduan == "Diterima")?"selected":""}}>Diterima
                             </option>
-                            <option {{($data_laporan_absensi->status_laporan == "Ditolak")?"selected":""}}>Ditolak
+                            <option {{($data_pengaduan_absensi->status_pengaduan == "Ditolak")?"selected":""}}>Ditolak
                             </option>
-                            <option {{($data_laporan_absensi->status_laporan == "Diajukan")?"selected":""}}>Diajukan
+                            <option {{($data_pengaduan_absensi->status_pengaduan == "Diajukan")?"selected":""}}>Diajukan
                             </option>
                         </select>
                     </div>
@@ -70,8 +70,8 @@
             <div class="row mt-3">
                 <div class="col-6">
                     <a href="{{route("admin.cari.absensi", [
-                        $data_laporan_absensi->id_pegawai,
-                        $data_laporan_absensi->tanggal_absen])}}" target="_blank">
+                        $data_pengaduan_absensi->id_pegawai,
+                        $data_pengaduan_absensi->tanggal_absen])}}" target="_blank">
                         <button type="button" class="btn btn-info btn-block">
                             <i class="fa fa-search"></i>
                             Cari Absensi
@@ -86,7 +86,7 @@
                         Tambahkan Absen
                     </button>
                     <form
-                        action="{{route("admin.tambah.absensi", $data_laporan_absensi->id_laporan_absensi)}}"
+                        action="{{route("admin.tambah.absensi", $data_pengaduan_absensi->id_pengaduan_absensi)}}"
                         method="post">
                         @csrf
                         <div class="modal fade" id="modalTambahAbsen" tabindex="-1" role="dialog"
@@ -111,7 +111,7 @@
                                                 <input type="text" class="form-control"
                                                        placeholder="Nama Pegawai" name="namaPegawai" id="namaPegawai"
                                                        disabled
-                                                       value="{{$data_laporan_absensi->pegawai->nama}}">
+                                                       value="{{$data_pengaduan_absensi->pegawai->nama}}">
                                             </div>
                                         </div>
 
@@ -125,7 +125,7 @@
                                                 <input type="text" class="form-control float-right" id="tanggal_absen"
                                                        name="tanggal_absen"
                                                        disabled
-                                                       value="{{$data_laporan_absensi->tanggal_absen}}">
+                                                       value="{{$data_pengaduan_absensi->tanggal_absen}}">
                                             </div>
                                         </div>
 
@@ -189,7 +189,7 @@
                             data-target="#modalMengizinkan">Menerima izin
                     </button>
                     <form
-                        action="{{route('admin.terima.laporan.absensi',$data_laporan_absensi->id_laporan_absensi)}}"
+                        action="{{route('admin.terima.pengaduan.absensi',$data_pengaduan_absensi->id_pengaduan_absensi)}}"
                         method="post">
                         @csrf
                         <div class="modal fade" id="modalMengizinkan" tabindex="-1" role="dialog"
@@ -225,7 +225,7 @@
 
                     <!-- Modal -->
                     <form
-                        action="{{route('admin.tolak.laporan.absensi',$data_laporan_absensi->id_laporan_absensi)}}"
+                        action="{{route('admin.tolak.pengaduan.absensi',$data_pengaduan_absensi->id_pengaduan_absensi)}}"
                         method="post">
                         @csrf
                         <div class="modal fade" id="modalMenolakIzin" tabindex="-1" role="dialog"

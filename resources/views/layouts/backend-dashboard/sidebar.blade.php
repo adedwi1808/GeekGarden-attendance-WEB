@@ -43,8 +43,8 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{($title == 'Hasil Absensi') || ($title == 'Pengajuan Izin' || $title == 'Laporan Absensi' || $title == 'Lembur')? 'menu-is-opening menu-open': ''}}">
-                    <a href="#" class="nav-link {{($title == 'Hasil Absensi') || ($title == 'Pengajuan Izin'|| $title == 'Laporan Absensi' || $title == 'Lembur')? 'active': ''}}">
+                <li class="nav-item {{($title == 'Hasil Absensi') || ($title == 'Pengajuan Izin' || $title == 'Pengaduan Absensi' || $title == 'Lembur')? 'menu-is-opening menu-open': ''}}">
+                    <a href="#" class="nav-link {{($title == 'Hasil Absensi') || ($title == 'Pengajuan Izin'|| $title == 'Pengaduan Absensi' || $title == 'Lembur')? 'active': ''}}">
                         <i class="nav-icon fas fa-file-invoice"></i>
                         <p>
                             Absensi
@@ -72,10 +72,10 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{route('admin.halaman.kelola.laporan.absensi')}}" class="nav-link {{($title == 'Laporan Absensi')? 'active': ''}}">
+                            <a href="{{route('admin.halaman.kelola.pengaduan.absensi')}}" class="nav-link {{($title == 'Pengaduan Absensi')? 'active': ''}}">
                                 <i class="nav-icon fas fa-exclamation"></i>
                                 <p>
-                                    Laporan Absensi
+                                    Pengaduan Absensi
                                 </p>
                             </a>
 

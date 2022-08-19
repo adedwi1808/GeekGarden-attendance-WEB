@@ -40,13 +40,13 @@
 
                 <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>{{$jumlah_laporan_absensi}}</h3>
-                        <p>Laporan Absensi</p>
+                        <h3>{{$jumlah_pengaduan_absensi}}</h3>
+                        <p>Pengaduan Absensi</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-exclamation-circle"></i>
                     </div>
-                    <a href="{{route('admin.halaman.kelola.laporan.absensi')}}" class="small-box-footer">
+                    <a href="{{route('admin.halaman.kelola.pengaduan.absensi')}}" class="small-box-footer">
                         More info <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>

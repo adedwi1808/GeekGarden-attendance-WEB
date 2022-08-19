@@ -12,14 +12,14 @@ use App\Http\Controllers\Web\KelolaAbsensi\HasilAbsensi\EditHasilAbsensiControll
 use App\Http\Controllers\Web\KelolaAbsensi\HasilAbsensi\KelolaHasilAbsensiController;
 use App\Http\Controllers\Web\KelolaAbsensi\Lembur\KelolaLemburController;
 use App\Http\Controllers\Web\KelolaAbsensi\Lembur\KonfirmasiLemburController;
+use App\Http\Controllers\Web\KelolaAbsensi\PengaduanAbsensi\KelolaPengaduanAbsensiController;
+use App\Http\Controllers\Web\KelolaAbsensi\PengaduanAbsensi\KonfirmasiPengaduanAbsensiController;
 use App\Http\Controllers\Web\KelolaAbsensi\PengajuanIzin\KelolaPengajuanIzinController;
-use App\Http\Controllers\Web\KelolaAbsensi\LaporanAbsensi\KonfirmasiLaporanAbsensiController;
 use App\Http\Controllers\Web\KelolaAbsensi\PengajuanIzin\KonfirmasiPengajuanIzinController;
 use App\Http\Controllers\Web\KelolaMading\EditMadingController;
 use App\Http\Controllers\Web\KelolaMading\KelolaMadingController;
 use App\Http\Controllers\Web\KelolaUser\KelolaAdminController;
 use App\Http\Controllers\Web\KelolaUser\KelolaPegawaiController;
-use App\Http\Controllers\Web\KelolaAbsensi\LaporanAbsensi\KelolaLaporanAbsensiController;
 use App\Http\Controllers\Web\KelolaWaktuKerja\HapusTanggalLiburController;
 use App\Http\Controllers\Web\KelolaWaktuKerja\KelolaWaktuKerjaController;
 use App\Http\Controllers\Web\KelolaWaktuKerja\TambahHariLiburController;
@@ -84,14 +84,14 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::post('/terima-pengajuan-izin/{id}', [KonfirmasiPengajuanIzinController::class, 'terima'])->name('terima.pengajuan.izin');
     Route::get('/cari-pengajuan-izin',[KelolaPengajuanIzinController::class, 'cariPengajuanIzin'])->name('cari.pengajuan.izin');
 
-    //Laporan Absensi
-    Route::get('/laporan-absensi', [KelolaLaporanAbsensiController::class, 'index'])->name('halaman.kelola.laporan.absensi');
-    Route::get('/cari-laporan-absensi',[KelolaLaporanAbsensiController::class, 'cariLaporanAbsensi'])->name('cari.laporan.absensi');
-    Route::get('/konfirmasi-laporan-absensi/{id}',[KonfirmasiLaporanAbsensiController::class, 'index'])->name('halaman.konfirmasi.laporan.absensi');
-    Route::post('/tolak-laporan-absensi/{id}', [KonfirmasiLaporanAbsensiController::class, 'tolak'])->name('tolak.laporan.absensi');
-    Route::post('/terima-laporan-absensi/{id}', [KonfirmasiLaporanAbsensiController::class, 'terima'])->name('terima.laporan.absensi');
-    Route::get('/cari-absensi/{id}/{tanggal_absen}', [KonfirmasiLaporanAbsensiController::class, 'cariAbsensi'])->name('cari.absensi');
-    Route::post('/tambah-absensi/{id}', [KonfirmasiLaporanAbsensiController::class, 'tambahAbsen'])->name('tambah.absensi');
+    //Pengaduan Absensi
+    Route::get('/pengaduan-absensi', [KelolaPengaduanAbsensiController::class, 'index'])->name('halaman.kelola.pengaduan.absensi');
+    Route::get('/cari-pengaduan-absensi',[KelolaPengaduanAbsensiController::class, 'cariPengaduanAbsensi'])->name('cari.pengaduan.absensi');
+    Route::get('/konfirmasi-pengaduan-absensi/{id}',[KonfirmasiPengaduanAbsensiController::class, 'index'])->name('halaman.konfirmasi.pengaduan.absensi');
+    Route::post('/tolak-pengaduan-absensi/{id}', [KonfirmasiPengaduanAbsensiController::class, 'tolak'])->name('tolak.pengaduan.absensi');
+    Route::post('/terima-pengaduan-absensi/{id}', [KonfirmasiPengaduanAbsensiController::class, 'terima'])->name('terima.pengaduan.absensi');
+    Route::get('/cari-absensi/{id}/{tanggal_absen}', [KonfirmasiPengaduanAbsensiController::class, 'cariAbsensi'])->name('cari.absensi');
+    Route::post('/tambah-absensi/{id}', [KonfirmasiPengaduanAbsensiController::class, 'tambahAbsen'])->name('tambah.absensi');
 
     //Lembur
     Route::get('/lembur', [KelolaLemburController::class, 'index'])->name('halaman.kelola.lembur');

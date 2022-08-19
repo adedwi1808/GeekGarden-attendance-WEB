@@ -9,7 +9,7 @@ class Pengaduan_Absensi extends Model
 {
     use HasFactory;
     protected $table='pengaduan_absensi';
-    protected $primaryKey = 'id_laporan_absensi';
+    protected $primaryKey = 'id_pengaduan_absensi';
     const UPDATED_AT = null;
     public $timestamps = false;
 

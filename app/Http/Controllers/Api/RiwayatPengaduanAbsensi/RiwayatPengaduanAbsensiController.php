@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Api\RiwayatLaporanAbsensi;
+namespace App\Http\Controllers\Api\RiwayatPengaduanAbsensi;
 
 use App\Http\Controllers\Controller;
-use App\Models\Laporan_Absensi;
+use App\Models\Pengaduan_Absensi;
 use Illuminate\Http\Request;
 
-class RiwayatLaporanAbsensiController extends Controller
+class RiwayatPengaduanAbsensiController extends Controller
 {
-    public function riwayatlaporanabsensi()
+    public function riwayatPengaduanAbsensi()
     {
         $id = auth('pegawai-api')->user()->id_pegawai;
-        $laporan = Laporan_Absensi::with('admin')
+        $pengaduan = Pengaduan_Absensi::with('admin')
             ->where('id_pegawai', $id)
             ->take(15)
             ->get();
-        if ($laporan) {
-            return $this->success($laporan, '');
+        if ($pengaduan) {
+            return $this->success($pengaduan, '');
         } else {
             return $this->error("Terjadi kesalahan");
         }
