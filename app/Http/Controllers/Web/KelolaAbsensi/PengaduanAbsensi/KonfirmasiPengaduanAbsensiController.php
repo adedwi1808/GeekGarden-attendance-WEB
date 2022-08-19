@@ -76,7 +76,7 @@ class KonfirmasiPengaduanAbsensiController extends Controller
             $nama_pegawai = $data_pengaduan_absensi->pegawai->nama;
             $data_pengaduan_absensi->update([
                 'status_pengaduan' => 'Diterima',
-                'keterangan_admin' => 'Pengaduan Absensi Diterima',
+                'keterangan_admin' => 'Pengaduan Diterima',
                 'id_admin'=>Session::get('admin.id_admin'),
             ]);
 

@@ -89,6 +89,7 @@
                             <th>Keterangan pengaduan</th>
                             <th>Tanggal Pengajuan</th>
                             <th>Status</th>
+                            <th>Keterangan Admin</th>
                             <th>Konfirmator</th>
                             <th>Kelola</th>
                         </tr>
@@ -104,6 +105,7 @@
                                 <td><span class="badge @if($pengaduan->status_pengaduan == "Diterima") badge-success
                                         @elseif($pengaduan->status_pengaduan == "Ditolak") badge-danger @else badge-info
 @endif badge-pill">{{$pengaduan->status_pengaduan}}</span></td>
+                                <td>{{(strlen($pengaduan->keterangan_admin) > 18)? substr($pengaduan->keterangan_admin, 0,18)."..." : $pengaduan->keterangan_admin}}</td>
                                 <td>{{($pengaduan->id_admin == null)? "-": $pengaduan->admin->nama}}</td>
                                 <td>
                                     <div class="row justify-content-center">
@@ -130,6 +132,7 @@
                             <th>Keterangan pengaduan</th>
                             <th>Tanggal Pengajuan</th>
                             <th>Status</th>
+                            <th>Keterangan Admin</th>
                             <th>Konfirmator</th>
                             <th>Kelola</th>
                         </tr>

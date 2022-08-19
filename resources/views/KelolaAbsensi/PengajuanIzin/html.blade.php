@@ -95,8 +95,9 @@
                                 <th>Tanggal Selesai</th>
                                 <th>Alasan Izin</th>
                                 <th>Surat Izin</th>
-                                <th>Tanggal Pengajuakan</th>
+                                <th>Tanggal Pengajuan</th>
                                 <th>Status</th>
+                                <th>Keterangan</th>
                                 <th>Konfirmator</th>
                                 <th>Kelola</th>
                             </tr>
@@ -119,6 +120,7 @@
                                         @elseif($pengajuan_izin->status_izin == "Ditolak") badge-danger @else badge-info
 @endif badge-pill">
                                             {{$pengajuan_izin->status_izin}}</span></td>
+                                    <td>{{(strlen($pengajuan_izin->keterangan_admin) > 3)? substr($pengajuan_izin->keterangan_admin, 0,3)."..." : $pengajuan_izin->keterangan_admin}}</td>
                                     <td>{{($pengajuan_izin->id_admin == null)? "-": $pengajuan_izin->admin->nama}}</td>
                                     <td>
                                         <div class="row justify-content-center">
@@ -146,8 +148,9 @@
                                 <th>Tanggal Selesai</th>
                                 <th>Alasan Izin</th>
                                 <th>Surat Izin</th>
-                                <th>Tanggal Pengajuakan</th>
+                                <th>Tanggal Pengajuan</th>
                                 <th>Status</th>
+                                <th>Keterangan</th>
                                 <th>Konfirmator</th>
                                 <th>Kelola</th>
                             </tr>
