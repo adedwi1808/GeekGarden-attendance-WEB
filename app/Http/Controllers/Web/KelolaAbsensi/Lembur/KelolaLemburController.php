@@ -19,8 +19,6 @@ class KelolaLemburController extends Controller
                 'lembur.tanggal_dibuat', 'lembur.status_lembur', 'lembur.id_lembur',  'pegawai.nama as nama_pegawai',
                 'absensi.tempat')
             ->get();
-
-//        return dd($data_pengajuan_lembur);
         return view('KelolaAbsensi.Lembur.index', compact('data_pengajuan_lembur', 'title'));
     }
 
