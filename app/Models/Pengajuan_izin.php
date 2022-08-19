@@ -22,6 +22,7 @@ class Pengajuan_izin extends Model
         'tanggal_mulai_izin',
         'tanggal_selesai_izin',
         'surat_izin',
+        'keterangan_admin',
         'status_izin',
     ];
 

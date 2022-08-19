@@ -19,6 +19,7 @@ class Pengaduan_Absensi extends Model
         'id_admin',
         'tanggal_absen',
         'keterangan_pengaduan',
+        'keterangan_admin',
         'tanggal_pengaduan',
         'status_pengaduan'
     ];

@@ -28,6 +28,7 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->date('tanggal_absen');
             $table->text('keterangan_pengaduan');
+            $table->text('keterangan_admin')->nullable();
             $table->dateTime('tanggal_pengaduan')->useCurrent();
             $table->enum('status_pengaduan',['Diajukan', 'Ditolak', 'Diterima'])
                 ->default('Diajukan');

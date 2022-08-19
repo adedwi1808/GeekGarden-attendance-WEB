@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use DateInterval;
 use DatePeriod;
 use DateTime;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class KonfirmasiPengajuanIzinController extends Controller
@@ -25,12 +26,22 @@ class KonfirmasiPengajuanIzinController extends Controller
         return view('KelolaAbsensi.PengajuanIzin.KonfirmasiPengajuanIzin.index', compact('data_pengajuan_izin', 'title'));
     }
 
-    public function tolak($id)
+    public function tolak($id, Request $request)
     {
         $title = 'Pengajuan Izin';
+
+        $validasi = $request->validate([
+            'keterangan_admin' => 'required',
+        ]);
+
+        if (!$validasi){
+            return back()->withError('Harap Masukkan Alasan Ditolak');
+        }
+
         $data_pengajuan_izin = Pengajuan_izin::with('pegawai')
             ->where('id_pengajuan_izin', $id)
             ->first();
+
         if ($data_pengajuan_izin->status_izin == "Diterima") {
             return back()->with('fail', "Anda Sudah Mengkonfirmasi Pengajuan Ini Diterima, Tidak bisa diubah");
         }
@@ -38,6 +49,7 @@ class KonfirmasiPengajuanIzinController extends Controller
             $nama_pegawai = $data_pengajuan_izin->pegawai->nama;
             $data_pengajuan_izin->update([
                 'status_izin' => 'Ditolak',
+                'keterangan_admin'=> $request->keterangan_admin,
                 'id_admin'=>Session::get('admin.id_admin')
                     ]);
             return redirect()->route('admin.halaman.kelola.pengajuan.izin', compact('title'))
@@ -60,6 +72,7 @@ class KonfirmasiPengajuanIzinController extends Controller
             $nama_pegawai = $data_pengajuan_izin->pegawai->nama;
             $data_pengajuan_izin->update([
                 'status_izin' => 'Diterima',
+                'keterangan_admin' => 'Pengajuan Diterima',
                 'id_admin'=>Session::get('admin.id_admin'),
             ]);
 

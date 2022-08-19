@@ -30,6 +30,7 @@ return new class extends Migration
             $table->date('tanggal_mulai_izin');
             $table->date('tanggal_selesai_izin');
             $table->text('alasan_izin');
+            $table->text('keterangan_admin')->nullable();
             $table->string('surat_izin')->nullable();
             $table->enum('status_izin', ['Diajukan','Diterima', 'Ditolak'])
                 ->default('Diajukan');

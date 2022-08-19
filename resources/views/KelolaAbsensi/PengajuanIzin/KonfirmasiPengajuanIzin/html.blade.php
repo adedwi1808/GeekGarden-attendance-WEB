@@ -13,6 +13,13 @@
                         </div>
                     @endif
                 </div>
+                <div class="col-12">
+                    @if($errors->any())
+                        <div class="alert alert-danger" role="alert">
+                            {{$errors->first()}}
+                        </div>
+                    @endif
+                </div>
             </div>
                 <div class="input-group mb-3 ">
                     <div class="input-group-prepend">
@@ -42,6 +49,17 @@
                               rows="3" name="informasiMading"
                               placeholder="Informasi Mading" disabled>{{$data_pengajuan_izin->alasan_izin}}</textarea>
                 </div>
+
+                @if($data_pengajuan_izin->status_izin == "Ditolak")
+                    <div class="form-group mb-3">
+                        <label for="alsanIzin">Alasan Ditolak:</label>
+                        <textarea class="form-control" id="alsanIzin"
+                                  rows="3" name="informasiMading"
+                                  placeholder="Alasan Ditolak" disabled>{{$data_pengajuan_izin->keterangan_admin}}</textarea>
+                    </div>
+                @endif
+
+
                 <div class="form-group mb-3">
                     <label>Surat Izin(Opsional):</label>
                     <br>
@@ -132,7 +150,15 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            Yakin ingin Menolak Pengajuan Izin ?
+                                            <div class="form-group">
+                                                <label for="keterangan_admin">Keterangan Admin:</label>
+                                                <textarea class="form-control @error('keterangan_admin') is-invalid @enderror" id="keterangan_admin"
+                                                          rows="5" name="keterangan_admin"
+                                                          placeholder="Alasan ditolak"></textarea>
+                                                <span class="invalid-feedback">
+                        @error('keterangan_admin'){{$message}} @enderror
+                    </span>
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak

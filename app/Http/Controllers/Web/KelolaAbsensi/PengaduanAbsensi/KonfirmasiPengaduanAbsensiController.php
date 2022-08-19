@@ -23,13 +23,21 @@ class KonfirmasiPengaduanAbsensiController extends Controller
         return view('KelolaAbsensi.PengaduanAbsensi.KonfirmasiPengaduanAbsensi.index', compact('data_pengaduan_absensi', 'title'));
     }
 
-    public function tolak($id)
+    public function tolak(Request $request, $id)
     {
         $title = 'Pengaduan Absensi';
 
         $data_pengaduan_absensi = Pengaduan_Absensi::with('pegawai')
             ->where('id_pengaduan_absensi', $id)
             ->first();
+
+        $validasi = $request->validate([
+            'keterangan_admin' => 'required',
+        ]);
+
+        if (!$validasi){
+            return back()->withError('Harap Masukkan Alasan Ditolak');
+        }
         if ($data_pengaduan_absensi->status_pengaduan == "Diterima") {
             return back()->with('fail', "Anda Sudah Mengkonfirmasi Pengaduan Ini Diterima, Tidak bisa diubah");
         }
@@ -37,6 +45,7 @@ class KonfirmasiPengaduanAbsensiController extends Controller
             $nama_pegawai = $data_pengaduan_absensi->pegawai->nama;
             $data_pengaduan_absensi->update([
                 'status_pengaduan' => 'Ditolak',
+                'keterangan_admin'=> $request->keterangan_admin,
                 'id_admin'=>Session::get('admin.id_admin')
             ]);
             return redirect()->route('admin.halaman.kelola.pengaduan.absensi', compact('title'))
@@ -67,6 +76,7 @@ class KonfirmasiPengaduanAbsensiController extends Controller
             $nama_pegawai = $data_pengaduan_absensi->pegawai->nama;
             $data_pengaduan_absensi->update([
                 'status_pengaduan' => 'Diterima',
+                'keterangan_admin' => 'Pengaduan Absensi Diterima',
                 'id_admin'=>Session::get('admin.id_admin'),
             ]);
 
