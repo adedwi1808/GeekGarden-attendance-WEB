@@ -10,16 +10,22 @@ use Maatwebsite\Excel\Concerns\FromView;
 class AbsensiPegawaiExport implements FromView
 {
 
-    public function __construct($waktu, )
+    public function __construct($waktu, $pegawai)
     {
         $this->waktu = $waktu;
+        $this->pegawai = $pegawai;
     }
 
     public function view(): View
     {
         $waktu = $this->waktu;
-
+        $pegawai = $this->pegawai;
         $data_absensi = Absensi::with('pegawai')
+            ->where(function ($query) use($pegawai){
+                if ($pegawai != "All") {
+                    $query->where('id_pegawai', $pegawai);
+                }
+            })
             ->whereBetween('tanggal', $waktu)
             ->get();
 

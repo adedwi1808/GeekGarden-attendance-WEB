@@ -9,7 +9,7 @@
                 <form method="get">
                     @csrf
                     <div class="row mt-3">
-                        <div class="col-12">
+                        <div class="col-8">
                             <div class="form-group">
                                 <label for="date_range">Rentang Waktu:</label>
                                 <div id="date_range" class="row">
@@ -22,6 +22,17 @@
                                                value="{{\Carbon\Carbon::now()->endOfDay()->toDateTimeString()}}">
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="pegawai">Pegawai:</label>
+                                <select name="pegawai" id="pegawai" class="select2" style="width: 100%;">
+                                    <option selected value="All">All</option>
+                                    @foreach($data_pegawai as $pegawai)
+                                    <option value="{{$pegawai->id_pegawai}}">{{$pegawai->nama}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
