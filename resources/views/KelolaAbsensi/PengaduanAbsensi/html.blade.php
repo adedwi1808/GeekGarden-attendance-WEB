@@ -103,8 +103,9 @@
                                 <td>{{$pengaduan->keterangan_pengaduan}}</td>
                                 <td>{{$pengaduan->tanggal_pengaduan}}</td>
                                 <td><span class="badge @if($pengaduan->status_pengaduan == "Diterima") badge-success
-                                        @elseif($pengaduan->status_pengaduan == "Ditolak") badge-danger @else badge-info
-@endif badge-pill">{{$pengaduan->status_pengaduan}}</span></td>
+                                        @elseif($pengaduan->status_pengaduan == "Ditolak") badge-danger
+                                        @else badge-info
+                        @endif badge-pill">{{$pengaduan->status_pengaduan}}</span></td>
                                 <td>{{(strlen($pengaduan->keterangan_admin) > 18)? substr($pengaduan->keterangan_admin, 0,18)."..." : $pengaduan->keterangan_admin}}</td>
                                 <td>{{($pengaduan->id_admin == null)? "-": $pengaduan->admin->nama}}</td>
                                 <td>

@@ -156,7 +156,7 @@ class KonfirmasiPengaduanAbsensiController extends Controller
                 ->delete();
 
 
-            if ($request->has('hadir')){
+            if ($request->post('opsi_absen') == 'Hadir'){
 
                 Absensi::where('id_pegawai', $data_pengaduan_absensi->id_pegawai)
                     ->where('status','Hadir')
@@ -174,11 +174,7 @@ class KonfirmasiPengaduanAbsensiController extends Controller
                 ];
                 $absensi = Absensi::create($data);
                 $absensi->save();
-            }
-
-
-
-            if ($request->has('pulang')){
+            }else{
 
                 Absensi::where('id_pegawai', $data_pengaduan_absensi->id_pegawai)
                     ->where('status','Pulang')

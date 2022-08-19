@@ -148,17 +148,21 @@
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label>Opsi Absensi:</label>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" type="checkbox"
-                                                               id="hadir" name="hadir" value="Hadir">
-                                                        <label for="hadir"
-                                                               class="custom-control-label">Hadir</label>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                               name="opsi_absen" id="Hadir" value="Hadir"
+                                                               checked
+                                                        >
+                                                        <label class="form-check-label" for="Hadir">
+                                                            Hadir
+                                                        </label>
                                                     </div>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" type="checkbox"
-                                                               id="pulang" name="pulang" value="Pulang">
-                                                        <label for="pulang"
-                                                               class="custom-control-label">Pulang</label>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                               name="opsi_absen" id="Pulang" value="Pulang">
+                                                        <label class="form-check-label" for="Pulang">
+                                                            Pulang
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
