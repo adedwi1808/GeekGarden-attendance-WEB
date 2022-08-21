@@ -46,7 +46,10 @@ class PengaduanAbsensiController extends Controller
         $pengaduan_absensi->save();
 
         $pengaduan_absensi_response = Pengaduan_Absensi::with('admin')
-            ->where('id_pegawai', $id)->get();
+            ->where('id_pegawai', $id)
+            ->orderByDesc('tanggal_pengaduan')
+            ->take(15)
+            ->get();
         if ($pengaduan_absensi) {
             return $this->success($pengaduan_absensi_response, 'Anda berhasil membuat pengaduan absensi');
         } else {

@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Api\RiwayatPengaduanAbsensi;
+namespace App\Http\Controllers\Api\RiwayatPengajuanIzin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Pengaduan_Absensi;
+use App\Models\Pengajuan_izin;
 use Illuminate\Http\Request;
 
-class RiwayatPengaduanAbsensiController extends Controller
+class RiwayatPengajuanIzinController extends Controller
 {
-    public function riwayatPengaduanAbsensi()
+    public function riwayatPengajuanIzin()
     {
         $id = auth('pegawai-api')->user()->id_pegawai;
-        $pengaduan = Pengaduan_Absensi::with('admin')
+        $pengajuan = Pengajuan_izin::with('admin')
             ->where('id_pegawai', $id)
-            ->orderByDesc('tanggal_pengaduan')
+            ->orderByDesc('tanggal_mengajukan_izin')
             ->take(15)
             ->get();
-        if ($pengaduan) {
-            return $this->success($pengaduan, '');
+        if ($pengajuan) {
+            return $this->success($pengajuan, '');
         } else {
             return $this->error("Terjadi kesalahan");
         }

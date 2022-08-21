@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\Absen\AbsenController;
 use App\Http\Controllers\Api\LaporAbsen\LaporAbsensiController;
 use App\Http\Controllers\Api\RiwayatLaporanAbsensi\RiwayatLaporanAbsensiController;
 use App\Http\Controllers\Api\RiwayatPengaduanAbsensi\RiwayatPengaduanAbsensiController;
+use App\Http\Controllers\Api\RiwayatPengajuanIzin\RiwayatPengajuanIzinController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +52,8 @@ Route::group(['middleware' => ['assign.guard:pegawai-api', 'jwt.verify']], funct
     //Pengajuan Izin
     Route::post('/pengajuan-izin', [PengajuanIzinController::class, 'mengajukanIzin']);
     Route::post('/upload-pengajuan-izin/{id}',  [PengajuanIzinController::class, 'uploadSuratizin']);
+    Route::get( '/riwayat-pengajuan-izin',[RiwayatPengajuanIzinController::class, 'riwayatPengajuanIzin']);
+
 
     //Pengaduan Absensi
     Route::post('/pengaduan-absensi', [PengaduanAbsensiController::class, 'mengadukanAbsen']);

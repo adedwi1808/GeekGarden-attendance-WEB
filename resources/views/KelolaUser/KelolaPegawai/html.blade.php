@@ -64,7 +64,8 @@
                                     <td>{{$pegawai->nomor_hp}}</td>
                                     <td>{{(strlen($pegawai->email) > 18)? substr($pegawai->email, 0,18)."..." : $pegawai->email}}</td>
                                     <td>{{$pegawai->jabatan}}</td>
-                                    <td>{{($pegawai->foto_profile == null)? "-":((strlen($pegawai->foto_profile) > 18)? substr($pegawai->foto_profile, 0,18)."..." : $pegawai->foto_profile)}}</td>
+                                    <td><a class="link-primary"
+                                           href="/storage/pegawai/{{$pegawai->foto_profile}}">{{($pegawai->foto_profile == null)? "-":((strlen($pegawai->foto_profile) > 18)? substr($pegawai->foto_profile, 0,18)."..." : $pegawai->foto_profile)}}</a></td>
                                     <td>
                                         <div class="row justify-content-center">
                                             <form class="mx-2"

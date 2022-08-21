@@ -93,9 +93,9 @@
                                 <th>Jenis Izin</th>
                                 <th>Tanggal Mulai</th>
                                 <th>Tanggal Selesai</th>
-                                <th>Alasan Izin</th>
-                                <th>Surat Izin</th>
-                                <th>Tanggal Pengajuan</th>
+                                <th>Alasan</th>
+                                <th>Surat</th>
+                                <th>Tanggal</th>
                                 <th>Status</th>
                                 <th>Keterangan</th>
                                 <th>Konfirmator</th>
@@ -110,9 +110,9 @@
                                     <td>{{$pengajuan_izin->jenis_izin}}</td>
                                     <td>{{$pengajuan_izin->tanggal_mulai_izin}}</td>
                                     <td>{{$pengajuan_izin->tanggal_selesai_izin}}</td>
-                                    <td>{{$pengajuan_izin->alasan_izin}}</td>
+                                    <td>{{(strlen($pengajuan_izin->alasan_izin) > 3)? substr($pengajuan_izin->alasan_izin, 0,3)."..." : $pengajuan_izin->alasan_izin}}</td>
                                     <td><a class="link-primary"
-                                           href="/storage/surat-izin/{{$pengajuan_izin->surat_izin}}">{{(strlen($pengajuan_izin->surat_izin) > 18)? substr($pengajuan_izin->surat_izin, 0,18)."..." : $pengajuan_izin->surat_izin}}</a>
+                                           href="/storage/surat-izin/{{$pengajuan_izin->surat_izin}}">{{(strlen($pengajuan_izin->surat_izin) > 5)? substr($pengajuan_izin->surat_izin, 0,5)."..." : $pengajuan_izin->surat_izin}}</a>
                                     </td>
                                     <td>{{$pengajuan_izin->tanggal_mengajukan_izin}}</td>
                                     <td>
@@ -146,9 +146,9 @@
                                 <th>Jenis Izin</th>
                                 <th>Tanggal Mulai</th>
                                 <th>Tanggal Selesai</th>
-                                <th>Alasan Izin</th>
-                                <th>Surat Izin</th>
-                                <th>Tanggal Pengajuan</th>
+                                <th>Alasan</th>
+                                <th>Surat</th>
+                                <th>Tanggal</th>
                                 <th>Status</th>
                                 <th>Keterangan</th>
                                 <th>Konfirmator</th>
