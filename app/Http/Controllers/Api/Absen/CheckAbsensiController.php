@@ -13,6 +13,7 @@ class CheckAbsensiController extends Controller
         $id = auth('pegawai-api')->user()->id_pegawai;
         $jumlah_absen = Absensi::where("id_pegawai", $id)
             ->where('status','!=','Izin')
+            ->where('status','!=','Cuti')
             ->whereDate('tanggal', today())
             ->count();
         if ($jumlah_absen < 1) {

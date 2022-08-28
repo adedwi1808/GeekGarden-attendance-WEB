@@ -55,7 +55,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Tanggal Absen(yang dilaporkan):</label>
+                        <label>Tanggal Absen(yang diadukan):</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
@@ -205,7 +205,7 @@
                 <div class="col-6">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-success btn-block" formaction="" data-toggle="modal"
-                            data-target="#modalMengizinkan">Menerima izin
+                            data-target="#modalMengizinkan">Menerima Pengaduan
                     </button>
                     <form
                         action="{{route('admin.terima.pengaduan.absensi',$data_pengaduan_absensi->id_pengaduan_absensi)}}"
@@ -216,19 +216,18 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="modalLabel">Konfirmasi Untuk Mengizinkan
-                                            Pegawai</h5>
+                                        <h5 class="modal-title" id="modalLabel">Konfirmasi Untuk Menerima Aduan</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        Yakin ingin menerima pengajuan izin pegawai ?
+                                        Yakin ingin menerima pengaduan absen pegawai ?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak
                                         </button>
-                                        <button type="submit" class="btn btn-success">Ya, Izinkan</button>
+                                        <button type="submit" class="btn btn-success">Ya, Terima</button>
                                     </div>
                                 </div>
                             </div>
@@ -239,7 +238,7 @@
                 <div class="col-6">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-danger btn-block" data-toggle="modal"
-                            data-target="#modalMenolakIzin">Menolak Izin
+                            data-target="#modalMenolakPengaduan">Menolak Pengaduan
                     </button>
 
                     <!-- Modal -->
@@ -247,7 +246,7 @@
                         action="{{route('admin.tolak.pengaduan.absensi',$data_pengaduan_absensi->id_pengaduan_absensi)}}"
                         method="post">
                         @csrf
-                        <div class="modal fade" id="modalMenolakIzin" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="modalMenolakPengaduan" tabindex="-1" role="dialog"
                              aria-labelledby="modalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">

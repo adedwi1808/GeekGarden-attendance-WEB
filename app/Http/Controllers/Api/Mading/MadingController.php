@@ -10,7 +10,8 @@ class MadingController extends Controller
 {
     public function selectAllMading(Request $request)
     {
-        $madings = Mading::all();
+        $madings = Mading::orderByDesc('create_at')
+        ->get();
         if ($madings) {
             return $this->success($madings, '' );
         } else {

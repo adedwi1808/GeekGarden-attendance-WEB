@@ -33,9 +33,9 @@ class EditHasilAbsensiController extends Controller
                     'longitude' => $request->longitude,
                     'latitude' => $request->latitude,
                 ]);
-                return back()->with('success', 'Berhasil Mengedit Pegawai');
+                return back()->with('success', 'Berhasil Mengedit Data Absensi');
         }
-        return $this->back()->with('fail', 'Terjadi Kesalahan Saat Melakukan Edit Data');
+        return $this->back()->with('fail', 'Terjadi Kesalahan Saat Melakukan Edit Data Absensi');
     }
 
     public function hapus($id)

@@ -100,7 +100,7 @@
                             <tr>
                                 <td>{{$pengaduan->pegawai->nama}}</td>
                                 <td>{{$pengaduan->tanggal_absen}}</td>
-                                <td>{{$pengaduan->keterangan_pengaduan}}</td>
+                                <td>{{(strlen($pengaduan->keterangan_pengaduan) > 18)? substr($pengaduan->keterangan_pengaduan, 0,18)."..." : $pengaduan->keterangan_pengaduan}}</td>
                                 <td>{{$pengaduan->tanggal_pengaduan}}</td>
                                 <td><span class="badge @if($pengaduan->status_pengaduan == "Diterima") badge-success
                                         @elseif($pengaduan->status_pengaduan == "Ditolak") badge-danger

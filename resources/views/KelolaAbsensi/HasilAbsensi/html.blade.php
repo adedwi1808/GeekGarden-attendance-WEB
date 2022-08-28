@@ -82,7 +82,9 @@
                             @forelse($data_absensi as $index=>$absensi)
                                 @php
                                     $progress = \App\Models\Progress::where('id_absensi',$absensi->id_absensi)->first();
-                                    $lembur = \App\Models\Lembur::where('id_absensi', $absensi->id_absensi)->first();
+                                    $lembur = \App\Models\Lembur::where('id_absensi', $absensi->id_absensi)
+                                    ->where('status_lembur', 'Diterima')
+                                    ->first();
                                 @endphp
                                 <tr>
                                     <td>{{$absensi->pegawai->nama}}</td>

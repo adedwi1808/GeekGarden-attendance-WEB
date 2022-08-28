@@ -7,6 +7,7 @@ use App\Models\Admin;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class KelolaPegawaiController extends Controller
 {
@@ -44,10 +45,15 @@ class KelolaPegawaiController extends Controller
             'nomor_hp' => 'required|min:10|unique:pegawai|regex:/^([0-9\s\-\+\(\)]*)$/',
             'password' => 'required|min:6'
         ]);
+        if($request->get('nomor_hp') < 0){
+            throw ValidationException::withMessages(['nomor_hp'=> 'Format salah']);
+        }
 
         $admin = Pegawai::create(array_merge($validasi, [
             'password' => bcrypt($request->password)
         ]));
+
+
         if ($admin){
             return back()->with('success','Berhasil, Akun Pegawai siap digunakan');
         }else{

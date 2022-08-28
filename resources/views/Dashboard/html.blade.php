@@ -67,6 +67,21 @@
                     </a>
                 </div>
             </div>
+            <div class="col-lg-6 col-12">
+
+                <div class="small-box bg-primary">
+                    <div class="inner">
+                        <h3>{{$jumlah_pengajuan_lembur}}</h3>
+                        <p>Pengajuan lembur</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-user-clock"></i>
+                    </div>
+                    <a href="{{route('admin.halaman.kelola.lembur')}}" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
 
         </div>
     </div>

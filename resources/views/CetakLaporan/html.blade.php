@@ -28,9 +28,9 @@
                             <div class="form-group">
                                 <label for="pegawai">Pegawai:</label>
                                 <select name="pegawai" id="pegawai" class="select2" style="width: 100%;">
-                                    <option selected value="All">All</option>
+                                    <option @if(old('$pegawai') == 'All') selected @endif value="All">All</option>
                                     @foreach($data_pegawai as $pegawai)
-                                    <option value="{{$pegawai->id_pegawai}}">{{$pegawai->nama}}</option>
+                                    <option value="{{$pegawai->id_pegawai}}" @if(old('pegawai') == $pegawai->nama) selected @endif>{{$pegawai->nama}}</option>
                                     @endforeach
                                 </select>
                             </div>

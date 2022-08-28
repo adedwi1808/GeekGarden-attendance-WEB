@@ -25,13 +25,15 @@
                             <i class="fas fa-user"></i>
                         </span>
                     </div>
-                    <input type="text" class="form-control @error('nama')is-invalid @enderror" placeholder="Nama Lengkap" name="nama" id="nama" value="{{$data_admin->nama}}">
+                    <input type="text" class="form-control @error('nama')is-invalid @enderror" placeholder="Nama Lengkap" name="nama" id="nama"
+                           @if(\Illuminate\Support\Facades\Session::get('admin.id_admin') != $data_admin->id_admin)
+                               disabled
+                           @endif
+                           value="{{$data_admin->nama}}">
                     <span class="invalid-feedback">
                         @error('nama'){{$message}} @enderror
                     </span>
                 </div>
-
-
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
@@ -39,7 +41,11 @@
                         </div>
                     </div>
                     <input type="email" class="form-control @error('email') is-invalid @enderror"
-                           placeholder="Email" name="email" id="email" value="{{$data_admin->email}}">
+                           placeholder="Email" name="email" id="email"
+                           @if(\Illuminate\Support\Facades\Session::get('admin.id_admin') != $data_admin->id_admin)
+                               disabled
+                           @endif
+                           value="{{$data_admin->email}}">
                     <span class="invalid-feedback">
                         @error('email'){{$message}} @enderror
                     </span>
@@ -54,7 +60,13 @@
                 <div class="row">
                     <!-- /.col -->
                     <div class="col-12">
-                        <button type="button" class="btn btn-primary btn-block">Edit Admin</button>
+                        <button type="submit" class="btn btn-primary btn-block"
+                                @if(\Illuminate\Support\Facades\Session::get('admin.id_admin') != $data_admin->id_admin)
+                                    hidden
+                            @endif
+                        >
+                            Edit Admin
+                        </button>
                     </div>
                     <!-- /.col -->
                 </div>
