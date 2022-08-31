@@ -17,6 +17,7 @@ class DataAbsensiPegawaiController extends Controller
         $hadir = Absensi::where('id_pegawai', $id)
             ->where('status', 'Hadir')
             ->orWhere('status', 'Cuti')
+            ->orWhere('status', 'Izin')
             ->whereMonth('tanggal', Carbon::today()->month)
             ->count();
 
