@@ -16,25 +16,25 @@ class DataAbsensiPegawaiController extends Controller
 
         $hadir = Absensi::where('id_pegawai', $id)
             ->where('status', 'Hadir')
-            ->orWhere('status', 'Cuti')
-            ->orWhere('status', 'Izin')
-            ->whereMonth('tanggal', Carbon::today()->month)
+//            ->orWhere('status', 'Cuti')
+//            ->orWhere('status', 'Izin')
+            ->whereMonth('tanggal', Carbon::now()->month)
             ->count();
 
         $izin = Absensi::where('id_pegawai', $id)
             ->where('status', 'Izin')
-            ->whereMonth('tanggal', Carbon::today()->month)
+            ->whereMonth('tanggal', Carbon::now()->month)
             ->count();
 
         $cuti = Absensi::where('id_pegawai', $id)
             ->where('status', 'Cuti')
-            ->whereMonth('tanggal', Carbon::today()->month)
+            ->whereMonth('tanggal', Carbon::now()->month)
             ->count();
 
         $lembur = Lembur::join('absensi','absensi.id_absensi','lembur.id_absensi')
             ->where('id_pegawai', $id)
             ->where('status_lembur', 'Diterima')
-            ->whereMonth('tanggal_dibuat', Carbon::today()->month)
+            ->whereMonth('tanggal_dibuat', Carbon::now()->month)
             ->count();
 
         $data = [

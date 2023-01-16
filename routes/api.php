@@ -45,12 +45,15 @@ Route::group(['middleware' => ['assign.guard:pegawai-api', 'jwt.verify']], funct
 
     //Attendance
     Route::post('/absensi-hadir',[AbsensiHadirController::class, 'absensihadir']);
+    Route::post('/absensi-hadir-ios',[AbsensiHadirController::class, 'absensiHadiriOS']);
     Route::post('/upload-bukti-absensi/{id}', [UploadBuktiAbsensiController::class, 'uploadbuktiabsensi']);
     Route::post('/absensi-pulang',[AbsensiPulangController::class, 'absensipulang']);
+    Route::post('/absensi-pulang-ios',[AbsensiPulangController::class, 'absensipulangios']);
     Route::get( '/riwayat-absensi',[RiwayatAbsensiController::class, 'riwayatAbsensi']);
 
     //Pengajuan Izin
     Route::post('/pengajuan-izin', [PengajuanIzinController::class, 'mengajukanIzin']);
+    Route::post('/pengajuan-izin-ios', [PengajuanIzinController::class, 'mengajukanIzinIos']);
     Route::post('/upload-pengajuan-izin/{id}',  [PengajuanIzinController::class, 'uploadSuratizin']);
     Route::get( '/riwayat-pengajuan-izin',[RiwayatPengajuanIzinController::class, 'riwayatPengajuanIzin']);
 
@@ -67,5 +70,8 @@ Route::group(['middleware' => ['assign.guard:pegawai-api', 'jwt.verify']], funct
     //Edit Profile
     Route::post('/foto-pegawai/{id}', [EditProfilePegawaiController::class, 'editfotoprofile']);
     Route::put('/update-pegawai/{id}', [EditProfilePegawaiController::class, 'updatepegawai']);
+
+    Route::post('/foto-pegawai-ios', [EditProfilePegawaiController::class, 'editfotoprofileios']);
+    Route::post('/update-pegawai-ios', [EditProfilePegawaiController::class, 'updatepegawaiios']);
 });
 

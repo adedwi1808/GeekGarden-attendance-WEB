@@ -7,15 +7,22 @@ use App\Models\Pegawai;
 use App\Models\Reset_Password;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class LupaPasswordPegawaiController extends Controller
 {
     public function lupapassword(Request $request)
     {
-        $request->validate([
+//        $validasi = $request->validate([
+//            'email'=>'required|email|exists:Pegawai'
+//        ]);
+
+        $validasi = Validator::make($request->all(), [
             'email'=>'required|email|exists:Pegawai'
         ]);
+
+        if ($validasi->fails()) return $this->error($validasi->errors()->first());
 
         $token = Str::random(64);
 
@@ -36,7 +43,7 @@ class LupaPasswordPegawaiController extends Controller
 
         $pegawai = Pegawai::where('email', $request->email)->first();
 
-        return $this->success(data: $pegawai , message: "Silahkan Cek Email Anda Untuk Mereset Password");
+        return $this->success(message: "Silahkan Cek Email Anda Untuk Mereset Password");
     }
 
     public function formresetpassword(Request $request, $token = null)
@@ -73,7 +80,7 @@ class LupaPasswordPegawaiController extends Controller
         }
     }
 
-    public function success($data, $message = "success")
+    public function success($data = "", $message = "success")
     {
         return response()->json([
             'code' => 200,

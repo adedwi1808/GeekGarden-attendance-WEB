@@ -13,6 +13,7 @@ class RiwayatAbsensiController extends Controller
     {
         $id = auth('pegawai-api')->user()->id_pegawai;
         $absensi = Absensi::where('id_pegawai', $id)
+            ->orderBy('id_absensi', 'desc')
             ->take(15)
             ->get();
         if ($absensi) {

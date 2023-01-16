@@ -20,9 +20,7 @@ class AuthPegawaiController extends Controller
         ]);
 
         if ($validasi->fails()) {
-            return response()->json([
-                "message"=> "ada inputan yang tidak sesuai" . $validasi->errors()->first()
-            ], Response::HTTP_BAD_REQUEST);
+            return $this->error($validasi->errors()->first());
         }
 
         $data = [
@@ -32,10 +30,7 @@ class AuthPegawaiController extends Controller
 
 
         if (!$token = auth('pegawai-api')->attempt($data)){
-            return response()->json([
-                "message"=>"email atau password salah"
-            ], Response::HTTP_BAD_REQUEST);
-
+            return $this->error("email atau password salah");
         }
         $pegawai = Pegawai::where('email', $request->email)->first();
 
