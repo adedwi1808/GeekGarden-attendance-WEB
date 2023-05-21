@@ -31,17 +31,24 @@ class Pegawai extends Authenticatable implements JWTSubject
         'password',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-//    public function absensi()
-//    {
-//        return $this->hasMany(Absensi::class, 'id', 'id');
-//    }
-    public function izin()
+    public function absensi()
     {
-        return $this->hasMany(Izin::class,'id_pegawai','id_pegawai');
+        return $this->hasMany(Absensi::class, 'id_pegawai', 'id_pegawai');
+    }
+
+    public function pengajuan_izin()
+    {
+        return $this->hasMany(Pengajuan_izin::class,'id_pegawai','id_pegawai');
+    }
+
+    public function laporanabsensi()
+    {
+        return $this->hasMany(Laporan_Absensi::class,'id_pegawai','id_pegawai');
+    }
+
+    public function pengaduanabsensi()
+    {
+        return $this->hasMany(Pengaduan_Absensi::class,'id_pegawai','id_pegawai');
     }
 
     public function getJWTIdentifier(){

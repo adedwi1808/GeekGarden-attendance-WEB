@@ -1,19 +1,19 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('admin.dashboard')}}" class="brand-link">
-        <img src="{{asset('assets/AdminLTE/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{asset('assets/gg.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light text-md">GeekGarden Attendance</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 ml-2 d-flex">
-{{--            <div class="image">--}}
-{{--                <img src="{{asset('assets/AdminLTE/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">--}}
-{{--            </div>--}}
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="{{asset('assets/admin.jpg')}}" class="img-circle elevation-2" alt="User Image">
+            </div>
             <div class="info">
-                <a href="#" class="d-block">ADM-{{\Illuminate\Support\Facades\Session::get('admin.nama')}}</a>
+                <a href="#" class="d-block">{{\Illuminate\Support\Facades\Session::get('admin.nama')}}</a>
             </div>
         </div>
 
@@ -42,8 +42,9 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+
+                <li class="nav-item {{($title == 'Hasil Absensi') || ($title == 'Pengajuan Izin' || $title == 'Pengaduan Absensi' || $title == 'Lembur')? 'menu-is-opening menu-open': ''}}">
+                    <a href="#" class="nav-link {{($title == 'Hasil Absensi') || ($title == 'Pengajuan Izin'|| $title == 'Pengaduan Absensi' || $title == 'Lembur')? 'active': ''}}">
                         <i class="nav-icon fas fa-file-invoice"></i>
                         <p>
                             Absensi
@@ -53,41 +54,72 @@
 
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('admin.halaman.kelola.hasil.absensi')}}" class="nav-link">
+                            <a href="{{route('admin.halaman.kelola.hasil.absensi')}}" class="nav-link {{($title == 'Hasil Absensi')? 'active': ''}}">
                                 <i class="nav-icon fas fa-file-alt"></i>
                                 <p>
                                     Hasil Absensi
                                 </p>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="pages/tables/data.html" class="nav-link">
+                            <a href="{{route('admin.halaman.kelola.pengajuan.izin')}}" class="nav-link {{($title == 'Pengajuan Izin')? 'active': ''}}">
                                 <i class="nav-icon fas fa-file-contract"></i>
                                 <p>
                                     Pengajuan Izin
                                 </p>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('admin.halaman.kelola.pengaduan.absensi')}}" class="nav-link {{($title == 'Pengaduan Absensi')? 'active': ''}}">
                                 <i class="nav-icon fas fa-exclamation"></i>
                                 <p>
-                                    Laporan Absensi
+                                    Pengaduan Absensi
+                                </p>
+                            </a>
+
+                        <li class="nav-item">
+                            <a href="{{route('admin.halaman.kelola.lembur')}}" class="nav-link {{($title == 'Lembur')? 'active': ''}}">
+                                <i class="nav-icon fas fa-user-clock"></i>
+                                <p>
+                                    Lembur
                                 </p>
                             </a>
                         </li>
+                        </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item {{($title == 'Mading')? 'menu-is-opening menu-open': ''}}">
+                    <a href="{{route('admin.halaman.mading')}}" class="nav-link {{($title == 'Mading')? 'active': ''}}">
                         <i class="nav-icon fas fa-newspaper"></i>
                         <p>
                             Mading GeekGarden
                         </p>
                     </a>
                 </li>
+                <li class="nav-item {{($title == 'Cetak Laporan')? 'menu-is-opening menu-open': ''}}">
+                    <a href="{{route('admin.halaman.cetak.laporan')}}" class="nav-link {{($title == 'Cetak Laporan')? 'active': ''}}">
+                        <i class="nav-icon fas fa-print"></i>
+                        <p>
+                            Cetak Laporan
+                        </p>
+                    </a>
+                </li>
+                {{--                Waktu Kerja------------------------------------------------------------------------------------------------------------------------}}
+                <li class="nav-item {{($title == 'Waktu Kerja')? 'menu-is-opening menu-open': ''}}">
+                    <a href="{{route('admin.halaman.kelola.waktu.kerja')}}" class="nav-link {{($title == 'Waktu Kerja')? 'active': ''}}">
+                        <i class="nav-icon fas fa-calendar-alt"></i>
+                        <p>
+                            Kelola Waktu Kerja
+                        </p>
+                    </a>
+                </li>
+{{--                LAINNYA------------------------------------------------------------------------------------------------------------------------}}
                 <li class="nav-header">Lainnya</li>
-                <li class="nav-item">
+                {{--                Kelola User------------------------------------------------------------------------------------------------------------------------}}
+
+                <li class="nav-item {{($title == 'Admin') || ($title == 'Pegawai')? 'menu-is-opening menu-open': ''}}">
                     <a href="#" class="nav-link {{($title == 'Admin') || ($title == 'Pegawai')? 'active': ''}}">
                         <i class="nav-icon fas fa-users-cog"></i>
                         <p>
@@ -110,6 +142,7 @@
                         </li>
                     </ul>
                 </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

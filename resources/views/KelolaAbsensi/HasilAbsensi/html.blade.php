@@ -10,17 +10,21 @@
                     <div class="row mb-2">
                         <div class="col">
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label for="filter">Rentang Waktu:</label>
-                                        <select id="filter" name="rentang_waktu" class="select2" data-placeholder="Any" style="width: 100%;">
-                                            <option selected>Satu Bulan Terakhir</option>
-                                            <option>Hari Ini</option>
-                                            <option>7 Hari Terakhir</option>
-                                        </select>
+                                        <label for="date_range">Rentang Waktu:</label>
+                                        <div id="date_range" class="row">
+                                            <div class="col-6">
+                                                <input type="datetime-local" class="form-control" name="start_date" value="2022-07-01T00:00">
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="datetime-local" class="form-control" name="end_date" value="{{\Carbon\Carbon::now()->endOfDay()->toDateTimeString()}}">
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-2">
+                                <div class="col-3">
                                     <div class="form-group">
                                         <label for="tempat">Tempat :</label>
                                         <select name="tempat" id="tempat" class="select2" style="width: 100%;">
@@ -29,7 +33,8 @@
                                             <option>Diluar Kantor</option>
                                         </select>
                                     </div>
-                                </div><div class="col-2">
+                                </div>
+                                <div class="col-3">
                                     <div class="form-group">
                                         <label for="status">Status:</label>
                                         <select name="status" id="status" class="select2" style="width: 100%;">
@@ -37,24 +42,6 @@
                                             <option>Hadir</option>
                                             <option>Pulang</option>
                                             <option>Izin</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="form-group">
-                                        <label for="sort">Sort Order:</label>
-                                        <select name="sort_order" id="sort" class="select2" style="width: 100%;">
-                                            <option selected value="asc">ASC</option>
-                                            <option value="desc">DESC</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="form-group">
-                                        <label for="order">Order By:</label>
-                                        <select name="order_by" id="order" class="select2" style="width: 100%;">
-                                            <option selected>Tanggal</option>
-                                            <option>Nama</option>
                                         </select>
                                     </div>
                                 </div>
@@ -75,52 +62,66 @@
                 </form>
                 <div class="row">
                     <div class="col-12">
-                        <table class="table table-bordered text-center">
+                        <table id="tableAbsensi" class="table table-bordered table-hover table-striped text-center">
                             <thead>
                             <tr>
-                                <th scope="col" class="col-2">Nama Pegawai</th>
-                                <th scope="col" class="col-1">Tempat</th>
-                                <th scope="col" class="col-1">Longitude</th>
-                                <th scope="col" class="col-1">Latitude</th>
-                                <th scope="col" class="col-1">Foto Absensi</th>
-                                <th scope="col" class="col-1">Status</th>
-                                <th scope="col" class="col-2">Tanggal</th>
-                                <th scope="col" class="col-3">Kelola</th>
+                                <th>Nama Pegawai</th>
+                                <th>Tempat</th>
+                                <th>Longitude</th>
+                                <th>Latitude</th>
+                                <th>Foto Absensi</th>
+                                <th>Progress</th>
+                                <th>Status</th>
+                                <th>Tanggal</th>
+                                <th>Kelola</th>
                             </tr>
                             </thead>
                             <tbody>
 
+
                             @forelse($data_absensi as $index=>$absensi)
+                                @php
+                                    $progress = \App\Models\Progress::where('id_absensi',$absensi->id_absensi)->first();
+                                    $lembur = \App\Models\Lembur::where('id_absensi', $absensi->id_absensi)
+                                    ->where('status_lembur', 'Diterima')
+                                    ->first();
+                                @endphp
                                 <tr>
-                                    <td class="col-2">{{$absensi->nama}}</td>
-                                    <td class="col-1">{{$absensi->tempat}}</td>
-                                    <td class="col-1">{{$absensi->longitude}}</td>
-                                    <td class="col-1">{{$absensi->latitude}}</td>
-                                    <td class="col-1"><a class="link-primary"
-                                                         href="/storage/bukti-absen/{{$absensi->foto}}">{{(strlen($absensi->foto) > 18)? substr($absensi->foto, 0,18)."..." : $absensi->foto}}</a>
+                                    <td>{{$absensi->pegawai->nama}}</td>
+                                    <td>{{$absensi->tempat}}</td>
+                                    <td>{{$absensi->longitude}}</td>
+                                    <td>{{$absensi->latitude}}</td>
+                                    <td><a class="link-primary"
+                                                         href="/storage/bukti-absen/{{$absensi->foto}}" target="_blank">{{(strlen($absensi->foto) > 9)? substr($absensi->foto, 0,9)."..." : $absensi->foto}}</a>
                                     </td>
-                                    <td class="col-1">{{$absensi->status}}</td>
-                                    <td class="col-2">{{$absensi->tanggal}}</td>
-                                    <td class="col-3">
+                                    @if($progress)
+                                    <td>{{(strlen($progress->progress_pekerjaan) > 25)?substr($progress->progress_pekerjaan,0,25)."...":$progress->progress_pekerjaan}}</td>
+                                    @else
+                                        <td>{{"-"}}</td>
+                                    @endif
+
+                                    @if($lembur)
+                                        <td><span class="badge badge-warning badge-pill">{{$absensi->status}}</span></td>
+                                        <td><span class="badge badge-warning badge-pill">{{$absensi->tanggal}}</span></td>
+                                    @else
+                                        <td>{{$absensi->status}}</td>
+                                        <td><span class="badge badge-info badge-pill">{{$absensi->tanggal}}</span></td>
+                                    @endif
+                                    <td>
                                         <div class="row justify-content-center">
-                                            <form class="mx-2"
+                                            <form class="col-6"
                                                   action="https://www.google.com/maps/search/{{$absensi->latitude.','.$absensi->longitude}}"
                                                   method="get" target="_blank">
                                                 <button type="submit" class="btn btn-info"><i
                                                         class="fas fa-map-marked"></i>
                                                 </button>
                                             </form>
-                                            <form class="mx-2"
+                                            <form class="col-6"
                                                   action="{{route('admin.halaman.edit.absensi', $absensi->id_absensi)}}"
                                                   method="get">
                                                 <button type="submit" class="btn btn-success"><i
                                                         class="fas fa-edit"></i>
                                                 </button>
-                                            </form>
-                                            <form class="mx-2" action="" method="post">
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger"><i
-                                                        class="far fa-trash-alt"></i></button>
                                             </form>
                                         </div>
                                     </td>
@@ -131,10 +132,20 @@
                                 </div>
                             @endforelse
                             </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>Nama Pegawai</th>
+                                <th>Tempat</th>
+                                <th>Longitude</th>
+                                <th>Latitude</th>
+                                <th>Foto Absensi</th>
+                                <th>Progress</th>
+                                <th>Status</th>
+                                <th>Tanggal</th>
+                                <th>Kelola</th>
+                            </tr>
+                            </tfoot>
                         </table>
-                        <div class="d-flex align-items-center justify-content-center ">
-                            {{$data_absensi->links()}}
-                        </div>
                     </div>
                 </div>
             </div>

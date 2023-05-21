@@ -15,14 +15,18 @@ return new class extends Migration
     {
         Schema::create('absensi', function (Blueprint $table) {
             $table->id('id_absensi');
-            $table->foreignId('id_pegawai')->nullable();
-            $table->string('tempat');
-            $table->string('status');
+            $table->foreignId('id_pegawai')
+                ->references('id_pegawai')
+                ->on('pegawai')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->enum('tempat',['Dikantor', 'Diluar Kantor'])
+            ->nullable();
+            $table->enum('status', ['Hadir', 'Pulang', 'Izin', 'Cuti', 'Lembur']);
             $table->string('longitude');
             $table->string('latitude');
             $table->string('foto')->nullable();
             $table->dateTime('tanggal')->useCurrent();
-
         });
     }
 

@@ -11,7 +11,8 @@ class KelolaAdminController extends Controller
 {
     public function index()
     {
-        $data_admin = DB::table('admin')->paginate(5);
+        $data_admin = Admin::orderBy('nama', 'asc')
+            ->paginate(5);
         $title = 'Admin';
 
         return view('KelolaUser.KelolaAdmin.index', compact('data_admin', 'title'));
@@ -27,24 +28,21 @@ class KelolaAdminController extends Controller
     public function editpage(Request $request, $id)
     {
         $title = 'Admin';
-        $admin = Admin::where('id_admin', $id)->first();
-        $data_admin = [
-            'nama' => $admin->nama,
-            'email' => $admin->email,
-        ];
+        $data_admin = Admin::where('id_admin', $id)->first();
+
         return view('KelolaUser.KelolaAdmin.EditAdmin.index', compact('data_admin', 'title', 'id'));
 
     }
 
     public function hapus($email)
     {
+        if (Admin::count() <= 2){
+            return back()->with('fail', 'Admin Tidak Boleh kurang dari 2');
+        }
         $admin = Admin::where('email', $email)->first();
 
         if ($admin) {
-            if (db::table('admin')->count() <= 2){
-                return back()->with('fail', 'Admin Tidak Boleh kurang dari 2');
-            }
-            Admin::where('email', $email)->delete();
+            $admin->delete();
             return back()->with('success', 'Berhasil Menghapus Admin');
         }
     }
@@ -70,6 +68,23 @@ class KelolaAdminController extends Controller
         }
         return back()->with('fail', 'Terjadi Kesalahan Saat Melakukan Edit Data');
 
+    }
+
+    public function tambah(Request $request){
+        $validasi = $request->validate([
+            'nama' => 'required',
+            'email' => 'required|unique:admin',
+            'password' => 'required|min:6'
+        ]);
+
+        $admin = Admin::create(array_merge($validasi, [
+            'password' => bcrypt($request->password)
+        ]));
+        if ($admin){
+            return back()->with('success','Berhasil, Akun Pegawai siap digunakan');
+        }else{
+            return back()->with('fail','Terjadi Kesalahan');
+        }
     }
 
 

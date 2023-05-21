@@ -6,10 +6,13 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="index3.html" class="nav-link">Home</a>
+            <a href="{{route('admin.dashboard')}}" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Contact</a>
+            <a href="{{route('admin.halaman.mading')}}" class="nav-link">Mading GeekGarden</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="{{route('admin.halaman.cetak.laporan')}}" class="nav-link">Cetak Laporan</a>
         </li>
     </ul>
 
@@ -21,8 +24,12 @@
                 <i class="far fa-user"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-user-cog mr-2"></i> Edit Akun
+                <a class="dropdown-item">
+                    <form action="{{route('admin.halaman.edit.admin', \Illuminate\Support\Facades\Session::get('admin.id_admin'))}}"  class="dropitem" method="get">
+                        @csrf
+                        <button class="btn btn-flat"><i class="fas fa-user-cog"></i></button>
+                        Edit Profile
+                    </form>
                 </a>
                 <div class="dropdown-divider"></div>
 

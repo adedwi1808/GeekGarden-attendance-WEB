@@ -34,6 +34,7 @@ class LoginController extends Controller
 
             Session::put('isLogin',true);
             Session::put('admin',[
+                'id_admin'=>$admin->id_admin,
                 'nama'=>$admin->nama,
                 'email'=>$admin->email,
             ]);
