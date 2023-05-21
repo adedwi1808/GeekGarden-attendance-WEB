@@ -60,7 +60,7 @@ class KelolaMadingController extends Controller
             $image = str_replace(' ', '',$image);
             $image = date('Hs').rand(1,999)."_".$image;
             $fileName = $image;
-            $request->file('thumbnailMading')->storeAs('public/mading', $image);
+            $request->file('thumbnailMading')->storeAs('mading', $image);
         }else{
             return back()->with('fail','Terjadi Kesalahan');
         }

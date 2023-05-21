@@ -30,7 +30,7 @@
                         <td  class="col-1">{{$absensi->longitude}}</td>
                         <td  class="col-1">{{$absensi->latitude}}</td>
                         <td  class="col-1"><a class="link-primary"
-                                             href="/storage/bukti-absen/{{$absensi->foto}}">Link</a>
+                                             href="/storage/public/bukti-absen/{{$absensi->foto}}">Link</a>
                         </td>
 
                         @if($progress)

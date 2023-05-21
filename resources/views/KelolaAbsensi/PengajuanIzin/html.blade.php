@@ -112,7 +112,7 @@
                                     <td>{{$pengajuan_izin->tanggal_selesai_izin}}</td>
                                     <td>{{(strlen($pengajuan_izin->alasan_izin) > 3)? substr($pengajuan_izin->alasan_izin, 0,3)."..." : $pengajuan_izin->alasan_izin}}</td>
                                     <td><a class="link-primary"
-                                           href="/storage/surat-izin/{{$pengajuan_izin->surat_izin}}">{{(strlen($pengajuan_izin->surat_izin) > 5)? substr($pengajuan_izin->surat_izin, 0,5)."..." : $pengajuan_izin->surat_izin}}</a>
+                                           href="/storage/public/surat-izin/{{$pengajuan_izin->surat_izin}}">{{(strlen($pengajuan_izin->surat_izin) > 5)? substr($pengajuan_izin->surat_izin, 0,5)."..." : $pengajuan_izin->surat_izin}}</a>
                                     </td>
                                     <td>{{$pengajuan_izin->tanggal_mengajukan_izin}}</td>
                                     <td>

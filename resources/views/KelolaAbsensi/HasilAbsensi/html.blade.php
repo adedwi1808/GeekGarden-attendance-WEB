@@ -92,7 +92,7 @@
                                     <td>{{$absensi->longitude}}</td>
                                     <td>{{$absensi->latitude}}</td>
                                     <td><a class="link-primary"
-                                                         href="/storage/bukti-absen/{{$absensi->foto}}" target="_blank">{{(strlen($absensi->foto) > 9)? substr($absensi->foto, 0,9)."..." : $absensi->foto}}</a>
+                                                         href="/storage/public/bukti-absen/{{$absensi->foto}}" target="_blank">{{(strlen($absensi->foto) > 9)? substr($absensi->foto, 0,9)."..." : $absensi->foto}}</a>
                                     </td>
                                     @if($progress)
                                     <td>{{(strlen($progress->progress_pekerjaan) > 25)?substr($progress->progress_pekerjaan,0,25)."...":$progress->progress_pekerjaan}}</td>
