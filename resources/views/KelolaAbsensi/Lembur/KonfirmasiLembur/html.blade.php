@@ -36,7 +36,7 @@
                 <label>Bukti Absensi:</label>
                 <br>
                 <a class="link-{{($data_lembur->foto != null)?"primary":"black"}}"
-                   href="/storage/bukti-absen/{{$data_lembur->foto}}"
+                   href="/storage/public/bukti-absen/{{$data_lembur->foto}}"
                    style="{{($data_lembur->foto != null)?"":"pointer-events: none"}}">
                     {{($data_lembur->foto != null)?"Bukti Absensi Lembur":"Pegawai Tidak Mencantumkan Surat"}}
                 </a>

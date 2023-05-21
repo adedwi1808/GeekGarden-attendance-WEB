@@ -61,7 +61,7 @@
                                 <tr>
                                     <td>{{$mading->judul}}</td>
                                     <td>{{(strlen($mading->informasi) > 60)? substr($mading->informasi, 0,60)."..." : $mading->informasi}}</td>
-                                    <td><a class="link-primary" href="/storage/mading/{{$mading->foto}}">
+                                    <td><a class="link-primary" href="/storage/public/mading/{{$mading->foto}}">
                                             {{(strlen($mading->foto) > 18)? substr($mading->foto, 0,18)."..." : $mading->foto}}
                                         </a>
                                     </td>

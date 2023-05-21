@@ -64,7 +64,7 @@
                     <label>Surat Izin(Opsional):</label>
                     <br>
                     <a class="link-{{($data_pengajuan_izin->surat_izin != null)?"primary":"black"}}"
-                       href="/storage/surat-izin/{{$data_pengajuan_izin->surat_izin}}"
+                       href="/storage/public/surat-izin/{{$data_pengajuan_izin->surat_izin}}"
                        style="{{($data_pengajuan_izin->surat_izin != null)?"":"pointer-events: none"}}">
                         {{($data_pengajuan_izin->surat_izin != null)?"Surat Izin":"Pegawai Tidak Mencantumkan Surat"}}
                     </a>
