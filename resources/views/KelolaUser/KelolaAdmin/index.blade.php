@@ -3,6 +3,6 @@
 @section('title','Kelola '.$title)
 
 @section('content')
-    @include('KelolaUser.kelolaAdmin.html')
+    @include('KelolaUser.KelolaAdmin.html')
 @endsection
 
