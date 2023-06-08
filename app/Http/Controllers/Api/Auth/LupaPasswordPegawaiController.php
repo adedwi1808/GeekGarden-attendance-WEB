@@ -19,7 +19,7 @@ class LupaPasswordPegawaiController extends Controller
 //        ]);
 
         $validasi = Validator::make($request->all(), [
-            'email'=>'required|email|exists:Pegawai'
+            'email'=>'required|email|exists:pegawai'
         ]);
 
         if ($validasi->fails()) return $this->error($validasi->errors()->first());
@@ -55,7 +55,7 @@ class LupaPasswordPegawaiController extends Controller
     public function resetpassword(Request $request)
     {
         $request->validate([
-            'email'=>'required|email|exists:Pegawai',
+            'email'=>'required|email|exists:pegawai',
             'password'=>'required|min:6|confirmed',
             'password_confirmation'=>'required'
         ]);
