@@ -43,7 +43,7 @@ class EditProfilePegawaiController extends Controller
         $pegawai = Pegawai::where('id_pegawai', $id)->first();
 
         $validasi = Validator::make($request->all(), [
-            'password' => 'required|min:6'
+            'password' => 'required|min:6|unique:admin, nomor_hp'
         ]);
 
         $validasi2 = Validator::make($request->all(), [
