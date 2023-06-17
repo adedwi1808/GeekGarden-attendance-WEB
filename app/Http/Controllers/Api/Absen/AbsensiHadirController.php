@@ -17,7 +17,7 @@ class AbsensiHadirController extends Controller
     {
         $id = auth('pegawai-api')->user()->id_pegawai;
 
-        $hari_libur = Tanggal_Libur::Where("tanggal", today())->first();
+//        $hari_libur = Tanggal_Libur::Where("tanggal", today())->first();
 
         if ($hari_libur){
             return $this->error("Hari ini adalah hari libur");
