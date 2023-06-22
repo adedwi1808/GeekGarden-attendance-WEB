@@ -26,17 +26,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="tempat_absen">Tempat Absen :</label>
-                                        <select name="tempat_absen" id="tempat_absen" class="select2"
-                                                style="width: 100%;">
-                                            <option selected>All</option>
-                                            <option>Dikantor</option>
-                                            <option>Diluar Kantor</option>
-                                        </select>
-                                    </div>
-                                </div>
+{{--                                <div class="col-3">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="tempat_absen">Tempat Absen :</label>--}}
+{{--                                        <select name="tempat_absen" id="tempat_absen" class="select2"--}}
+{{--                                                style="width: 100%;">--}}
+{{--                                            <option selected>All</option>--}}
+{{--                                            <option>Dikantor</option>--}}
+{{--                                            <option>Diluar Kantor</option>--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="status_lembur">Status:</label>
@@ -90,7 +90,7 @@
                             <thead>
                             <tr>
                                 <th>Nama Pegawai</th>
-                                <th>Tempat Absen</th>
+{{--                                <th>Tempat Absen</th>--}}
                                 <th>Status Lembur</th>
                                 <th>Tanggal</th>
                                 <th>Konfirmator</th>
@@ -103,7 +103,7 @@
                             @forelse($data_pengajuan_lembur as $index=>$lembur)
                                 <tr>
                                     <td>{{$lembur->nama_pegawai}}</td>
-                                    <td>{{$lembur->tempat}}</td>
+{{--                                    <td>{{$lembur->tempat}}</td>--}}
                                     <td>
                                         <span class="badge @if($lembur->status_lembur == "Diterima") badge-success
                                         @elseif($lembur->status_lembur == "Ditolak") badge-danger @else badge-info
@@ -133,7 +133,7 @@
                             <tfoot>
                             <tr>
                                 <th>Nama Pegawai</th>
-                                <th>Tempat Absen</th>
+{{--                                <th>Tempat Absen</th>--}}
                                 <th>Status Lembur</th>
                                 <th>Tanggal</th>
                                 <th>Konfirmator</th>

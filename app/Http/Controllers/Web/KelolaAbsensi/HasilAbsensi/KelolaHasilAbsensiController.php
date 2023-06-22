@@ -26,9 +26,9 @@ class KelolaHasilAbsensiController extends Controller
         $data_absensi= Absensi::join('pegawai', 'absensi.id_pegawai', '=', 'pegawai.id_pegawai')
             ->where(function ($query) use ($request) {
                 $query->where('nama', 'LIKE', '%' . $request->cari_hasil_absensi . '%');
-                if($request->tempat != 'All') {
-                    $query->where('tempat', '=', $request->tempat);
-                }
+//                if($request->tempat != 'All') {
+//                    $query->where('tempat', '=', $request->tempat);
+//                }
                 if ($request->status != 'All'){
                     $query->where('status', '=', $request->status);
                 }

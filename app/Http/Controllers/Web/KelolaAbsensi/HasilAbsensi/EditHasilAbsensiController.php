@@ -29,7 +29,7 @@ class EditHasilAbsensiController extends Controller
         if ($absensi){
                 $absensi->update([
                     'status' => $request->status,
-                    'tempat' => $request->tempat,
+//                    'tempat' => $request->tempat,
                     'longitude' => $request->longitude,
                     'latitude' => $request->latitude,
                 ]);

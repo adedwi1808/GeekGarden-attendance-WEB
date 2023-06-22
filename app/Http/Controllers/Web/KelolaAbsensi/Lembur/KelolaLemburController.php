@@ -16,8 +16,10 @@ class KelolaLemburController extends Controller
             ->join('pegawai', 'absensi.id_pegawai', '=','pegawai.id_pegawai')
             ->leftJoin('admin', 'lembur.id_admin', '=','admin.id_admin')
             ->select('admin.nama as nama_admin', 'admin.id_admin as id_admin', 'lembur.tanggal_konfirm',
-                'lembur.tanggal_dibuat', 'lembur.status_lembur', 'lembur.id_lembur',  'pegawai.nama as nama_pegawai',
-                'absensi.tempat')
+                'lembur.tanggal_dibuat', 'lembur.status_lembur', 'lembur.id_lembur',  'pegawai.nama as nama_pegawai'
+                ,
+//                'absensi.tempat'
+            )
             ->get();
         return view('KelolaAbsensi.Lembur.index', compact('data_pengajuan_lembur', 'title'));
     }
@@ -33,12 +35,13 @@ class KelolaLemburController extends Controller
             ->leftJoin('admin', 'lembur.id_admin', '=','admin.id_admin')
             ->select('admin.nama as nama_admin', 'admin.id_admin as id_admin', 'lembur.tanggal_konfirm',
                 'lembur.tanggal_dibuat', 'lembur.status_lembur', 'lembur.id_lembur',  'pegawai.nama as nama_pegawai',
-                'absensi.tempat')
+//                'absensi.tempat'
+            )
             ->where(function ($query) use($request){
                 $query->where('pegawai.nama', 'LIKE', '%' . $request->cari_lembur . '%');
-                if ($request->tempat_absen != 'All'){
-                    $query->where('absensi.tempat', '=', $request->tempat_absen);
-                }
+//                if ($request->tempat_absen != 'All'){
+//                    $query->where('absensi.tempat', '=', $request->tempat_absen);
+//                }
 
                 if ($request->status_lembur != 'All'){
                     $query->where('status_lembur', '=', $request->status_lembur);

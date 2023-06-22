@@ -68,21 +68,21 @@
                     @endif
                 <div class="row mb-3">
                     {{--Tempat--}}
-                    <div class="col-4">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-map-marked-alt"></i>
-                        </span>
-                            </div>
-                            <input type="text" class="form-control @error('tempat')is-invalid @enderror"
-                                   placeholder="Nama Lengkap" name="tempat" id="tempat"
-                                   value="{{$absensi->tempat}}">
-                            <span class="invalid-feedback">
-                        @error('tempat'){{$message}} @enderror
-                        </span>
-                        </div>
-                    </div>
+{{--                    <div class="col-4">--}}
+{{--                        <div class="input-group">--}}
+{{--                            <div class="input-group-prepend">--}}
+{{--                        <span class="input-group-text">--}}
+{{--                            <i class="fas fa-map-marked-alt"></i>--}}
+{{--                        </span>--}}
+{{--                            </div>--}}
+{{--                            <input type="text" class="form-control @error('tempat')is-invalid @enderror"--}}
+{{--                                   placeholder="Nama Lengkap" name="tempat" id="tempat"--}}
+{{--                                   value="{{$absensi->tempat}}">--}}
+{{--                            <span class="invalid-feedback">--}}
+{{--                        @error('tempat'){{$message}} @enderror--}}
+{{--                        </span>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
                     <div class="col-4">
                         {{--Logitude--}}

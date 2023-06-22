@@ -20,7 +20,9 @@ class KonfirmasiLemburController extends Controller
             ->leftJoin('admin', 'lembur.id_admin', '=','admin.id_admin')
             ->where('id_lembur', $id)
             ->select('lembur.id_lembur','lembur.id_absensi','lembur.tanggal_dibuat as tanggal', 'lembur.status_lembur'
-                , 'absensi.longitude', 'absensi.latitude', 'absensi.tempat', 'absensi.foto', 'pegawai.nama as nama_pegawai',
+                , 'absensi.longitude', 'absensi.latitude',
+//                'absensi.tempat',
+                'absensi.foto', 'pegawai.nama as nama_pegawai',
             'admin.nama as nama_admin')
             ->first();
 

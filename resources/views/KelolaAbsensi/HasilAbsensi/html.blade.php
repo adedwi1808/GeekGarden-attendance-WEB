@@ -24,16 +24,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="tempat">Tempat :</label>
-                                        <select name="tempat" id="tempat" class="select2" style="width: 100%;">
-                                            <option selected>All</option>
-                                            <option>Dikantor</option>
-                                            <option>Diluar Kantor</option>
-                                        </select>
-                                    </div>
-                                </div>
+{{--                                <div class="col-3">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="tempat">Tempat :</label>--}}
+{{--                                        <select name="tempat" id="tempat" class="select2" style="width: 100%;">--}}
+{{--                                            <option selected>All</option>--}}
+{{--                                            <option>Dikantor</option>--}}
+{{--                                            <option>Diluar Kantor</option>--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="status">Status:</label>
@@ -66,7 +66,7 @@
                             <thead>
                             <tr>
                                 <th>Nama Pegawai</th>
-                                <th>Tempat</th>
+{{--                                <th>Tempat</th>--}}
                                 <th>Longitude</th>
                                 <th>Latitude</th>
                                 <th>Foto Absensi</th>
@@ -88,7 +88,7 @@
                                 @endphp
                                 <tr>
                                     <td>{{$absensi->pegawai->nama}}</td>
-                                    <td>{{$absensi->tempat}}</td>
+{{--                                    <td>{{$absensi->tempat}}</td>--}}
                                     <td>{{$absensi->longitude}}</td>
                                     <td>{{$absensi->latitude}}</td>
                                     <td><a class="link-primary"
@@ -135,7 +135,7 @@
                             <tfoot>
                             <tr>
                                 <th>Nama Pegawai</th>
-                                <th>Tempat</th>
+{{--                                <th>Tempat</th>--}}
                                 <th>Longitude</th>
                                 <th>Latitude</th>
                                 <th>Foto Absensi</th>

@@ -30,7 +30,7 @@ class PegawaiController extends Controller
         if (!$pegawai) return $this->error("Pegawai Tidak Ditemukan");
 
         $validasi = Validator::make($request->all(), [
-            'tempat' => 'required',
+//            'tempat' => 'required',
             'status' => 'required',
             'longitude' => 'required',
             'latitude' => 'required',
@@ -42,7 +42,7 @@ class PegawaiController extends Controller
 
         $data = [
             'id_pegawai' => $id,
-            'tempat' => $request->post('tempat'),
+//            'tempat' => $request->post('tempat'),
             'status' => $request->post('status'),
             'longitude' => $request->post('longitude'),
             'latitude' => $request->post('latitude'),
@@ -103,7 +103,7 @@ class PegawaiController extends Controller
         if (!$pegawai) return $this->error("Pegawai Tidak Ditemukan");
 
         $validasi = Validator::make($request->all(), [
-            'tempat' => 'required',
+//            'tempat' => 'required',
             'status' => 'required',
             'longitude' => 'required',
             'latitude' => 'required',
@@ -116,7 +116,7 @@ class PegawaiController extends Controller
 
         $data = [
             'id_pegawai' => $id,
-            'tempat' => $request->post('tempat'),
+//            'tempat' => $request->post('tempat'),
             'status' => $request->post('status'),
             'longitude' => $request->post('longitude'),
             'latitude' => $request->post('latitude'),

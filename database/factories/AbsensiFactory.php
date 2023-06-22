@@ -23,7 +23,7 @@ class AbsensiFactory extends Factory
     {
         return [
             'id_pegawai' => self::$id_pegawai,
-            'tempat' => 'Dikantor',
+//            'tempat' => 'Dikantor',
             'status' => function () {
                 if (self::$pulang) {
                     self::$id_pegawai +=1;

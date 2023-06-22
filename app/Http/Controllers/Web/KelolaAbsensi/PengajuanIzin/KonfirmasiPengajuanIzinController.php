@@ -100,7 +100,7 @@ class KonfirmasiPengajuanIzinController extends Controller
 
                     $data = [
                         'id_pegawai' => $pegawai->id_pegawai,
-                        'tempat' => '-',
+//                        'tempat' => '-',
                         'status' => ($data_pengajuan_izin->jenis_izin == 'Cuti')? 'Cuti': 'Izin',
                         'longitude' => '0',
                         'latitude' => '0',
@@ -132,7 +132,7 @@ class KonfirmasiPengajuanIzinController extends Controller
 
                         $data = [
                             'id_pegawai' => $pegawai->id_pegawai,
-                            'tempat' => '-',
+//                            'tempat' => '-',
                             'status' => ($data_pengajuan_izin->jenis_izin == 'Cuti')? 'Cuti': 'Izin',
                             'longitude' => '0',
                             'latitude' => '0',

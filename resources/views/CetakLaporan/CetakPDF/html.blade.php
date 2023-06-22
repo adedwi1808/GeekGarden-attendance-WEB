@@ -6,8 +6,8 @@
             <table class="table table-bordered table-hover table-striped text-center" cellspacing="0" style="width: 100%">
                 <thead>
                 <tr>
-                    <th class="col-1">Nama Pegawai</th>
-                    <th class="col-1">Tempat</th>
+                    <th class="col-2">Nama Pegawai</th>
+{{--                    <th class="col-1">Tempat</th>--}}
                     <th class="col-1">Longitude</th>
                     <th class="col-1">Latitude</th>
                     <th class="col-1">Foto Absensi</th>
@@ -25,8 +25,8 @@
                         $lembur = \App\Models\Lembur::where('id_absensi', $absensi->id_absensi)->first();
                         @endphp
                     <tr>
-                        <td  class="col-1">{{$absensi->pegawai->nama}}</td>
-                        <td  class="col-1">{{$absensi->tempat}}</td>
+                        <td  class="col-2">{{$absensi->pegawai->nama}}</td>
+{{--                        <td  class="col-1">{{$absensi->tempat}}</td>--}}
                         <td  class="col-1">{{$absensi->longitude}}</td>
                         <td  class="col-1">{{$absensi->latitude}}</td>
                         <td  class="col-1"><a class="link-primary"
@@ -57,7 +57,7 @@
                 <tfoot>
                 <tr >
                     <th>Nama Pegawai</th>
-                    <th>Tempat</th>
+{{--                    <th>Tempat</th>--}}
                     <th>Longitude</th>
                     <th>Latitude</th>
                     <th>Foto Absensi</th>

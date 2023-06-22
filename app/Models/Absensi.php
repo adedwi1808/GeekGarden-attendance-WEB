@@ -15,7 +15,7 @@ protected $primaryKey = "id_absensi";
 
     protected $fillable = [
         'id_pegawai',
-        'tempat',
+//        'tempat',
         'status',
         'longitude',
         'latitude',

@@ -126,20 +126,20 @@ class KonfirmasiPengaduanAbsensiController extends Controller
 
         if ($data_pengaduan_absensi){
 
-            switch ($request->post('tempat')){
-                case "Dikantor":
-                    $longitude= 110.3846192;
-                    $latitude= -7.7557429;
-                    break;
-                case "Diluar Kantor":
-                    $longitude= 0;
-                    $latitude= 0;
-                    break;
-                default:
-                    $longitude= 0;
-                    $latitude= 0;
-                    break;
-            }
+//            switch ($request->post('tempat')){
+//                case "Dikantor":
+//                    $longitude= 110.3846192;
+//                    $latitude= -7.7557429;
+//                    break;
+//                case "Diluar Kantor":
+//                    $longitude= 0;
+//                    $latitude= 0;
+//                    break;
+//                default:
+//                    $longitude= 0;
+//                    $latitude= 0;
+//                    break;
+//            }
             $jam_kerja = Jam_Kerja::latest('tanggal_dibuat')->first();
 
 
@@ -166,7 +166,7 @@ class KonfirmasiPengaduanAbsensiController extends Controller
                 $tanggal = Carbon::create($data_pengaduan_absensi->tanggal_absen)->setTimeFrom(Carbon::createFromTimeString($jam_kerja->jam_mulai));
                 $data = [
                     'id_pegawai' => $data_pengaduan_absensi->id_pegawai,
-                    'tempat' => $request->post('tempat'),
+//                    'tempat' => $request->post('tempat'),
                     'status' => "Hadir",
                     'longitude' => $longitude,
                     'latitude' => $latitude,
@@ -184,7 +184,7 @@ class KonfirmasiPengaduanAbsensiController extends Controller
                 $tanggal = Carbon::create($data_pengaduan_absensi->tanggal_absen)->setTimeFrom(Carbon::createFromTimeString($jam_kerja->jam_selesai));
                 $data = [
                     'id_pegawai' => $data_pengaduan_absensi->id_pegawai,
-                    'tempat' => $request->post('tempat'),
+//                    'tempat' => $request->post('tempat'),
                     'status' => "Pulang",
                     'longitude' => $longitude,
                     'latitude' => $latitude,

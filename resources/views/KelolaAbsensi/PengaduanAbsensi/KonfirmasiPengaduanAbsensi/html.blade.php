@@ -166,27 +166,27 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label>Lokasi Absensi:</label>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio"
-                                                               name="tempat" id="Dikantor" value="Dikantor"
-                                                               checked
-                                                        >
-                                                        <label class="form-check-label" for="Dikantor">
-                                                            Dikantor
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio"
-                                                               name="tempat" id="Diluar_kantor" value="Diluar Kantor">
-                                                        <label class="form-check-label" for="Diluar_kantor">
-                                                            Diluar Kantor
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
+{{--                                            <div class="col-6">--}}
+{{--                                                <div class="form-group">--}}
+{{--                                                    <label>Lokasi Absensi:</label>--}}
+{{--                                                    <div class="form-check">--}}
+{{--                                                        <input class="form-check-input" type="radio"--}}
+{{--                                                               name="tempat" id="Dikantor" value="Dikantor"--}}
+{{--                                                               checked--}}
+{{--                                                        >--}}
+{{--                                                        <label class="form-check-label" for="Dikantor">--}}
+{{--                                                            Dikantor--}}
+{{--                                                        </label>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="form-check">--}}
+{{--                                                        <input class="form-check-input" type="radio"--}}
+{{--                                                               name="tempat" id="Diluar_kantor" value="Diluar Kantor">--}}
+{{--                                                        <label class="form-check-label" for="Diluar_kantor">--}}
+{{--                                                            Diluar Kantor--}}
+{{--                                                        </label>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
                                         </div>
                                     </div>
                                     <div class="modal-footer">
