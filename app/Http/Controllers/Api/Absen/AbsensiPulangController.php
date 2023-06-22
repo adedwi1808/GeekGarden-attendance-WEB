@@ -18,12 +18,12 @@ class AbsensiPulangController extends Controller
     public function absensipulang(Request $request)
     {
         $id = auth('pegawai-api')->user()->id_pegawai;
-
-        $hari_libur = Tanggal_Libur::Where("tanggal", today())->first();
-
-        if ($hari_libur || today()->isWeekend()){
-            return $this->error("Hari ini adalah hari libur");
-        }
+//
+//        $hari_libur = Tanggal_Libur::Where("tanggal", today())->first();
+//
+//        if ($hari_libur || today()->isWeekend()){
+//            return $this->error("Hari ini adalah hari libur");
+//        }
 
 //        if ($hari_libur){
 //            return $this->error("Hari ini adalah hari libur");

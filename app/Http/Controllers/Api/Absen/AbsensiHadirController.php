@@ -19,12 +19,12 @@ class AbsensiHadirController extends Controller
 
 //        $hari_libur = Tanggal_Libur::Where("tanggal", today())->first();
 
-        if ($hari_libur){
-            return $this->error("Hari ini adalah hari libur");
-        }
-        if ($hari_libur || today()->isWeekend()){
-            return $this->error("Hari ini adalah hari libur");
-        }
+//        if ($hari_libur){
+//            return $this->error("Hari ini adalah hari libur");
+//        }
+//        if ($hari_libur || today()->isWeekend()){
+//            return $this->error("Hari ini adalah hari libur");
+//        }
 
         $jam_kerja = Jam_Kerja::latest('tanggal_dibuat')->first();
 
